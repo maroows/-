@@ -1,0 +1,1343 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hiragana &amp; Katakana Practice Test</title>
+
+<style>
+:root {
+    --blue: #2b5cad;
+    --ink: #182235;
+    --muted: #667085;
+    --line: #d8deea;
+    --bg: #f3f5f9;
+    --good: #16803c;
+    --bad: #c62828;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: Meiryo, "Yu Gothic", system-ui, sans-serif;
+}
+
+.app {
+    width: min(760px, 100%);
+    margin: 0 auto;
+    padding: 12px;
+}
+
+/* Professional developer credit */
+.developer {
+    text-align: center;
+    margin: 5px 0 14px;
+    padding: 5px 0;
+    color: var(--muted);
+    font-size: 13px;
+    font-weight: 750;
+    letter-spacing: .4px;
+}
+
+.developer a {
+    display: inline-block;
+    margin-left: 4px;
+    font-size: 17px;
+    font-weight: 900;
+    letter-spacing: 1px;
+    text-decoration: none;
+
+    color: transparent;
+
+    background: linear-gradient(
+        110deg,
+        #707070 0%,
+        #a0a0a0 18%,
+        #d0d0d0 28%,
+        #ffffff 36%,
+        #f5f5f5 42%,
+        #b0b0b0 52%,
+        #777777 64%,
+        #a5a5a5 78%,
+        #eeeeee 90%,
+        #777777 100%
+    );
+
+    background-size: 300% 100%;
+    background-position: 100% 0;
+
+    -webkit-background-clip: text;
+    background-clip: text;
+
+    animation: maroruShine 3s linear infinite;
+
+    filter:
+        drop-shadow(0 0 4px rgba(190, 190, 190, 0.45))
+        drop-shadow(0 0 9px rgba(255, 255, 255, 0.25));
+
+    transition: filter 0.2s ease;
+}
+
+.developer a:hover {
+    filter:
+        drop-shadow(0 0 6px rgba(220, 220, 220, 0.8))
+        drop-shadow(0 0 14px rgba(255, 255, 255, 0.6));
+}
+
+@keyframes maroruShine {
+    0% {
+        background-position: 100% 0;
+    }
+
+    100% {
+        background-position: -200% 0;
+    }
+}
+
+.topbar {
+    position: sticky;
+    top: 0;
+    z-index: 5;
+    background: rgba(243,245,249,.97);
+    padding: 8px 0 12px;
+}
+
+.difficulty-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    margin-bottom: 10px;
+    padding: 10px 12px;
+    background: white;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+}
+
+.difficulty-label {
+    color: var(--ink);
+    font-size: 13px;
+    font-weight: 750;
+}
+
+.difficulty-select {
+    min-width: 150px;
+    padding: 9px 12px;
+    border: 1px solid var(--line);
+    border-radius: 9px;
+    background: #f8faff;
+    color: var(--ink);
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.difficulty-select:focus {
+    outline: 2px solid #2b5cad33;
+    border-color: var(--blue);
+}
+
+.difficulty-select:disabled {
+    opacity: .65;
+    cursor: not-allowed;
+}
+
+.topline {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.timer {
+    font-weight: 800;
+    font-size: 20px;
+    background: var(--blue);
+    color: white;
+    padding: 11px 14px;
+    border-radius: 12px;
+    white-space: nowrap;
+    font-variant-numeric: tabular-nums;
+}
+
+.actions {
+    display: flex;
+    gap: 8px;
+    flex: 1;
+    justify-content: flex-end;
+}
+
+button {
+    border: 0;
+    border-radius: 10px;
+    padding: 12px 14px;
+    font-weight: 750;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+button:disabled {
+    opacity: .45;
+    cursor: not-allowed;
+}
+
+.primary {
+    background: var(--blue);
+    color: white;
+}
+
+.secondary {
+    background: #e3e9f5;
+    color: #20365d;
+}
+
+h1 {
+    font-size: clamp(19px, 4.5vw, 25px);
+    line-height: 1.35;
+    background: var(--blue);
+    color: white;
+    border-radius: 12px;
+    padding: 16px;
+    margin: 8px 0 12px;
+}
+
+.sub {
+    color: var(--muted);
+    font-size: 14px;
+    margin-bottom: 12px;
+}
+
+.scoreboard {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 7px;
+    margin: 10px 0 14px;
+}
+
+.stat {
+    background: white;
+    border: 1px solid var(--line);
+    border-radius: 11px;
+    padding: 10px 8px;
+    text-align: center;
+}
+
+.stat span {
+    display: block;
+    color: var(--muted);
+    font-size: 12px;
+}
+
+.stat strong {
+    display: block;
+    font-size: 20px;
+    margin-top: 3px;
+}
+
+.section {
+    background: white;
+    border: 1px solid #e5e9f1;
+    border-radius: 14px;
+    padding: 12px;
+    margin: 12px 0;
+    box-shadow: 0 2px 8px #172b4d0a;
+}
+
+.section h2 {
+    font-size: 17px;
+    margin: 2px 0 5px;
+}
+
+.section p {
+    font-size: 13px;
+    color: var(--muted);
+    margin: 0 0 12px;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px;
+}
+
+.panel {
+    border: 1px solid var(--line);
+    border-radius: 11px;
+    overflow: hidden;
+}
+
+.panel h3 {
+    font-size: 14px;
+    margin: 0;
+    padding: 9px 11px;
+    background: #f7f9fc;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+    table-layout: fixed;
+}
+
+td {
+    border: 1px solid var(--line);
+    height: 43px;
+    text-align: center;
+    padding: 2px;
+    font-size: clamp(14px, 3.5vw, 19px);
+    overflow: hidden;
+}
+
+td.num {
+    width: 34px;
+    background: #f8f9fc;
+    font-size: 12px;
+    color: var(--muted);
+}
+
+td.blank {
+    background: #fff5c8;
+    padding: 2px;
+}
+
+.answer {
+    display: block;
+    width: 100%;
+    height: 36px;
+    border: 1px solid transparent;
+    border-radius: 6px;
+    background: transparent;
+    text-align: center;
+    font-size: clamp(16px, 4vw, 21px);
+    font-family: inherit;
+    color: var(--ink);
+    padding: 0;
+    outline: none;
+}
+
+.answer:focus {
+    border-color: var(--blue);
+    background: white;
+    box-shadow: 0 0 0 2px #2b5cad22;
+}
+
+.answer.correct {
+    background: #e6f6eb;
+    border-color: #83c99a;
+    color: var(--good);
+}
+
+.answer.wrong {
+    background: #ffebeb;
+    border-color: #e4a0a0;
+    color: var(--bad);
+}
+
+.answer:disabled {
+    opacity: 1;
+}
+
+.feedback {
+    font-size: 11px;
+    display: block;
+    min-height: 12px;
+    line-height: 1.1;
+}
+
+.bottom-actions {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin: 16px 0;
+}
+
+.result {
+    display: none;
+    background: #eef4ff;
+    border: 1px solid #cbd9f6;
+    border-radius: 13px;
+    padding: 16px;
+    margin: 14px 0;
+}
+
+.result.show {
+    display: block;
+}
+
+.result h2 {
+    margin: 0 0 6px;
+}
+
+.progress {
+    height: 7px;
+    background: #e1e6ef;
+    border-radius: 99px;
+    overflow: hidden;
+    margin-top: 8px;
+}
+
+.progress > div {
+    height: 100%;
+    width: 0;
+    background: var(--blue);
+    transition: width .15s;
+}
+
+.status {
+    font-size: 13px;
+    color: var(--muted);
+    margin-top: 6px;
+}
+
+@media (min-width: 650px) {
+    .app {
+        padding: 16px;
+    }
+
+    .grid {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .section {
+        padding: 14px;
+    }
+}
+
+@media (max-width: 390px) {
+    .app {
+        padding: 8px;
+    }
+
+    .timer {
+        padding: 10px;
+        font-size: 16px;
+    }
+
+    .actions button {
+        padding: 11px 9px;
+        font-size: 13px;
+    }
+
+    .difficulty-row {
+        padding: 9px;
+    }
+
+    .difficulty-select {
+        min-width: 125px;
+        padding: 8px;
+        font-size: 13px;
+    }
+
+    .scoreboard {
+        gap: 5px;
+    }
+
+    .stat {
+        padding: 8px 4px;
+    }
+
+    .stat strong {
+        font-size: 18px;
+    }
+
+    td {
+        height: 39px;
+    }
+
+    .answer {
+        height: 32px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="app">
+
+<header class="topbar">
+
+    <div class="developer">
+        Developer:
+        <a
+            href="https://www.facebook.com/marroows"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Visit マロル's Facebook profile"
+        >マロル</a>
+    </div>
+
+    <div class="difficulty-row">
+
+        <label class="difficulty-label" for="difficulty">
+            Difficulty
+        </label>
+
+        <select id="difficulty" class="difficulty-select">
+            <option value="1800">Easy — 30 minutes</option>
+            <option value="1200" selected>Normal — 20 minutes</option>
+            <option value="600">Hard — 10 minutes</option>
+        </select>
+
+    </div>
+
+    <div class="topline">
+
+        <div class="timer">
+            ⏱ <span id="timer">20:00</span>
+        </div>
+
+        <div class="actions">
+
+            <button id="startBtn" class="primary">
+                Let's Start
+            </button>
+
+            <button id="checkBtn" class="secondary" disabled>
+                Let's Check
+            </button>
+
+        </div>
+
+    </div>
+
+    <div class="scoreboard">
+
+        <div class="stat">
+            <span>Correct</span>
+            <strong id="correct">—</strong>
+        </div>
+
+        <div class="stat">
+            <span>Wrong</span>
+            <strong id="wrong">—</strong>
+        </div>
+
+        <div class="stat">
+            <span>Unanswered</span>
+            <strong id="unanswered">—</strong>
+        </div>
+
+        <div class="stat">
+            <span>Score</span>
+            <strong id="score">—</strong>
+        </div>
+
+    </div>
+
+    <div class="progress">
+        <div id="progress"></div>
+    </div>
+
+    <div class="status" id="status">
+        Choose a difficulty, then press "Let's Start".
+    </div>
+
+</header>
+
+<h1>
+    だい1ぶ れんしゅうもんだい<br>
+    Hiragana &amp; Katakana Practice Test
+</h1>
+
+<p class="sub">
+    Write the missing character in each yellow box.
+    You may enter kana or romaji.
+    For example, あ or a.
+    Your answers will be checked only after you click "Let's Check".
+</p>
+
+<main id="test"></main>
+
+<div class="result" id="result">
+
+    <h2 id="resultTitle">Test complete</h2>
+
+    <p id="resultText"></p>
+
+    <p id="answerReview"></p>
+
+</div>
+
+<div class="bottom-actions">
+
+    <button id="checkBottom" class="primary" disabled>
+        Let's Check Answers
+    </button>
+
+    <button id="resetBtn" class="secondary">
+        Restart Test
+    </button>
+
+</div>
+
+</div>
+
+<script>
+
+const sections = [
+
+{
+    title: "れんしゅう1 — Basic rows",
+
+    desc: "Fill in the missing character in each kana row.",
+
+    panels: [
+
+    {
+        title: "ひらがな Hiragana",
+
+        rows: [
+            ["あ","い","う","え","お"],
+            ["か","き","く","け","こ"],
+            ["さ","し","す","せ","そ"],
+            ["た","ち","つ","て","と"],
+            ["な","に","ぬ","ね","の"],
+            ["は","ひ","ふ","へ","ほ"],
+            ["ま","み","む","め","も"],
+            ["や","ゆ","よ"],
+            ["ら","り","る","れ","ろ"],
+            ["が","ぎ","ぐ","げ","ご"],
+            ["ざ","じ","ず","ぜ","ぞ"],
+            ["ば","び","ぶ","べ","ぼ"],
+            ["ぱ","ぴ","ぷ","ぺ","ぽ"],
+            ["きゃ","きゅ","きょ"],
+            ["ちゃ","ちゅ","ちょ"]
+        ],
+
+        blanks: [4,3,2,2,4,2,4,2,2,1,1,4,2,2,1]
+    },
+
+    {
+        title: "カタカナ Katakana",
+
+        rows: [
+            ["ア","イ","ウ","エ","オ"],
+            ["カ","キ","ク","ケ","コ"],
+            ["サ","シ","ス","セ","ソ"],
+            ["タ","チ","ツ","テ","ト"],
+            ["ナ","ニ","ヌ","ネ","ノ"],
+            ["ハ","ヒ","フ","ヘ","ホ"],
+            ["マ","ミ","ム","メ","モ"],
+            ["ヤ","ユ","ヨ"],
+            ["ラ","リ","ル","レ","ロ"],
+            ["ガ","ギ","グ","ゲ","ゴ"],
+            ["ザ","ジ","ズ","ゼ","ゾ"],
+            ["バ","ビ","ブ","ベ","ボ"],
+            ["パ","ピ","プ","ペ","ポ"],
+            ["シャ","シュ","ショ"],
+            ["ジャ","ジュ","ジョ"]
+        ],
+
+        blanks: [2,3,4,4,4,1,3,1,1,1,4,1,1,2,1]
+    }
+
+    ]
+},
+
+{
+    title: "れんしゅう2 — わ・だ・ようおん",
+
+    desc: "Practice the wa-row, voiced sounds, and contracted sounds.",
+
+    panels: [
+
+    {
+        title: "ひらがな Hiragana",
+
+        rows: [
+            ["あ","い","う","え","お"],
+            ["か","き","く","け","こ"],
+            ["さ","し","す","せ","そ"],
+            ["た","ち","つ","て","と"],
+            ["な","に","ぬ","ね","の"],
+            ["は","ひ","ふ","へ","ほ"],
+            ["ま","み","む","め","も"],
+            ["や","ゆ","よ"],
+            ["ら","り","る","れ","ろ"],
+            ["わ","を","ん"],
+            ["だ","ぢ","づ","で","ど"],
+            ["ば","び","ぶ","べ","ぼ"],
+            ["しゃ","しゅ","しょ"],
+            ["にゃ","にゅ","にょ"],
+            ["りゃ","りゅ","りょ"]
+        ],
+
+        blanks: [2,2,1,4,2,1,3,1,2,2,1,3,1,2,1]
+    },
+
+    {
+        title: "カタカナ Katakana",
+
+        rows: [
+            ["ア","イ","ウ","エ","オ"],
+            ["カ","キ","ク","ケ","コ"],
+            ["サ","シ","ス","セ","ソ"],
+            ["タ","チ","ツ","テ","ト"],
+            ["ナ","ニ","ヌ","ネ","ノ"],
+            ["ハ","ヒ","フ","ヘ","ホ"],
+            ["マ","ミ","ム","メ","モ"],
+            ["ラ","リ","ル","レ","ロ"],
+            ["ワ","ヲ","ン"],
+            ["ダ","ヂ","ヅ","デ","ド"],
+            ["バ","ビ","ブ","ベ","ボ"],
+            ["キャ","キュ","キョ"],
+            ["ニャ","ニュ","ニョ"],
+            ["ヒャ","ヒュ","ヒョ"],
+            ["ミャ","ミュ","ミョ"]
+        ],
+
+        blanks: [1,3,3,4,2,2,1,1,2,3,3,1,2,2,1]
+    }
+
+    ]
+},
+
+{
+    title: "れんしゅう3 — Challenge",
+
+    desc: "Two missing characters appear in each row. Fill both boxes.",
+
+    panels: [
+
+    {
+        title: "ひらがな Hiragana",
+
+        rows: [
+            ["あ","い","う","え","お"],
+            ["か","き","く","け","こ"],
+            ["さ","し","す","せ","そ"],
+            ["た","ち","つ","て","と"],
+            ["な","に","ぬ","ね","の"],
+            ["は","ひ","ふ","へ","ほ"],
+            ["ま","み","む","め","も"],
+            ["ら","り","る","れ","ろ"],
+            ["が","ぎ","ぐ","げ","ご"],
+            ["ざ","じ","ず","ぜ","ぞ"],
+            ["だ","ぢ","づ","で","ど"],
+            ["ば","び","ぶ","べ","ぼ"],
+            ["ぱ","ぴ","ぷ","ぺ","ぽ"],
+            ["きゃ","きゅ","きょ"],
+            ["しゃ","しゅ","しょ"]
+        ],
+
+        blanks: [
+            [2,3],
+            [2,4],
+            [3,4],
+            [2,3],
+            [3,4],
+            [2,4],
+            [3,4],
+            [1,2],
+            [2,4],
+            [1,4],
+            [2,3],
+            [1,3],
+            [2,4],
+            [1,2],
+            [0,2]
+        ]
+    },
+
+    {
+        title: "カタカナ Katakana",
+
+        rows: [
+            ["ア","イ","ウ","エ","オ"],
+            ["カ","キ","ク","ケ","コ"],
+            ["サ","シ","ス","セ","ソ"],
+            ["タ","チ","ツ","テ","ト"],
+            ["ナ","ニ","ヌ","ネ","ノ"],
+            ["ハ","ヒ","フ","ヘ","ホ"],
+            ["マ","ミ","ム","メ","モ"],
+            ["ラ","リ","ル","レ","ロ"],
+            ["ガ","ギ","グ","ゲ","ゴ"],
+            ["ザ","ジ","ズ","ゼ","ゾ"],
+            ["ダ","ヂ","ヅ","デ","ド"],
+            ["バ","ビ","ブ","ベ","ボ"],
+            ["パ","ピ","プ","ペ","ポ"],
+            ["キャ","キュ","キョ"],
+            ["シャ","シュ","ショ"]
+        ],
+
+        blanks: [
+            [1,2],
+            [2,4],
+            [1,3],
+            [2,4],
+            [1,2],
+            [1,3],
+            [1,3],
+            [1,2],
+            [1,3],
+            [1,4],
+            [1,3],
+            [2,3],
+            [1,3],
+            [0,2],
+            [1,2]
+        ]
+    }
+
+    ]
+}
+
+];
+
+let questions = [];
+let running = false;
+let finished = false;
+let remaining = 20 * 60;
+let ticker = null;
+
+const $ = id => document.getElementById(id);
+
+const difficultyDurations = {
+    easy: 30 * 60,
+    normal: 20 * 60,
+    hard: 10 * 60
+};
+
+/* Romaji answers for Hiragana and Katakana */
+const romajiMap = {
+
+    "あ":"a","い":"i","う":"u","え":"e","お":"o",
+
+    "か":"ka","き":"ki","く":"ku","け":"ke","こ":"ko",
+
+    "さ":"sa","し":"shi","す":"su","せ":"se","そ":"so",
+
+    "た":"ta","ち":"chi","つ":"tsu","て":"te","と":"to",
+
+    "な":"na","に":"ni","ぬ":"nu","ね":"ne","の":"no",
+
+    "は":"ha","ひ":"hi","ふ":"fu","へ":"he","ほ":"ho",
+
+    "ま":"ma","み":"mi","む":"mu","め":"me","も":"mo",
+
+    "や":"ya","ゆ":"yu","よ":"yo",
+
+    "ら":"ra","り":"ri","る":"ru","れ":"re","ろ":"ro",
+
+    "わ":"wa","を":"wo","ん":"n",
+
+    "が":"ga","ぎ":"gi","ぐ":"gu","げ":"ge","ご":"go",
+
+    "ざ":"za","じ":"ji","ず":"zu","ぜ":"ze","ぞ":"zo",
+
+    "だ":"da","ぢ":"ji","づ":"zu","で":"de","ど":"do",
+
+    "ば":"ba","び":"bi","ぶ":"bu","べ":"be","ぼ":"bo",
+
+    "ぱ":"pa","ぴ":"pi","ぷ":"pu","ぺ":"pe","ぽ":"po",
+
+    "きゃ":"kya","きゅ":"kyu","きょ":"kyo",
+
+    "しゃ":"sha","しゅ":"shu","しょ":"sho",
+
+    "ちゃ":"cha","ちゅ":"chu","ちょ":"cho",
+
+    "じゃ":"ja","じゅ":"ju","じょ":"jo",
+
+    "にゃ":"nya","にゅ":"nyu","にょ":"nyo",
+
+    "りゃ":"rya","りゅ":"ryu","りょ":"ryo"
+
+};
+
+/* Convert Katakana to Hiragana for answer checking */
+function toHiragana(value) {
+
+    return value.replace(/[\u30A1-\u30F6]/g, char => {
+
+        return String.fromCharCode(char.charCodeAt(0) - 0x60);
+
+    });
+
+}
+
+/* Accept kana OR romaji */
+function isCorrectAnswer(input, answer) {
+
+    const entered = normalize(input);
+
+    const answerHiragana = normalize(toHiragana(answer));
+
+    const answerRomaji = romajiMap[answerHiragana] || "";
+
+    return entered === answerHiragana ||
+           entered === normalize(answer) ||
+           entered === answerRomaji;
+
+}
+
+function normalize(value) {
+    return value.normalize("NFC").trim().toLowerCase();
+}
+
+/* Build the complete test */
+function buildTest() {
+
+    const root = $("test");
+
+    root.innerHTML = "";
+
+    questions = [];
+
+    sections.forEach((section, sectionIndex) => {
+
+        const sectionEl = document.createElement("section");
+
+        sectionEl.className = "section";
+
+        sectionEl.innerHTML = `
+            <h2>${section.title}</h2>
+            <p>${section.desc}</p>
+        `;
+
+        const grid = document.createElement("div");
+
+        grid.className = "grid";
+
+        section.panels.forEach(panel => {
+
+            const box = document.createElement("div");
+
+            box.className = "panel";
+
+            const heading = document.createElement("h3");
+
+            heading.textContent = panel.title;
+
+            box.appendChild(heading);
+
+            const table = document.createElement("table");
+
+            const tbody = document.createElement("tbody");
+
+            panel.rows.forEach((row, rowIndex) => {
+
+                const tr = document.createElement("tr");
+
+                const num = document.createElement("td");
+
+                num.className = "num";
+
+                num.textContent = rowIndex + 1;
+
+                tr.appendChild(num);
+
+                const blankSpec = panel.blanks[rowIndex];
+
+                const blanks = Array.isArray(blankSpec)
+                    ? blankSpec
+                    : [blankSpec];
+
+                row.forEach((kana, kanaIndex) => {
+
+                    const td = document.createElement("td");
+
+                    if (blanks.includes(kanaIndex)) {
+
+                        td.className = "blank";
+
+                        const input = document.createElement("input");
+
+                        input.className = "answer";
+
+                        input.type = "text";
+
+                        input.autocomplete = "off";
+
+                        input.autocapitalize = "off";
+
+                        input.spellcheck = false;
+
+                        input.disabled = true;
+
+                        input.maxLength = 5;
+
+                        input.setAttribute(
+                            "aria-label",
+                            `${panel.title}, row ${rowIndex + 1}`
+                        );
+
+                        const feedback = document.createElement("small");
+
+                        feedback.className = "feedback";
+
+                        const question = {
+                            input,
+                            feedback,
+                            answer: kana
+                        };
+
+                        questions.push(question);
+
+                        /*
+                        Do not reveal correct or wrong while typing.
+                        Only update the answered progress.
+                        */
+
+                        input.addEventListener("input", () => {
+
+                            if (running) {
+
+                                input.classList.remove(
+                                    "correct",
+                                    "wrong"
+                                );
+
+                                feedback.textContent = "";
+
+                                updateProgress();
+
+                            }
+
+                        });
+
+                        td.append(input, feedback);
+
+                    } else {
+
+                        td.textContent = kana;
+
+                    }
+
+                    tr.appendChild(td);
+
+                });
+
+                tbody.appendChild(tr);
+
+            });
+
+            table.appendChild(tbody);
+
+            box.appendChild(table);
+
+            grid.appendChild(box);
+
+        });
+
+        sectionEl.appendChild(grid);
+
+        root.appendChild(sectionEl);
+
+    });
+
+    updateProgress();
+
+}
+
+/* Count answers */
+function counts() {
+
+    let correct = 0;
+
+    let wrong = 0;
+
+    let empty = 0;
+
+    questions.forEach(question => {
+
+        const value = normalize(question.input.value);
+
+        if (!value) {
+
+            empty++;
+
+        } else if (
+            isCorrectAnswer(value, question.answer)
+        ) {
+
+            correct++;
+
+        } else {
+
+            wrong++;
+
+        }
+
+    });
+
+    return {
+        correct,
+        wrong,
+        empty,
+        total: questions.length
+    };
+
+}
+
+/* Show only progress before checking */
+function updateProgress() {
+
+    const answered = questions.filter(question =>
+        normalize(question.input.value) !== ""
+    ).length;
+
+    $("progress").style.width =
+        `${answered / questions.length * 100}%`;
+
+}
+
+/* Reveal grading after Let's Check */
+function gradeTest() {
+
+    questions.forEach(question => {
+
+        const value = normalize(question.input.value);
+
+        question.input.classList.remove(
+            "correct",
+            "wrong"
+        );
+
+        question.feedback.textContent = "";
+
+        if (!value) {
+
+            question.input.classList.add("wrong");
+
+            question.feedback.textContent =
+                `Answer: ${romajiMap[toHiragana(question.answer)] || question.answer}`;
+
+            return;
+
+        }
+
+        if (isCorrectAnswer(value, question.answer)) {
+
+            question.input.classList.add("correct");
+
+            question.feedback.textContent = "✓ Correct";
+
+        } else {
+
+            question.input.classList.add("wrong");
+
+            question.feedback.textContent =
+                `✕ Answer: ${romajiMap[toHiragana(question.answer)] || question.answer}`;
+
+        }
+
+    });
+
+}
+
+/* Update timer display */
+function showTime() {
+
+    const minutes = Math.floor(remaining / 60);
+
+    const seconds = remaining % 60;
+
+    $("timer").textContent =
+        `${String(minutes).padStart(2, "0")}:${String(seconds).padStart(2, "0")}`;
+
+}
+
+/* Change the selected difficulty before the test starts */
+function updateDifficulty() {
+
+    if (running || finished) return;
+
+    const selectedDifficulty = $("difficulty").value;
+
+    remaining = Number(selectedDifficulty);
+
+    showTime();
+
+    const selectedText =
+        $("difficulty").options[$("difficulty").selectedIndex].text;
+
+    $("status").textContent =
+        `Selected: ${selectedText}. Press "Let's Start" to begin.`;
+
+}
+
+/* Start test */
+function start() {
+
+    if (running || finished) return;
+
+    remaining = Number($("difficulty").value);
+
+    running = true;
+
+    $("difficulty").disabled = true;
+
+    questions.forEach(question => {
+
+        question.input.disabled = false;
+
+    });
+
+    $("startBtn").disabled = true;
+
+    $("checkBtn").disabled = false;
+
+    $("checkBottom").disabled = false;
+
+    $("status").textContent =
+        "Test in progress. Your results are hidden until submission.";
+
+    showTime();
+
+    questions[0]?.input.focus();
+
+    ticker = setInterval(() => {
+
+        remaining--;
+
+        showTime();
+
+        if (remaining <= 0) {
+
+            remaining = 0;
+
+            showTime();
+
+            finish(true);
+
+        }
+
+    }, 1000);
+
+}
+
+/* Submit and reveal score */
+function finish(timeout = false) {
+
+    if (finished) return;
+
+    running = false;
+
+    finished = true;
+
+    clearInterval(ticker);
+
+    gradeTest();
+
+    questions.forEach(question => {
+
+        question.input.disabled = true;
+
+    });
+
+    const result = counts();
+
+    $("correct").textContent =
+        `${result.correct}/${result.total}`;
+
+    $("wrong").textContent =
+        result.wrong;
+
+    $("unanswered").textContent =
+        result.empty;
+
+    $("score").textContent =
+        `${Math.round(result.correct / result.total * 100)}%`;
+
+    $("startBtn").disabled = true;
+
+    $("checkBtn").disabled = true;
+
+    $("checkBottom").disabled = true;
+
+    $("difficulty").disabled = true;
+
+    $("status").textContent = timeout
+        ? "Time is up. Test submitted."
+        : "Test submitted.";
+
+    $("resultTitle").textContent = timeout
+        ? "Time is up!"
+        : "Test complete!";
+
+    $("resultText").textContent =
+        `Final score: ${result.correct}/${result.total} ` +
+        `(${Math.round(result.correct / result.total * 100)}%). ` +
+        `Wrong: ${result.wrong}. ` +
+        `Unanswered: ${result.empty}.`;
+
+    $("answerReview").textContent =
+        "Green answers are correct. Red answers are incorrect. The correct answer is shown under each incorrect answer.";
+
+    $("result").classList.add("show");
+
+    $("result").scrollIntoView({
+        behavior: "smooth",
+        block: "center"
+    });
+
+}
+
+/* Restart the test */
+function reset() {
+
+    clearInterval(ticker);
+
+    running = false;
+
+    finished = false;
+
+    remaining = Number($("difficulty").value);
+
+    $("result").classList.remove("show");
+
+    $("startBtn").disabled = false;
+
+    $("checkBtn").disabled = true;
+
+    $("checkBottom").disabled = true;
+
+    $("difficulty").disabled = false;
+
+    $("correct").textContent = "—";
+
+    $("wrong").textContent = "—";
+
+    $("unanswered").textContent = "—";
+
+    $("score").textContent = "—";
+
+    $("status").textContent =
+        "Choose a difficulty, then press 'Let's Start'.";
+
+    showTime();
+
+    buildTest();
+
+}
+
+/* Button events */
+$("startBtn").addEventListener("click", start);
+
+$("checkBtn").addEventListener("click", () => finish(false));
+
+$("checkBottom").addEventListener("click", () => finish(false));
+
+$("resetBtn").addEventListener("click", reset);
+
+$("difficulty").addEventListener("change", updateDifficulty);
+
+/* Initialize */
+buildTest();
+
+showTime();
+
+</script>
+
+</body>
+</html>
