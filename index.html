@@ -4,9 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>日本語総合テスト</title>
-
 <style>
-:root {
+:root{
     --blue:#2b5cad;
     --ink:#182235;
     --muted:#667085;
@@ -17,18 +16,30 @@
     --yellow:#fff5c8;
 }
 
-*{box-sizing:border-box}
+*{
+    box-sizing:border-box;
+}
+
+html{
+    min-width:1224px;
+    overflow-x:auto;
+    overflow-y:auto;
+}
 
 body{
     margin:0;
+    min-width:1224px;
     background:var(--bg);
     color:var(--ink);
     font-family:Meiryo,"Yu Gothic","Noto Sans JP",Arial,sans-serif;
+    overflow-x:auto;
+    overflow-y:auto;
 }
 
 .app{
-    width:min(900px,100%);
-    margin:auto;
+    width:1200px;
+    min-width:1200px;
+    margin:0 auto;
     padding:12px;
 }
 
@@ -47,10 +58,7 @@ body{
     font-weight:900;
     letter-spacing:1px;
     text-decoration:none;
-    color:#888;
-    background:linear-gradient(
-        110deg,#777,#ddd,#fff,#888,#eee,#777
-    );
+    background:linear-gradient(110deg,#777,#ddd,#fff,#888,#eee,#777);
     background-size:300% 100%;
     -webkit-background-clip:text;
     background-clip:text;
@@ -63,16 +71,14 @@ body{
     to{background-position:-200% 0}
 }
 
-.topbar {
-    position: static;
-    width: 100%;
-    background: #ededed;
-    padding: 15px;
-    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+.topbar{
+    width:100%;
+    background:#ededed;
+    padding:15px;
+    box-shadow:0 3px 8px #0002;
 }
 
-.difficulty-row,
-.stat{
+.difficulty-row,.stat{
     background:white;
     border:1px solid var(--line);
     border-radius:11px;
@@ -118,6 +124,7 @@ body{
 .actions{
     display:flex;
     gap:8px;
+    flex-wrap:wrap;
 }
 
 button{
@@ -134,8 +141,15 @@ button:disabled{
     cursor:not-allowed;
 }
 
-.primary{background:var(--blue);color:white}
-.secondary{background:#e3e9f5;color:#20365d}
+.primary{
+    background:var(--blue);
+    color:white;
+}
+
+.secondary{
+    background:#e3e9f5;
+    color:#20365d;
+}
 
 .scoreboard{
     display:grid;
@@ -181,12 +195,12 @@ button:disabled{
     margin-top:7px;
 }
 
-h1{
+h1.main-title{
     background:var(--blue);
     color:white;
     border-radius:12px;
     padding:18px;
-    font-size:clamp(19px,4vw,26px);
+    font-size:26px;
     line-height:1.5;
 }
 
@@ -270,7 +284,7 @@ td.blank{
     background:transparent;
     text-align:center;
     font-family:inherit;
-    font-size:clamp(14px,3.5vw,20px);
+    font-size:20px;
     color:var(--ink);
 }
 
@@ -280,74 +294,28 @@ td.blank{
     box-shadow:0 0 0 2px #2b5cad22;
 }
 
-.answer.correct{
+.answer.correct,.answer-input.correct{
     background:#e6f6eb;
     border-color:#83c99a;
     color:var(--good);
 }
 
-.answer.wrong{
+.answer.wrong,.answer-input.wrong{
     background:#ffebeb;
     border-color:#e4a0a0;
     color:var(--bad);
 }
 
-.answer:disabled{
+.answer:disabled,.answer-input:disabled{
     opacity:1;
 }
 
 .feedback{
     display:block;
     font-size:10px;
-    line-height:1.3;
+    line-height:1.4;
     min-height:12px;
     overflow-wrap:anywhere;
-}
-
-.result{
-    display:none;
-    background:#eef4ff;
-    border:1px solid #cbd9f6;
-    border-radius:13px;
-    padding:16px;
-    margin:15px 0;
-}
-
-.result.show{display:block}
-
-.result h2{margin-top:0}
-
-.result-grid{
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:8px;
-    margin:12px 0;
-}
-
-.result-card{
-    text-align:center;
-    background:white;
-    border:1px solid var(--line);
-    border-radius:9px;
-    padding:10px 4px;
-}
-
-.result-card strong{
-    display:block;
-    font-size:20px;
-}
-
-.result-card span{
-    font-size:11px;
-    color:var(--muted);
-}
-
-.bottom-actions{
-    display:flex;
-    justify-content:center;
-    gap:8px;
-    flex-wrap:wrap;
-    margin:18px 0;
 }
 
 .reference{
@@ -360,7 +328,6 @@ td.blank{
 
 .calendar-container{
     width:380px;
-    max-width:100%;
     margin:15px auto;
 }
 
@@ -387,11 +354,13 @@ td.blank{
     position:relative;
 }
 
-.calendar th:first-child,
-.calendar td:first-child{color:#bd4141}
+.calendar th:first-child,.calendar td:first-child{
+    color:#bd4141;
+}
 
-.calendar th:last-child,
-.calendar td:last-child{color:#526d91}
+.calendar th:last-child,.calendar td:last-child{
+    color:#526d91;
+}
 
 .calendar td.marked{
     background:#f5edcf;
@@ -450,20 +419,6 @@ td.blank{
     background:#f5f8fc;
 }
 
-.answer-input.correct{
-    background:#e6f6eb;
-    color:var(--good);
-    border-bottom:2px solid var(--good);
-}
-
-.answer-input.wrong{
-    background:#ffebeb;
-    color:var(--bad);
-    border-bottom:2px solid var(--bad);
-}
-
-.answer-input:disabled{opacity:1}
-
 .clock-grid{
     display:grid;
     grid-template-columns:repeat(5,1fr);
@@ -504,56 +459,198 @@ td.blank{
     margin-top:25px;
 }
 
-@media(max-width:600px){
-    .app{padding:8px}
-    .section{padding:9px}
-    .clock-grid{grid-template-columns:repeat(3,1fr);gap:12px 5px}
-    .clock-item{font-size:11px}
-    .date-row{grid-template-columns:22px 1fr}
-    .date-row .day-answer{grid-column:2}
-    .timer{font-size:17px;padding:10px}
-    .actions button{padding:10px;font-size:12px}
-    td{height:38px;padding:2px}
-    .answer{height:32px}
-    .scoreboard{gap:4px}
-    .stat strong{font-size:17px}
+.exam-section-title{
+    background:#e5edf6;
+    border-left:5px solid var(--blue);
+    padding:10px;
+    margin-top:25px;
+    font-weight:bold;
+    font-size:15px;
+}
+
+.exam-section-title small{
+    display:block;
+    font-weight:normal;
+    margin-top:4px;
+    color:#555;
+}
+
+.mc-question{
+    padding:13px 8px;
+    border-bottom:1px solid #ddd;
+}
+
+.mc-question-text{
+    font-weight:600;
+    margin-bottom:8px;
+    line-height:1.7;
+    font-size:14px;
+}
+
+.options{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:6px;
+}
+
+.option{
+    display:flex;
+    align-items:flex-start;
+    padding:8px;
+    border-radius:5px;
+    cursor:pointer;
+    font-size:14px;
+    line-height:1.6;
+}
+
+.option:hover{
+    background:#edf3fa;
+}
+
+.option input{
+    margin:3px 8px 0 0;
+    accent-color:var(--blue);
+    flex-shrink:0;
+}
+
+.option.correct{
+    background:#d9f3df;
+}
+
+.option.wrong{
+    background:#ffe0e0;
+}
+
+.mc-feedback{
+    font-size:12px;
+    font-weight:bold;
+    margin-top:7px;
+}
+
+.mc-question input:disabled{
+    cursor:not-allowed;
+}
+
+.result{
+    display:none;
+    background:#eef4ff;
+    border:1px solid #cbd9f6;
+    border-radius:13px;
+    padding:16px;
+    margin:15px 0;
+}
+
+.result.show{
+    display:block;
+}
+
+.result h2{
+    margin-top:0;
+}
+
+.result-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:8px;
+    margin:12px 0;
+}
+
+.result-card{
+    text-align:center;
+    background:white;
+    border:1px solid var(--line);
+    border-radius:9px;
+    padding:10px 4px;
+}
+
+.result-card strong{
+    display:block;
+    font-size:20px;
+}
+
+.result-card span{
+    font-size:11px;
+    color:var(--muted);
+}
+
+.result-details{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:8px;
+    margin-top:12px;
+}
+
+.result-detail{
+    background:white;
+    padding:12px;
+    border:1px solid var(--line);
+    border-radius:8px;
+}
+
+.result-detail strong{
+    display:block;
+    font-size:18px;
+}
+
+.result-detail span{
+    font-size:11px;
+    color:var(--muted);
+}
+
+.bottom-actions{
+    display:flex;
+    justify-content:center;
+    gap:8px;
+    flex-wrap:wrap;
+    margin:18px 0;
 }
 
 @media print{
-    body{background:white}
-    .app{width:100%;padding:0}
-    .topbar,.bottom-actions{display:none}
-    .section{box-shadow:none;break-inside:avoid}
+    html,body{
+        min-width:0;
+        overflow:visible;
+        background:white;
+    }
+
+    .app{
+        width:100%;
+        min-width:0;
+        padding:0;
+    }
+
+    .topbar,.bottom-actions{
+        display:none;
+    }
+
+    .section{
+        box-shadow:none;
+        break-inside:avoid;
+    }
 }
 </style>
 </head>
-
 <body>
 <div class="app">
-
 <header class="topbar">
-
     <div class="developer">
         Developer:
-        <a href="https://www.facebook.com/marroows"
-           target="_blank"
-           rel="noopener noreferrer">マロル</a>
+        <a href="https://www.facebook.com/marroows" target="_blank" rel="noopener noreferrer">マロル</a>
     </div>
 
     <div class="difficulty-row">
-    <label for="difficulty"><b>Difficulty</b></label>
-    <select id="difficulty" class="difficulty-select">
-        <option value="10800">Easy — 3 hours</option>
-        <option value="9000" selected>Normal — 2 hours 30 minutes</option>
-        <option value="3600">Hard — 1 hour</option>
-    </select>
-</div>
+        <label for="difficulty"><b>Difficulty</b></label>
+        <select id="difficulty" class="difficulty-select">
+            <option value="10800">Easy — 3 hours</option>
+            <option value="9000" selected>Normal — 2 hours 30 minutes</option>
+            <option value="3600">Hard — 1 hour</option>
+        </select>
+    </div>
 
     <div class="topline">
-        <div class="timer">⏱ <span id="timer">2:30</span></div>
+        <div class="timer">⏱ <span id="timer">150:00</span></div>
         <div class="actions">
             <button id="startBtn" class="primary">Let's Start</button>
-            <button id="checkBtn" class="secondary" disabled>Let's Check</button>
+            <button id="checkBtn" class="secondary" disabled>Submit All</button>
         </div>
     </div>
 
@@ -565,25 +662,32 @@ td.blank{
     </div>
 
     <div class="progress"><div id="progress"></div></div>
-    <div class="status" id="status">
-        Choose a difficulty, then press Let's Start.
-    </div>
-
+    <div class="status" id="status">Choose a difficulty, then press Let's Start.</div>
 </header>
 
-<h1>
+<h1 class="main-title">
     日本語総合テスト<br>
 </h1>
 
 <p class="subtitle">
-    時、分、曜日、日にち、ひらがな、カタカナをれんしゅうしましょう.<br>
-    Enter your answers in the yellow boxes. Romaji is allowed, but try using ひらがな. Results appear upon submission.
+    時、分、曜日、日にち、ひらがな、カタカナ、文法、語彙、計算をれんしゅうしましょう。<br>
+    Practice hiragana, katakana, dates, weekdays, time, grammar, vocabulary, and mathematics.<br>
+    Fill in the yellow boxes and select the correct multiple-choice answers.
 </p>
 
 <main id="test"></main>
 
+<section class="section">
+    <h2>だい２ぶ Part 2 プレイスメントテスト</h2>
+    <div class="section-desc">
+        こたえの きごう（a・b・c・d）を えらんでください。<br>
+        Choose the correct answer.
+    </div>
+    <div id="examQuestions"></div>
+</section>
+
 <div class="result" id="result">
-    <h2 id="resultTitle">テストが　おわりました！🙇</h2>
+    <h2 id="resultTitle">テストが おわりました！</h2>
     <p id="resultText"></p>
 
     <div class="result-grid">
@@ -601,173 +705,191 @@ td.blank{
         </div>
     </div>
 
+    <div class="result-details">
+        <div class="result-detail">
+            <strong id="resultMultiple">0</strong>
+            <span>Multiple-choice correct</span>
+        </div>
+        <div class="result-detail">
+            <strong id="resultMultipleTotal">0</strong>
+            <span>Multiple-choice questions</span>
+        </div>
+        <div class="result-detail">
+            <strong id="resultTextTotal">0</strong>
+            <span>Written-answer questions</span>
+        </div>
+        <div class="result-detail">
+            <strong id="resultPercentage">0%</strong>
+            <span>Overall percentage</span>
+        </div>
+    </div>
+
     <p id="answerReview"></p>
 </div>
 
 <div class="bottom-actions">
-    <button id="checkBottom" class="primary" disabled>
-        Let's Check All Answers
-    </button>
-    <button id="resetBtn" class="secondary">
-        Restart Entire Test
-    </button>
+    <button id="checkBottom" class="primary" disabled>Submit All Answers</button>
+    <button id="resetBtn" class="secondary">Restart Entire Test</button>
 </div>
-
 </div>
 
 <script>
 "use strict";
 
-const sections = [
+const kanaSections=[
 {
     title:"れんしゅう テスト",
     desc:"Fill in the missing character in each kana row.",
     panels:[
-    {
-        title:"ひらがな",
-        rows:[
-            ["あ","い","う","え","お"],
-            ["か","き","く","け","こ"],
-            ["さ","し","す","せ","そ"],
-            ["た","ち","つ","て","と"],
-            ["な","に","ぬ","ね","の"],
-            ["は","ひ","ふ","へ","ほ"],
-            ["ま","み","む","め","も"],
-            ["や","ゆ","よ"],
-            ["ら","り","る","れ","ろ"],
-            ["が","ぎ","ぐ","げ","ご"],
-            ["ざ","じ","ず","ぜ","ぞ"],
-            ["ば","び","ぶ","べ","ぼ"],
-            ["ぱ","ぴ","ぷ","ぺ","ぽ"],
-            ["きゃ","きゅ","きょ"],
-            ["ちゃ","ちゅ","ちょ"]
-        ],
-        blanks:[4,3,2,2,4,2,4,2,2,1,1,4,2,2,1]
-    },
-    {
-        title:"カタカナ",
-        rows:[
-            ["ア","イ","ウ","エ","オ"],
-            ["カ","キ","ク","ケ","コ"],
-            ["サ","シ","ス","セ","ソ"],
-            ["タ","チ","ツ","テ","ト"],
-            ["ナ","ニ","ヌ","ネ","ノ"],
-            ["ハ","ヒ","フ","ヘ","ホ"],
-            ["マ","ミ","ム","メ","モ"],
-            ["ヤ","ユ","ヨ"],
-            ["ラ","リ","ル","レ","ロ"],
-            ["ガ","ギ","グ","ゲ","ゴ"],
-            ["ザ","ジ","ズ","ゼ","ゾ"],
-            ["バ","ビ","ブ","ベ","ボ"],
-            ["パ","ピ","プ","ペ","ポ"],
-            ["シャ","シュ","ショ"],
-            ["ジャ","ジュ","ジョ"]
-        ],
-        blanks:[2,3,4,4,4,1,3,1,1,1,4,1,1,2,1]
-    }]
+        {
+            title:"ひらがな",
+            rows:[
+                ["あ","い","う","え","お"],
+                ["か","き","く","け","こ"],
+                ["さ","し","す","せ","そ"],
+                ["た","ち","つ","て","と"],
+                ["な","に","ぬ","ね","の"],
+                ["は","ひ","ふ","へ","ほ"],
+                ["ま","み","む","め","も"],
+                ["や","ゆ","よ"],
+                ["ら","り","る","れ","ろ"],
+                ["が","ぎ","ぐ","げ","ご"],
+                ["ざ","じ","ず","ぜ","ぞ"],
+                ["ば","び","ぶ","べ","ぼ"],
+                ["ぱ","ぴ","ぷ","ぺ","ぽ"],
+                ["きゃ","きゅ","きょ"],
+                ["ちゃ","ちゅ","ちょ"]
+            ],
+            blanks:[4,3,2,2,4,2,4,2,2,1,1,4,2,2,1]
+        },
+        {
+            title:"カタカナ",
+            rows:[
+                ["ア","イ","ウ","エ","オ"],
+                ["カ","キ","ク","ケ","コ"],
+                ["サ","シ","ス","セ","ソ"],
+                ["タ","チ","ツ","テ","ト"],
+                ["ナ","ニ","ヌ","ネ","ノ"],
+                ["ハ","ヒ","フ","ヘ","ホ"],
+                ["マ","ミ","ム","メ","モ"],
+                ["ヤ","ユ","ヨ"],
+                ["ラ","リ","ル","レ","ロ"],
+                ["ガ","ギ","グ","ゲ","ゴ"],
+                ["ザ","ジ","ズ","ゼ","ゾ"],
+                ["バ","ビ","ブ","ベ","ボ"],
+                ["パ","ピ","プ","ペ","ポ"],
+                ["シャ","シュ","ショ"],
+                ["ジャ","ジュ","ジョ"]
+            ],
+            blanks:[2,3,4,4,4,1,3,1,1,1,4,1,1,2,1]
+        }
+    ]
 },
 {
     title:"れんしゅう2 — わ・だ・ようおん",
     panels:[
-    {
-        title:"ひらがな",
-        rows:[
-            ["あ","い","う","え","お"],
-            ["か","き","く","け","こ"],
-            ["さ","し","す","せ","そ"],
-            ["た","ち","つ","て","と"],
-            ["な","に","ぬ","ね","の"],
-            ["は","ひ","ふ","へ","ほ"],
-            ["ま","み","む","め","も"],
-            ["や","ゆ","よ"],
-            ["ら","り","る","れ","ろ"],
-            ["わ","を","ん"],
-            ["だ","ぢ","づ","で","ど"],
-            ["ば","び","ぶ","べ","ぼ"],
-            ["しゃ","しゅ","しょ"],
-            ["にゃ","にゅ","にょ"],
-            ["りゃ","りゅ","りょ"]
-        ],
-        blanks:[2,2,1,4,2,1,3,1,2,2,1,3,1,2,1]
-    },
-    {
-        title:"カタカナ",
-        rows:[
-            ["ア","イ","ウ","エ","オ"],
-            ["カ","キ","ク","ケ","コ"],
-            ["サ","シ","ス","セ","ソ"],
-            ["タ","チ","ツ","テ","ト"],
-            ["ナ","ニ","ヌ","ネ","ノ"],
-            ["ハ","ヒ","フ","ヘ","ホ"],
-            ["マ","ミ","ム","メ","モ"],
-            ["ラ","リ","ル","レ","ロ"],
-            ["ワ","ヲ","ン"],
-            ["ダ","ヂ","ヅ","デ","ド"],
-            ["バ","ビ","ブ","ベ","ボ"],
-            ["キャ","キュ","キョ"],
-            ["ニャ","ニュ","ニョ"],
-            ["ヒャ","ヒュ","ヒョ"],
-            ["ミャ","ミュ","ミョ"]
-        ],
-        blanks:[1,3,3,4,2,2,1,1,2,3,3,1,2,2,1]
-    }]
+        {
+            title:"ひらがな",
+            rows:[
+                ["あ","い","う","え","お"],
+                ["か","き","く","け","こ"],
+                ["さ","し","す","せ","そ"],
+                ["た","ち","つ","て","と"],
+                ["な","に","ぬ","ね","の"],
+                ["は","ひ","ふ","へ","ほ"],
+                ["ま","み","む","め","も"],
+                ["や","ゆ","よ"],
+                ["ら","り","る","れ","ろ"],
+                ["わ","を","ん"],
+                ["だ","ぢ","づ","で","ど"],
+                ["ば","び","ぶ","べ","ぼ"],
+                ["しゃ","しゅ","しょ"],
+                ["にゃ","にゅ","にょ"],
+                ["りゃ","りゅ","りょ"]
+            ],
+            blanks:[2,2,1,4,2,1,3,1,2,2,1,3,1,2,1]
+        },
+        {
+            title:"カタカナ",
+            rows:[
+                ["ア","イ","ウ","エ","オ"],
+                ["カ","キ","ク","ケ","コ"],
+                ["サ","シ","ス","セ","ソ"],
+                ["タ","チ","ツ","テ","ト"],
+                ["ナ","ニ","ヌ","ネ","ノ"],
+                ["ハ","ヒ","フ","ヘ","ホ"],
+                ["マ","ミ","ム","メ","モ"],
+                ["ラ","リ","ル","レ","ロ"],
+                ["ワ","ヲ","ン"],
+                ["ダ","ヂ","ヅ","デ","ド"],
+                ["バ","ビ","ブ","ベ","ボ"],
+                ["キャ","キュ","キョ"],
+                ["ニャ","ニュ","ニョ"],
+                ["ヒャ","ヒュ","ヒョ"],
+                ["ミャ","ミュ","ミョ"]
+            ],
+            blanks:[1,3,3,4,2,2,1,1,2,3,3,1,2,2,1]
+        }
+    ]
 },
 {
-    title:"れんしゅう3 ",
+    title:"れんしゅう3",
     panels:[
-    {
-        title:"ひらがな",
-        rows:[
-            ["あ","い","う","え","お"],
-            ["か","き","く","け","こ"],
-            ["さ","し","す","せ","そ"],
-            ["た","ち","つ","て","と"],
-            ["な","に","ぬ","ね","の"],
-            ["は","ひ","ふ","へ","ほ"],
-            ["ま","み","む","め","も"],
-            ["ら","り","る","れ","ろ"],
-            ["が","ぎ","ぐ","げ","ご"],
-            ["ざ","じ","ず","ぜ","ぞ"],
-            ["だ","ぢ","づ","で","ど"],
-            ["ば","び","ぶ","べ","ぼ"],
-            ["ぱ","ぴ","ぷ","ぺ","ぽ"],
-            ["きゃ","きゅ","きょ"],
-            ["しゃ","しゅ","しょ"]
-        ],
-        blanks:[
-            [2,3],[2,4],[3,4],[2,3],[3,4],
-            [2,4],[3,4],[1,2],[2,4],[1,4],
-            [2,3],[1,3],[2,4],[1,2],[0,2]
-        ]
-    },
-    {
-        title:"カタカナ",
-        rows:[
-            ["ア","イ","ウ","エ","オ"],
-            ["カ","キ","ク","ケ","コ"],
-            ["サ","シ","ス","セ","ソ"],
-            ["タ","チ","ツ","テ","ト"],
-            ["ナ","ニ","ヌ","ネ","ノ"],
-            ["ハ","ヒ","フ","ヘ","ホ"],
-            ["マ","ミ","ム","メ","モ"],
-            ["ラ","リ","ル","レ","ロ"],
-            ["ガ","ギ","グ","ゲ","ゴ"],
-            ["ザ","ジ","ズ","ゼ","ゾ"],
-            ["ダ","ヂ","ヅ","デ","ド"],
-            ["バ","ビ","ブ","ベ","ボ"],
-            ["パ","ピ","プ","ペ","ポ"],
-            ["キャ","キュ","キョ"],
-            ["シャ","シュ","ショ"]
-        ],
-        blanks:[
-            [1,2],[2,4],[1,3],[2,4],[1,2],
-            [1,3],[1,3],[1,2],[1,3],[1,4],
-            [1,3],[2,3],[1,3],[0,2],[1,2]
-        ]
-    }]
-}];
+        {
+            title:"ひらがな",
+            rows:[
+                ["あ","い","う","え","お"],
+                ["か","き","く","け","こ"],
+                ["さ","し","す","せ","そ"],
+                ["た","ち","つ","て","と"],
+                ["な","に","ぬ","ね","の"],
+                ["は","ひ","ふ","へ","ほ"],
+                ["ま","み","む","め","も"],
+                ["ら","り","る","れ","ろ"],
+                ["が","ぎ","ぐ","げ","ご"],
+                ["ざ","じ","ず","ぜ","ぞ"],
+                ["だ","ぢ","づ","で","ど"],
+                ["ば","び","ぶ","べ","ぼ"],
+                ["ぱ","ぴ","ぷ","ぺ","ぽ"],
+                ["きゃ","きゅ","きょ"],
+                ["しゃ","しゅ","しょ"]
+            ],
+            blanks:[
+                [2,3],[2,4],[3,4],[2,3],[3,4],
+                [2,4],[3,4],[1,2],[2,4],[1,4],
+                [2,3],[1,3],[2,4],[1,2],[0,2]
+            ]
+        },
+        {
+            title:"カタカナ",
+            rows:[
+                ["ア","イ","ウ","エ","オ"],
+                ["カ","キ","ク","ケ","コ"],
+                ["サ","シ","ス","セ","ソ"],
+                ["タ","チ","ツ","テ","ト"],
+                ["ナ","ニ","ヌ","ネ","ノ"],
+                ["ハ","ヒ","フ","ヘ","ホ"],
+                ["マ","ミ","ム","メ","モ"],
+                ["ラ","リ","ル","レ","ロ"],
+                ["ガ","ギ","グ","ゲ","ゴ"],
+                ["ザ","ジ","ズ","ゼ","ゾ"],
+                ["ダ","ヂ","ヅ","デ","ド"],
+                ["バ","ビ","ブ","ベ","ボ"],
+                ["パ","ピ","プ","ペ","ポ"],
+                ["キャ","キュ","キョ"],
+                ["シャ","シュ","ショ"]
+            ],
+            blanks:[
+                [1,2],[2,4],[1,3],[2,4],[1,2],
+                [1,3],[1,3],[1,2],[1,3],[1,4],
+                [1,3],[2,3],[1,3],[0,2],[1,2]
+            ]
+        }
+    ]
+}
+];
 
-const romajiMap = {
+const romajiMap={
 "あ":"a","い":"i","う":"u","え":"e","お":"o",
 "か":"ka","き":"ki","く":"ku","け":"ke","こ":"ko",
 "さ":"sa","し":"shi","す":"su","せ":"se","そ":"so",
@@ -793,7 +915,7 @@ const romajiMap = {
 "みゃ":"mya","みゅ":"myu","みょ":"myo"
 };
 
-const dateReadings = {
+const dateReadings={
 1:"ついたち",2:"ふつか",3:"みっか",4:"よっか",
 5:"いつか",6:"むいか",7:"なのか",8:"ようか",
 9:"ここのか",10:"とおか",11:"じゅういちにち",
@@ -809,7 +931,7 @@ const dateReadings = {
 30:"さんじゅうにち",31:"さんじゅういちにち"
 };
 
-const weekdays = {
+const weekdays={
 "日":"にちようび",
 "月":"げつようび",
 "火":"かようび",
@@ -819,13 +941,7 @@ const weekdays = {
 "土":"どようび"
 };
 
-const numberKana = {
-1:"いち",2:"に",3:"さん",4:"よ",5:"ご",
-6:"ろく",7:"しち",8:"はち",9:"く",
-10:"じゅう",11:"じゅういち",12:"じゅうに"
-};
-
-const minuteReadings = {
+const minuteReadings={
 0:"",
 5:"ごふん",
 10:"じゅっぷん",
@@ -840,7 +956,7 @@ const minuteReadings = {
 55:"ごじゅうごふん"
 };
 
-const minuteNumberReadings = {
+const minuteNumberReadings={
 1:"いっぷん",
 2:"にふん",
 3:"さんぷん",
@@ -862,7 +978,7 @@ const minuteNumberReadings = {
 50:"ごじゅっぷん"
 };
 
-const hourReadings = {
+const hourReadings={
 1:"いちじ",
 2:"にじ",
 3:"さんじ",
@@ -876,6 +992,171 @@ const hourReadings = {
 11:"じゅういちじ",
 12:"じゅうにじ"
 };
+
+const months=[
+    {year:2026,month:9,marks:[1,4,8,14,19]},
+    {year:2026,month:11,marks:[2,6,10,17,20]},
+    {year:2027,month:1,marks:[5,9,14,24,29]}
+];
+
+const clockSets=[
+    [
+        {h:3,m:20},{h:4,m:15},{h:9,m:40},
+        {h:6,m:5},{h:11,m:35}
+    ],
+    [
+        {h:7,m:10},{h:1,m:55},{h:8,m:25},
+        {h:10,m:50},{h:4,m:30}
+    ],
+    [
+        {h:9,m:15},{h:2,m:45},{h:12,m:20},
+        {h:7,m:40},{h:3,m:5}
+    ]
+];
+
+const multipleChoiceSections=[
+{
+title:"4 しょう じょし",
+subtitle:"Particles",
+points:1,
+questions:[
+["わたし（　）リンです。",["は","を","に","で"],0],
+["アンさんは がくせいです。わたし（　）がくせいです。",["を","で","も","と"],2],
+["これは だれ（　）ほんですか。",["は","へ","を","の"],3],
+["きんようびは（　）です。",["きんようび","から","まで","の"],0],
+["まいばん11じ（　）ねます。",["に","は","で","を"],0],
+["あした さんこう（　）いきます。",["へ","が","から","を"],0],
+["わたしは ちかてつ（　）かいしゃへ いきます。",["で","に","へ","と"],0],
+["ともだち（　）いっしょに おちゃを のみました。",["が","を","で","と"],3],
+["まいあさ パン（　）たべます。",["は","を","へ","で"],1],
+["どんな ほん（　）よみますか。",["へ","を","で","に"],1],
+["それは なんです（　）。",["の","を","も","か"],3],
+["ひるごはんは12じ（　）です。",["から","まで","で","に"],0],
+["あなたは だれ（　）ですか。",["の","は","を","で"],0],
+["ミラーさんは アメリカ（　）きました。",["の","から","で","は"],1],
+["にちようび、ともだち（　）えいがを みました。",["を","に","と","へ"],2],
+["わたしは コーヒー（　）のみます。",["に","で","を","へ"],2],
+["それは わたし（　）かさじゃありません。",["は","で","の","を"],2],
+["「きのう なに（　）しましたか。」",["で","を","に","へ"],1],
+["わたしは2026ねん（　）にほんへ いきました。",["を","から","に","で"],2],
+["タクシー（　）うちへ かえりました。",["で","を","も","に"],0]
+]
+},
+{
+title:"5 しょう あいさつ・ぎもんし・ことば",
+subtitle:"Greetings & Question Words",
+points:1,
+questions:[
+["（あさ、ともだちに あって）「（　）。」",["こんにちは","おはようございます","おやすみなさい","こんばんは"],1],
+["（ごはんを たべるまえに）「（　）。」",["いってきます","いただきます","ただいま","ごちそうさまでした"],1],
+["（がっこうから うちへ かえって）「（　）。」",["いってきます","はじめまして","いってらっしゃい","ただいま"],3],
+["（ごめんなさい。）（　）。",["おやすみなさい","はじめまして","いいえ、だいじょうぶです","いただきます"],2],
+["（よる、ねるまえに）「（　）。」",["ごちそうさまでした","はじめまして","おやすみなさい","こんにちは"],2],
+["（あいての かばんに ある ものを ゆびさして）「（　）は あなたの かばんですか。」",["あれ","それ","これ","どれ"],1],
+["（とおくの ものを みて）「（　）は なんですか。」",["それ","あれ","これ","どれ"],1],
+["（　）が あなたの かさですか。",["それ","どれ","いつ","どこ"],1],
+["「この いすは（　）ですか。」",["いつ","どこ","なん","だれ"],1],
+["「あの ひとは（　）ですか。」",["なん","いくら","だれ","どこ"],2],
+["「それは（　）ですか。」",["あれ","いつ","どこ","なん"],3],
+["「この りんごは（　）ですか。」",["いくら","どこ","いつ","なん"],0],
+["「（　）に にほんへ いきましたか。」",["だれ","なん","どこ","いつ"],3],
+["「きょうは（　）ですか。」",["なんようび","なんじ","なんにん","なんがつ"],0],
+["「（　）で かいものを しますか。」",["いつ","なんがつ","なんじ","なんようび"],2],
+["「でんわばんごうは（　）ですか。」",["いくら","どこ","いつ","なん"],3],
+["「おなまえは（　）ですか。」",["だれ","なん","どこ","いつ"],1],
+["「これは（　）の ほんですか。」",["だれ","なん","どこ","いつ"],0],
+["「トイレは（　）ですか。」",["いつ","どこ","だれ","なん"],1],
+["「いま（　）ですか。」",["なんにち","なんがつ","なんじ","なんようび"],2],
+["「はじめまして。」",["いただきます","どうぞよろしく おねがいします","おやすみなさい","こんばんは"],1],
+["「ありがとう ございます。」",["いただきます","ごめんなさい","どういたしまして","いってきます"],2],
+["「（　）が あなたの かばんですか。」",["それ","わたし","どれ","これ"],2],
+["「いま（　）ですか。」 「7じはんです。」",["なんようび","なんじ","なんがつ","なんにち"],1]
+]
+},
+{
+title:"6 しょう どうしの かたち・ようび",
+subtitle:"Verb Forms & Days",
+points:1,
+questions:[
+["きのうは10じに ねました。きょうも10じに（　）。",["ねません","ねました","ねませんでした","ねます"],3],
+["どようびは がっこうへ（　）。やすみです。",["いきます","いきませんでした","いきません","いきました"],2],
+["「けさ あさごはんを たべましたか。」 「いいえ、（　）。」",["たべました","たべませんでした","たべません","たべます"],1],
+["「あした はたらきますか。」 「いいえ、（　）。」",["はたらきません","はたらきませんでした","はたらきました","はたらきます"],0],
+["きのう9じから5じまで（　）。",["はたらきません","はたらきました","はたらきませんでした","はたらきます"],1],
+["「まいばん べんきょうしますか。」 「はい、（　）。」",["べんきょうしません","べんきょうしました","べんきょうします","べんきょうしませんでした"],2],
+["きょうは すいようびです。きのうは（　）でした。",["ちょうび","きんようび","げつようび","かようび"],3],
+["きょうは きんようびです。あさっては（　）です。",["にちようび","もくようび","げつようび","どようび"],0],
+["きょうは15にちです。あしたは（　）です。",["じゅうろくにち","じゅうよっか","はつか","じゅうごにち"],0],
+["こんげつは9がつです。らいげつは（　）です。",["しちがつ","じゅうがつ","はちがつ","くがつ"],2],
+["せんしゅう きょうとへ（　）。",["いきましょう","いきません","いきました","いきます"],2],
+["「いっしょに ひるごはんを たべませんか。」 「ええ、（　）。」",["たべました","たべません","たべませんでした","たべましょう"],3]
+]
+},
+{
+title:"7 しょう いっぱんきょうよう（けいさん）",
+subtitle:"General Knowledge (Calculation)",
+points:1,
+questions:[
+["A shirt is 2,000 yen. It is 20% off. How much is it now?",["1,400 yen","1,600 yen","400 yen","1,800 yen"],1],
+["How many minutes are there from 8:45 to 10:15?",["90","70","100","80"],0],
+["27 × 36 =",["962","982","872","972"],3],
+["What is 10% of 1,200 yen?",["100","12","120","240"],2],
+["25% of 60 students are from Nepal. How many students are from Nepal?",["20","25","12","15"],3],
+["1,000 yen - 380 yen - 250 yen =",["430 yen","470 yen","370 yen","270 yen"],2],
+["A class starts at 9:00 and finishes at 12:20. How long is the class?",["3 hours 20 minutes","3 hours 40 minutes","2 hours 20 minutes","3 hours"],0],
+["48 × 52 =",["2396","2496","2486","2506"],1],
+["84 ÷ 7 =",["11","12","14","13"],1],
+["96 ÷ 6 =",["14","18","16","15"],2],
+["156 ÷ 12 =",["13","12","14","16"],0],
+["345 ÷ 15 =",["21","25","33","23"],1],
+["672 ÷ 24 =",["26","28","32","27"],1],
+["900 ÷ 36 =",["25","35","24","30"],0],
+["4 people share 2,400 yen equally. How much does each person get?",["400 yen","800 yen","600 yen","500 yen"],2],
+["135 students sit at tables. 9 students sit at each table. How many tables are there?",["14","15","13","12"],1]
+]
+},
+{
+title:"PART 2 - PLACEMENT TEST",
+subtitle:"Japanese Language Test",
+points:1,
+questions:[
+["わたし（　）グエンです。",["は","へ","を","で"],0],
+["マリアさんは かんこくじんです。わたし（　）かんこくじんです。",["を","に","の","も"],3],
+["それは だれ（　）ノートですか。",["を","は","の","で"],2],
+["デパートは10じ（①）8じ（②）です。",["①まで ②から","①から ②まで","①へ ②へ","①を ②を"],1],
+["どようびは8じ（　）おきます。",["に","を","へ","で"],0],
+["らいねん とうきょう（　）いきます。",["で","が","へ","を"],2],
+["わたしは ちかてつで（　）かいしゃへ いきます。",["で","に","へ","を"],1],
+["ともだち（　）いっしょに えいがを みました。",["で","を","に","と"],3],
+["（ひるに ともだちに あって）「（　）。」",["こんにちは","おはようございます","おやすみなさい","こんばんは"],0],
+["「どうぞ。」 「（　）。」",["ごめんなさい","はじめまして","ただいま","ありがとうございます"],3],
+["（あいてが もっている ほんを みて）「（　）は なんの ほんですか。」",["あれ","これ","それ","どれ"],2],
+["「あの かばんは（　）ですか。」 「リンさんのです。」",["いつ","だれ","どこ","なん"],1],
+["「この かさは（　）ですか。」 「800えんです。」",["いつ","だれ","どこ","いくら"],3],
+["「ゆうびんきょくは（　）ですか。」 「えきの まえです。」",["どこ","だれ","いつ","なん"],0],
+["「いま（　）ですか。」 「10じはんです。」",["なんにち","なんがつ","なんじ","なんようび"],2],
+["「しけんは（　）ですか。」 「らいしゅうの きんようびです。」",["いくら","いつ","だれ","どこ"],1],
+["きのうは7じに うちへ かえりました。きょうも7じに（　）。",["かえりませんでした","かえります","かえりました","かえりません"],1],
+["にちようびは はたらくことを（　）。やすみです。",["しません","しました","します","しませんでした"],0],
+["「きのう テレビを みましたか。」 「いいえ、（　）。」",["みません","みました","みませんでした","みます"],2],
+["きょうは もくようびです。あしたは（　）です。",["すいようび","げつようび","どようび","きんようび"],3],
+["20% of 35 students like soccer. How many students like soccer?",["5","8","6","7"],3],
+["How many minutes are there from 1:40 to 3:00?",["80","90","60","70"],0],
+["29 × 34 =",["996","976","986","886"],2],
+["What is 10% of 800 yen?",["18","80","800","8"],1],
+["432 ÷ 18 =",["24","26","22","34"],0]
+]
+}
+];
+
+let textQuestions=[];
+let mcQuestions=[];
+let running=false;
+let finished=false;
+let remaining=9000;
+let ticker=null;
+
+const $=id=>document.getElementById(id);
 
 function normalize(value){
     return String(value)
@@ -892,33 +1173,33 @@ function toHiragana(value){
 }
 
 function romanizeKana(value){
-    const kana = toHiragana(value);
-    let output = "";
-    let i = 0;
+    const kana=toHiragana(value);
+    let output="";
+    let i=0;
 
-    while(i < kana.length){
-        const pair = kana.slice(i,i+2);
+    while(i<kana.length){
+        const pair=kana.slice(i,i+2);
 
         if(romajiMap[pair]){
-            output += romajiMap[pair];
-            i += 2;
+            output+=romajiMap[pair];
+            i+=2;
             continue;
         }
 
-        const char = kana[i];
+        const char=kana[i];
 
-        if(char === "っ"){
-            const nextPair = kana.slice(i+1,i+3);
-            const next = romajiMap[nextPair] || romajiMap[kana[i+1]] || "";
-            output += next.charAt(0);
+        if(char==="っ"){
+            const nextPair=kana.slice(i+1,i+3);
+            const next=romajiMap[nextPair]||romajiMap[kana[i+1]]||"";
+            output+=next.charAt(0);
             i++;
             continue;
         }
 
         if(romajiMap[char]){
-            output += romajiMap[char];
+            output+=romajiMap[char];
         }else{
-            output += char;
+            output+=char;
         }
 
         i++;
@@ -928,43 +1209,29 @@ function romanizeKana(value){
 }
 
 function isCorrectAnswer(input,answer){
-    const entered = normalize(input);
-    if(!entered) return false;
+    const entered=normalize(input);
+    if(!entered)return false;
 
-    const expected = normalize(answer);
-    const hiragana = normalize(toHiragana(answer));
-    const romaji = normalize(romanizeKana(answer));
+    const expected=normalize(answer);
+    const hiragana=normalize(toHiragana(answer));
+    const romaji=normalize(romanizeKana(answer));
 
-    return entered === expected ||
-           entered === hiragana ||
-           entered === romaji;
+    return entered===expected||
+           entered===hiragana||
+           entered===romaji;
 }
 
-let questions = [];
-let running = false;
-let finished = false;
-let remaining = 9000;
-let ticker = null;
+function addTextQuestion(input,feedback,answer,category){
+    const question={input,feedback,answer,category};
+    textQuestions.push(question);
 
-const $ = id => document.getElementById(id);
-
-function addQuestion(input,feedback,answer,category){
-    const question = {
-        input,
-        feedback,
-        answer,
-        category
-    };
-
-    questions.push(question);
-
-    input.disabled = true;
+    input.disabled=true;
 
     input.addEventListener("input",()=>{
-        if(!running) return;
+        if(!running)return;
 
         input.classList.remove("correct","wrong");
-        feedback.textContent = "";
+        feedback.textContent="";
         updateProgress();
     });
 
@@ -972,80 +1239,70 @@ function addQuestion(input,feedback,answer,category){
 }
 
 function createInput(answer,category,className="answer"){
-    const td = document.createElement("td");
-    td.className = "blank";
+    const td=document.createElement("td");
+    td.className="blank";
 
-    const input = document.createElement("input");
-    input.type = "text";
-    input.className = className;
-    input.autocomplete = "off";
-    input.autocapitalize = "off";
-    input.spellcheck = false;
-    input.maxLength = 40;
-
+    const input=document.createElement("input");
+    input.type="text";
+    input.className=className;
+    input.autocomplete="off";
+    input.autocapitalize="off";
+    input.spellcheck=false;
+    input.maxLength=40;
     input.setAttribute("aria-label","Your answer");
 
-    const feedback = document.createElement("small");
-    feedback.className = "feedback";
+    const feedback=document.createElement("small");
+    feedback.className="feedback";
 
     td.append(input,feedback);
-
-    addQuestion(input,feedback,answer,category);
+    addTextQuestion(input,feedback,answer,category);
 
     return td;
 }
 
 function buildKanaTest(root){
+    kanaSections.forEach(section=>{
+        const sectionEl=document.createElement("section");
+        sectionEl.className="section";
 
-    sections.forEach(section=>{
+        const heading=document.createElement("h2");
+        heading.textContent=section.title;
 
-        const sectionEl = document.createElement("section");
-        sectionEl.className = "section";
-
-        const heading = document.createElement("h2");
-        heading.textContent = section.title;
-
-        const desc = document.createElement("div");
-        desc.className = "section-desc";
-        desc.textContent = section.desc;
+        const desc=document.createElement("div");
+        desc.className="section-desc";
+        desc.textContent=section.desc||"Complete the missing kana.";
 
         sectionEl.append(heading,desc);
 
-        const grid = document.createElement("div");
-
         section.panels.forEach(panel=>{
+            const box=document.createElement("div");
+            box.className="panel";
 
-            const box = document.createElement("div");
-            box.className = "panel";
+            const title=document.createElement("h3");
+            title.textContent=panel.title;
 
-            const title = document.createElement("h3");
-            title.textContent = panel.title;
-
-            const table = document.createElement("table");
-            const tbody = document.createElement("tbody");
+            const table=document.createElement("table");
+            const tbody=document.createElement("tbody");
 
             panel.rows.forEach((row,rowIndex)=>{
+                const tr=document.createElement("tr");
 
-                const tr = document.createElement("tr");
-
-                const num = document.createElement("td");
-                num.className = "num";
-                num.textContent = rowIndex+1;
+                const num=document.createElement("td");
+                num.className="num";
+                num.textContent=rowIndex+1;
                 tr.appendChild(num);
 
-                const spec = panel.blanks[rowIndex];
-                const blanks = Array.isArray(spec) ? spec : [spec];
+                const spec=panel.blanks[rowIndex];
+                const blanks=Array.isArray(spec)?spec:[spec];
 
                 row.forEach((kana,kanaIndex)=>{
-
                     if(blanks.includes(kanaIndex)){
                         tr.appendChild(createInput(kana,"kana"));
                     }else{
-                        const td = document.createElement("td");
-                        td.textContent = kana;
+                        const td=document.createElement("td");
+                        td.textContent=kana;
                         tr.appendChild(td);
                     }
-
                 });
 
                 tbody.appendChild(tr);
@@ -1053,49 +1310,42 @@ function buildKanaTest(root){
 
             table.appendChild(tbody);
             box.append(title,table);
-            grid.appendChild(box);
+            sectionEl.appendChild(box);
         });
 
-        sectionEl.appendChild(grid);
         root.appendChild(sectionEl);
     });
 }
 
 function createReferencePanel(title,rows,category){
+    const section=document.createElement("section");
+    section.className="section";
 
-    const section = document.createElement("section");
-    section.className = "section";
+    const heading=document.createElement("h2");
+    heading.textContent=title;
 
-    const heading = document.createElement("h2");
-    heading.textContent = title;
+    const desc=document.createElement("div");
+    desc.className="section-desc";
+    desc.textContent="Write the correct Japanese reading in every yellow box.";
 
-    const desc = document.createElement("div");
-    desc.className = "section-desc";
-    desc.textContent = "Write the correct Japanese reading in every yellow box.";
+    const table=document.createElement("table");
+    table.className="reference";
 
-    const table = document.createElement("table");
-    table.className = "reference";
-
-    const tbody = document.createElement("tbody");
+    const tbody=document.createElement("tbody");
 
     rows.forEach((row,index)=>{
+        const tr=document.createElement("tr");
 
-        const tr = document.createElement("tr");
-
-        const number = document.createElement("td");
-        number.className = "num";
-        number.textContent = index+1;
+        const number=document.createElement("td");
+        number.className="num";
+        number.textContent=index+1;
         tr.appendChild(number);
 
         row.forEach(item=>{
-
-            const td = document.createElement("td");
-            td.textContent = item.label;
+            const td=document.createElement("td");
+            td.textContent=item.label;
             tr.appendChild(td);
-
-            tr.appendChild(
-                createInput(item.answer,category)
-            );
+            tr.appendChild(createInput(item.answer,category));
         });
 
         tbody.appendChild(tr);
@@ -1108,16 +1358,15 @@ function createReferencePanel(title,rows,category){
 }
 
 function buildCalendarReference(root){
-
-    const dateRows = [];
+    const dateRows=[];
 
     for(let i=0;i<11;i++){
-        const row = [];
+        const row=[];
 
         for(let group=0;group<3;group++){
-            const day = i + group*11 + 1;
+            const day=i+group*11+1;
 
-            if(day <= 31){
+            if(day<=31){
                 row.push({
                     label:day+" にち",
                     answer:dateReadings[day]
@@ -1129,14 +1378,10 @@ function buildCalendarReference(root){
     }
 
     root.appendChild(
-        createReferencePanel(
-            "テスト 4 — 何日",
-            dateRows,
-            "calendar"
-        )
+        createReferencePanel("テスト 4 — 何日",dateRows,"calendar")
     );
 
-    const weekRows = [
+    const weekRows=[
         [
             {label:"日曜日",answer:"にちようび"},
             {label:"火曜日",answer:"かようび"},
@@ -1151,38 +1396,21 @@ function buildCalendarReference(root){
     ];
 
     root.appendChild(
-        createReferencePanel(
-            "テスト 5 — 何曜日",
-            weekRows,
-            "calendar"
-        )
+        createReferencePanel("テスト 5 — 何曜日",weekRows,"calendar")
     );
 }
 
-const months = [
-    {year:2026,month:9,marks:[1,4,8,14,19]},
-    {year:2026,month:11,marks:[2,6,10,17,20]},
-    {year:2027,month:1,marks:[5,9,14,24,29]}
-];
-
 function createCalendar(data){
-
-    const firstDay = new Date(
-        data.year,data.month-1,1
-    ).getDay();
-
-    const totalDays = new Date(
-        data.year,data.month,0
-    ).getDate();
-
-    const cells = [];
+    const firstDay=new Date(data.year,data.month-1,1).getDay();
+    const totalDays=new Date(data.year,data.month,0).getDate();
+    const cells=[];
 
     for(let i=0;i<firstDay;i++){
         cells.push("<td></td>");
     }
 
     for(let day=1;day<=totalDays;day++){
-        const marked = data.marks.includes(day);
+        const marked=data.marks.includes(day);
 
         cells.push(`
             <td class="${marked?"marked":""}">
@@ -1195,13 +1423,13 @@ function createCalendar(data){
         cells.push("<td></td>");
     }
 
-    let rows = "";
+    let rows="";
 
     for(let i=0;i<cells.length;i+=7){
-        rows += `<tr>${cells.slice(i,i+7).join("")}</tr>`;
+        rows+=`<tr>${cells.slice(i,i+7).join("")}</tr>`;
     }
 
-    const monthName = new Date(
+    const monthName=new Date(
         data.year,data.month-1
     ).toLocaleString("en",{month:"long"});
 
@@ -1211,7 +1439,6 @@ function createCalendar(data){
                 ${data.year}年 ${data.month}月
                 <span>${monthName} ${data.year}</span>
             </div>
-
             <table class="calendar">
                 <thead>
                     <tr>
@@ -1226,22 +1453,17 @@ function createCalendar(data){
 }
 
 function buildCalendarExercises(root){
-
     months.forEach((data,index)=>{
+        const section=document.createElement("section");
+        section.className="section";
 
-        const section = document.createElement("section");
-        section.className = "section";
-
-        section.innerHTML = `
+        section.innerHTML=`
             <h2>テスト${index+6} — 何日 / 何曜日</h2>
-
             <div class="section-desc">
                 Look at the highlighted dates.
                 Write their date and weekday in hiragana.
             </div>
-
             ${createCalendar(data)}
-
             <div class="exercise-instruction">
                 色のついた日の「日にち」と「曜日」をひらがなで書きましょう。
                 <br>
@@ -1249,68 +1471,56 @@ function buildCalendarExercises(root){
             </div>
         `;
 
-        const answers = document.createElement("div");
-        answers.className = "date-answers";
+        const answers=document.createElement("div");
+        answers.className="date-answers";
 
         data.marks.forEach((day,i)=>{
+            const date=new Date(data.year,data.month-1,day);
 
-            const date = new Date(
-                data.year,data.month-1,day
-            );
-
-            const weekday = [
+            const weekday=[
                 "日","月","火","水","木","金","土"
             ][date.getDay()];
 
-            const row = document.createElement("div");
-            row.className = "date-row";
+            const row=document.createElement("div");
+            row.className="date-row";
 
-            const label = document.createElement("span");
-            label.textContent = ["①","②","③","④","⑤"][i];
+            const label=document.createElement("span");
+            label.textContent=["①","②","③","④","⑤"][i];
 
-            const dateLabel = document.createElement("label");
-            dateLabel.textContent = "日にち";
+            const dateLabel=document.createElement("label");
+            dateLabel.textContent="日にち";
 
-            const dateInput = document.createElement("input");
-            dateInput.className = "answer-input";
-            dateInput.type = "text";
-            dateInput.autocomplete = "off";
+            const dateInput=document.createElement("input");
+            dateInput.className="answer-input";
+            dateInput.type="text";
+            dateInput.autocomplete="off";
 
-            const dateFeedback = document.createElement("small");
-            dateFeedback.className = "feedback";
+            const dateFeedback=document.createElement("small");
+            dateFeedback.className="feedback";
 
-            addQuestion(
-                dateInput,
-                dateFeedback,
-                dateReadings[day],
-                "calendar"
+            addTextQuestion(
+                dateInput,dateFeedback,dateReadings[day],"calendar"
             );
 
-            const dayBox = document.createElement("div");
-            dayBox.className = "day-answer";
+            const dayBox=document.createElement("div");
+            dayBox.className="day-answer";
 
-            const dayLabel = document.createElement("label");
-            dayLabel.textContent = "曜日";
+            const dayLabel=document.createElement("label");
+            dayLabel.textContent="曜日";
 
-            const dayInput = document.createElement("input");
-            dayInput.className = "answer-input";
-            dayInput.type = "text";
-            dayInput.autocomplete = "off";
+            const dayInput=document.createElement("input");
+            dayInput.className="answer-input";
+            dayInput.type="text";
+            dayInput.autocomplete="off";
 
-            const dayFeedback = document.createElement("small");
-            dayFeedback.className = "feedback";
+            const dayFeedback=document.createElement("small");
+            dayFeedback.className="feedback";
 
-            addQuestion(
-                dayInput,
-                dayFeedback,
-                weekdays[weekday],
-                "calendar"
+            addTextQuestion(
+                dayInput,dayFeedback,weekdays[weekday],"calendar"
             );
 
-            dateInput.disabled = true;
-            dayInput.disabled = true;
-
-            const dateWrap = document.createElement("div");
+            const dateWrap=document.createElement("div");
             dateWrap.append(dateLabel,dateInput,dateFeedback);
 
             dayBox.append(dayLabel,dayInput,dayFeedback);
@@ -1321,9 +1531,9 @@ function buildCalendarExercises(root){
 
         section.appendChild(answers);
 
-        const page = document.createElement("div");
-        page.className = "page-number";
-        page.textContent = "— "+(index+6)+" —";
+        const page=document.createElement("div");
+        page.className="page-number";
+        page.textContent="— "+(index+6)+" —";
 
         section.appendChild(page);
         root.appendChild(section);
@@ -1331,14 +1541,13 @@ function buildCalendarExercises(root){
 }
 
 function buildClockReference(root){
-
-    const hourRows = [];
+    const hourRows=[];
 
     for(let i=0;i<4;i++){
-        const row = [];
+        const row=[];
 
         for(let group=0;group<3;group++){
-            const hour = i+group*4+1;
+            const hour=i+group*4+1;
 
             row.push({
                 label:hour+" じ",
@@ -1350,21 +1559,17 @@ function buildClockReference(root){
     }
 
     root.appendChild(
-        createReferencePanel(
-            "テスト 9 — 何時",
-            hourRows,
-            "clock"
-        )
+        createReferencePanel("テスト 9 — 何時",hourRows,"clock")
     );
 
-    const minuteList = [5,10,15,20,25,30,35,40,45,50,55,30];
-    const minuteRows = [];
+    const minuteList=[5,10,15,20,25,30,35,40,45,50,55,30];
+    const minuteRows=[];
 
     for(let i=0;i<4;i++){
-        const row = [];
+        const row=[];
 
         for(let group=0;group<3;group++){
-            const minute = minuteList[i+group*4];
+            const minute=minuteList[i+group*4];
 
             row.push({
                 label:minute+" ふん",
@@ -1376,25 +1581,17 @@ function buildClockReference(root){
     }
 
     root.appendChild(
-        createReferencePanel(
-            "テスト 10 — 何分",
-            minuteRows,
-            "clock"
-        )
+        createReferencePanel("テスト 10 — 何分",minuteRows,"clock")
     );
 }
 
 function createClock(hour,minute){
-
     const cx=75,cy=75;
-
     let ticks="";
     let numbers="";
 
     for(let i=0;i<60;i++){
-
         const angle=(i*6-90)*Math.PI/180;
-
         const inner=i%5===0?60:65;
         const outer=70;
 
@@ -1411,7 +1608,6 @@ function createClock(hour,minute){
     }
 
     for(let i=1;i<=12;i++){
-
         const angle=(i*30-90)*Math.PI/180;
         const radius=51;
 
@@ -1442,76 +1638,40 @@ function createClock(hour,minute){
     return `
         <svg class="clock" viewBox="0 0 150 150"
              xmlns="http://www.w3.org/2000/svg">
-
             <circle cx="75" cy="75" r="70"
                 fill="white" stroke="#222" stroke-width="2.5"/>
-
             ${ticks}
             ${numbers}
-
             <line x1="75" y1="75" x2="${hx}" y2="${hy}"
                 stroke="#111" stroke-width="5.5"
                 stroke-linecap="round"/>
-
             <line x1="75" y1="75" x2="${mx}" y2="${my}"
                 stroke="#bd4545" stroke-width="2.7"
                 stroke-linecap="round"/>
-
             <circle cx="75" cy="75" r="3.5" fill="#111"/>
         </svg>
     `;
 }
 
 function getClockAnswer(hour,minute){
-
     let answer=hourReadings[hour];
 
-    if(minute===0){
-        return answer;
-    }
+    if(minute===0)return answer;
 
     const minuteKana=minuteNumberReadings[minute];
 
-    if(!minuteKana){
-        return answer;
-    }
+    if(!minuteKana)return answer;
 
     return answer+minuteKana;
 }
 
-const clockSets=[
-    [
-        {h:3,m:20},
-        {h:4,m:15},
-        {h:9,m:40},
-        {h:6,m:5},
-        {h:11,m:35}
-    ],
-    [
-        {h:7,m:10},
-        {h:1,m:55},
-        {h:8,m:25},
-        {h:10,m:50},
-        {h:4,m:30}
-    ],
-    [
-        {h:9,m:15},
-        {h:2,m:45},
-        {h:12,m:20},
-        {h:7,m:40},
-        {h:3,m:5}
-    ]
-];
-
 function buildClockExercises(root){
-
     clockSets.forEach((set,index)=>{
-
         const section=document.createElement("section");
         section.className="section";
 
         const heading=document.createElement("h2");
-        heading.textContent="テスト"+(index+11)+"";
+        heading.textContent="テスト"+(index+11);
 
         const desc=document.createElement("div");
         desc.className="section-desc";
@@ -1524,15 +1684,12 @@ function buildClockExercises(root){
         answerList.className="clock-answer-list";
 
         set.forEach((time,i)=>{
-
             const item=document.createElement("div");
             item.className="clock-item";
-
             item.innerHTML=`(${i+1})`;
 
             item.insertAdjacentHTML(
-                "beforeend",
-                createClock(time.h,time.m)
+                "beforeend",createClock(time.h,time.m)
             );
 
             grid.appendChild(item);
@@ -1541,7 +1698,7 @@ function buildClockExercises(root){
             row.className="clock-answer";
 
             const label=document.createElement("span");
-            label.textContent="("+ (i+1) +")";
+            label.textContent="("+(i+1)+")";
 
             const input=document.createElement("input");
             input.className="answer-input";
@@ -1552,11 +1709,8 @@ function buildClockExercises(root){
             const feedback=document.createElement("small");
             feedback.className="feedback";
 
-            addQuestion(
-                input,
-                feedback,
-                getClockAnswer(time.h,time.m),
-                "clock"
+            addTextQuestion(
+                input,feedback,getClockAnswer(time.h,time.m),"clock"
             );
 
             row.append(label,input);
@@ -1578,54 +1732,142 @@ function buildClockExercises(root){
     });
 }
 
-function buildTest(){
+function buildMultipleChoiceExam(){
+    const container=$("examQuestions");
+    container.innerHTML="";
+    mcQuestions=[];
 
+    let globalNumber=0;
+
+    multipleChoiceSections.forEach(section=>{
+        const heading=document.createElement("div");
+        heading.className="exam-section-title";
+        heading.textContent=section.title;
+
+        const subtitle=document.createElement("small");
+        subtitle.textContent=section.subtitle;
+        heading.appendChild(subtitle);
+
+        container.appendChild(heading);
+
+        section.questions.forEach(q=>{
+            globalNumber++;
+
+            const question=document.createElement("div");
+            question.className="mc-question";
+
+            const questionText=document.createElement("div");
+            questionText.className="mc-question-text";
+            questionText.textContent=globalNumber+". "+q[0];
+
+            question.appendChild(questionText);
+
+            const options=document.createElement("div");
+            options.className="options";
+
+            const radioInputs=[];
+
+            q[1].forEach((choice,choiceIndex)=>{
+                const label=document.createElement("label");
+                label.className="option";
+
+                const radio=document.createElement("input");
+                radio.type="radio";
+                radio.name="mc_question_"+globalNumber;
+                radio.value=choiceIndex;
+                radio.disabled=true;
+
+                const span=document.createElement("span");
+                span.textContent=
+                    String.fromCharCode(97+choiceIndex)+". "+choice;
+
+                label.append(radio,span);
+                options.appendChild(label);
+                radioInputs.push(radio);
+            });
+
+            question.appendChild(options);
+
+            const feedback=document.createElement("div");
+            feedback.className="mc-feedback";
+            question.appendChild(feedback);
+
+            container.appendChild(question);
+
+            mcQuestions.push({
+                element:question,
+                correct:q[2],
+                points:section.points,
+                radios:radioInputs,
+                feedback:feedback
+            });
+        });
+    });
+}
+
+function buildTest(){
     const root=$("test");
 
     root.innerHTML="";
-    questions=[];
+    textQuestions=[];
+    mcQuestions=[];
 
     buildKanaTest(root);
     buildCalendarReference(root);
     buildCalendarExercises(root);
     buildClockReference(root);
     buildClockExercises(root);
+    buildMultipleChoiceExam();
 
     updateProgress();
 }
 
+function getTotalQuestions(){
+    return textQuestions.length+mcQuestions.length;
+}
+
+function getAnsweredCount(){
+    let answered=0;
+
+    textQuestions.forEach(q=>{
+        if(normalize(q.input.value)!=="")answered++;
+    });
+
+    mcQuestions.forEach(q=>{
+        if(q.radios.some(r=>r.checked))answered++;
+    });
+
+    return answered;
+}
+
 function updateProgress(){
-
-    const answered=questions.filter(q=>
-        normalize(q.input.value)!==""
-    ).length;
-
-    const percentage=questions.length
-        ? answered/questions.length*100
-        : 0;
+    const total=getTotalQuestions();
+    const answered=getAnsweredCount();
+    const percentage=total?answered/total*100:0;
 
     $("progress").style.width=percentage+"%";
 
     if(running){
         $("status").textContent=
-            `Test in progress. Answered ${answered} of ${questions.length} questions.`;
+            `Test in progress. Answered ${answered} of ${total} questions.`;
     }
 }
 
-function counts(){
-
+function getResults(){
     const result={
         correct:0,
         wrong:0,
         empty:0,
-        total:questions.length,
+        total:getTotalQuestions(),
         kana:0,
         calendar:0,
-        clock:0
+        clock:0,
+        multiple:0,
+        textTotal:textQuestions.length,
+        multipleTotal:mcQuestions.length
     };
 
-    questions.forEach(q=>{
-
+    textQuestions.forEach(q=>{
         const value=normalize(q.input.value);
 
         if(!value){
@@ -1636,10 +1878,25 @@ function counts(){
         if(isCorrectAnswer(value,q.answer)){
             result.correct++;
 
-            if(q.category==="kana") result.kana++;
-            if(q.category==="calendar") result.calendar++;
-            if(q.category==="clock") result.clock++;
+            if(q.category==="kana")result.kana++;
+            if(q.category==="calendar")result.calendar++;
+            if(q.category==="clock")result.clock++;
+        }else{
+            result.wrong++;
+        }
+    });
 
+    mcQuestions.forEach(q=>{
+        const selected=q.radios.find(r=>r.checked);
+
+        if(!selected){
+            result.empty++;
+            return;
+        }
+
+        if(Number(selected.value)===q.correct){
+            result.correct++;
+            result.multiple++;
         }else{
             result.wrong++;
         }
@@ -1648,42 +1905,68 @@ function counts(){
     return result;
 }
 
-function gradeTest(){
-
-    questions.forEach(q=>{
-
+function gradeTextQuestions(){
+    textQuestions.forEach(q=>{
         const value=normalize(q.input.value);
 
         q.input.classList.remove("correct","wrong");
         q.feedback.textContent="";
 
         if(!value){
-
             q.input.classList.add("wrong");
-
             q.feedback.textContent=
                 "No answer. Correct answer: "+q.answer;
-
             return;
         }
 
         if(isCorrectAnswer(value,q.answer)){
-
             q.input.classList.add("correct");
             q.feedback.textContent="✓ Correct";
-
         }else{
-
             q.input.classList.add("wrong");
-
             q.feedback.textContent=
                 "✕ Correct answer: "+q.answer;
         }
     });
 }
 
-function showTime(){
+function gradeMultipleChoice(){
+    mcQuestions.forEach(q=>{
+        const selected=q.radios.find(r=>r.checked);
+        const options=q.element.querySelectorAll(".option");
 
+        options.forEach((option,index)=>{
+            option.classList.remove("correct","wrong");
+
+            if(index===q.correct){
+                option.classList.add("correct");
+            }
+        });
+
+        if(selected){
+            if(Number(selected.value)===q.correct){
+                q.feedback.textContent="✓ Correct! +"+q.points+" point(s)";
+                q.feedback.style.color="green";
+            }else{
+                selected.closest(".option").classList.add("wrong");
+
+                q.feedback.textContent=
+                    "✕ Incorrect. Correct answer: "+
+                    String.fromCharCode(97+q.correct);
+
+                q.feedback.style.color="red";
+            }
+        }else{
+            q.feedback.textContent=
+                "Not answered. Correct answer: "+
+                String.fromCharCode(97+q.correct);
+
+            q.feedback.style.color="#b36b00";
+        }
+    });
+}
+
+function showTime(){
     const minutes=Math.floor(remaining/60);
     const seconds=remaining%60;
 
@@ -1693,11 +1976,9 @@ function showTime(){
 }
 
 function updateDifficulty(){
-
-    if(running||finished) return;
+    if(running||finished)return;
 
     remaining=Number($("difficulty").value);
-
     showTime();
 
     const text=$("difficulty").options[
@@ -1709,11 +1990,9 @@ function updateDifficulty(){
 }
 
 function start(){
-
-    if(running||finished) return;
+    if(running||finished)return;
 
     remaining=Number($("difficulty").value);
-
     running=true;
 
     $("difficulty").disabled=true;
@@ -1721,8 +2000,12 @@ function start(){
     $("checkBtn").disabled=false;
     $("checkBottom").disabled=false;
 
-    questions.forEach(q=>{
+    textQuestions.forEach(q=>{
         q.input.disabled=false;
+    });
+
+    mcQuestions.forEach(q=>{
+        q.radios.forEach(r=>r.disabled=false);
     });
 
     $("status").textContent=
@@ -1730,12 +2013,12 @@ function start(){
 
     showTime();
 
-    questions[0]?.input.focus();
+    const firstInput=textQuestions[0]?.input;
+
+    if(firstInput)firstInput.focus();
 
     ticker=setInterval(()=>{
-
         remaining--;
-
         showTime();
 
         if(remaining<=0){
@@ -1743,30 +2026,33 @@ function start(){
             showTime();
             finish(true);
         }
-
     },1000);
 }
 
 function finish(timeout=false){
-
-    if(finished||!running) return;
+    if(finished||!running)return;
 
     running=false;
     finished=true;
 
     clearInterval(ticker);
 
-    gradeTest();
+    gradeTextQuestions();
+    gradeMultipleChoice();
 
-    questions.forEach(q=>{
+    textQuestions.forEach(q=>{
         q.input.disabled=true;
     });
 
-    const result=counts();
+    mcQuestions.forEach(q=>{
+        q.radios.forEach(r=>r.disabled=true);
+    });
 
-    const percentage=Math.round(
-        result.correct/result.total*100
-    );
+    const result=getResults();
+
+    const percentage=result.total
+        ?Math.round(result.correct/result.total*100)
+        :0;
 
     $("correct").textContent=
         result.correct+"/"+result.total;
@@ -1782,22 +2068,29 @@ function finish(timeout=false){
 
     $("status").textContent=timeout
         ?"Time is up. All tests have been submitted."
-        :"All tests successfully submitted.";
+        :"All examination sections successfully submitted.";
 
     $("resultTitle").textContent=timeout
         ?"Time is up!"
-        :"テストが　おわりました！🙇";
+        :"テストが おわりました！🙇";
 
     $("resultText").textContent=
-        `Your final score is ${result.correct} out of ${result.total} (${percentage}%). `+
-        `Wrong: ${result.wrong}. Unanswered: ${result.empty}.`;
+        `Your final score is ${result.correct} out of ${result.total} `+
+        `(${percentage}%). Wrong: ${result.wrong}. `+
+        `Unanswered: ${result.empty}.`;
 
     $("resultKana").textContent=result.kana;
     $("resultCalendar").textContent=result.calendar;
     $("resultClock").textContent=result.clock;
+    $("resultMultiple").textContent=result.multiple;
+    $("resultMultipleTotal").textContent=result.multipleTotal;
+    $("resultTextTotal").textContent=result.textTotal;
+    $("resultPercentage").textContent=percentage+"%";
 
     $("answerReview").textContent=
-        "Developed by マロル strictly for practice and skill-testing. Not for sale — built solely to push your limits"
+        "Developed by マロル strictly for practice and skill-testing. "+
+        "Not for sale — built solely to push your limits.";
+
     $("result").classList.add("show");
 
     $("result").scrollIntoView({
@@ -1807,7 +2100,6 @@ function finish(timeout=false){
 }
 
 function reset(){
-
     clearInterval(ticker);
 
     running=false;
@@ -1854,13 +2146,11 @@ $("checkBottom").addEventListener("click",()=>{
 $("resetBtn").addEventListener("click",reset);
 
 $("difficulty").addEventListener(
-    "change",
-    updateDifficulty
+    "change",updateDifficulty
 );
 
 buildTest();
 showTime();
-
 </script>
 </body>
 </html>
