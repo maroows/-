@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>日本語総合テスト</title>
+
 <style>
 :root{
     --blue:#2b5cad;
@@ -16,31 +17,32 @@
     --yellow:#fff5c8;
 }
 
-*{
-    box-sizing:border-box;
+* {
+    box-sizing: border-box;
 }
 
-html{
-    min-width:1224px;
-    overflow-x:auto;
-    overflow-y:auto;
+html,
+body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    min-width: 0;
+    min-height: 100%;
+    overflow-x: auto;
+    overflow-y: auto;
 }
 
-body{
-    margin:0;
-    min-width:1224px;
-    background:var(--bg);
-    color:var(--ink);
-    font-family:Meiryo,"Yu Gothic","Noto Sans JP",Arial,sans-serif;
-    overflow-x:auto;
-    overflow-y:auto;
+body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: Meiryo, "Yu Gothic", "Noto Sans JP", Arial, sans-serif;
 }
 
-.app{
-    width:1200px;
-    min-width:1200px;
-    margin:0 auto;
-    padding:12px;
+.app {
+    width: 1200px;
+    min-width: 1200px;
+    margin: 0 auto;
+    padding: 12px;
 }
 
 .developer{
@@ -605,11 +607,215 @@ td.blank{
     margin:18px 0;
 }
 
+/* =================================
+   DARK / LIGHT MODE
+================================= */
+
+html[data-theme="dark"]{
+    color-scheme:dark;
+
+    --blue:#568bea;
+    --ink:#e6edf7;
+    --muted:#a3afc2;
+    --line:#39475c;
+    --bg:#101722;
+    --good:#55d98a;
+    --bad:#ff7777;
+    --yellow:#594b20;
+}
+
+html[data-theme="dark"] body{
+    background:var(--bg);
+    color:var(--ink);
+}
+
+html[data-theme="dark"] .topbar{
+    background:#192333;
+    box-shadow:0 3px 8px #0006;
+}
+
+html[data-theme="dark"] .difficulty-row,
+html[data-theme="dark"] .stat,
+html[data-theme="dark"] .section,
+html[data-theme="dark"] .result-card,
+html[data-theme="dark"] .result-detail{
+    background:#1c293a;
+    border-color:var(--line);
+    color:var(--ink);
+}
+
+html[data-theme="dark"] .difficulty-select{
+    background:#26364b;
+    color:var(--ink);
+    border-color:var(--line);
+}
+
+html[data-theme="dark"] .secondary{
+    background:#34445b;
+    color:#edf3ff;
+}
+
+html[data-theme="dark"] .panel{
+    border-color:var(--line);
+}
+
+html[data-theme="dark"] .panel h3,
+html[data-theme="dark"] .calendar th{
+    background:#29384c;
+    color:var(--ink);
+}
+
+html[data-theme="dark"] table{
+    color:var(--ink);
+}
+
+html[data-theme="dark"] td,
+html[data-theme="dark"] th{
+    border-color:var(--line);
+}
+
+html[data-theme="dark"] td.num{
+    background:#263449;
+    color:var(--muted);
+}
+
+html[data-theme="dark"] td.blank{
+    background:#493e20;
+}
+
+html[data-theme="dark"] .answer,
+html[data-theme="dark"] .answer-input{
+    color:var(--ink);
+}
+
+html[data-theme="dark"] .answer:focus,
+html[data-theme="dark"] .answer-input:focus{
+    background:#29384c;
+    color:white;
+}
+
+html[data-theme="dark"] .answer.correct,
+html[data-theme="dark"] .answer-input.correct{
+    background:#183e2b;
+    color:#78e6a0;
+    border-color:#368653;
+}
+
+html[data-theme="dark"] .answer.wrong,
+html[data-theme="dark"] .answer-input.wrong{
+    background:#492426;
+    color:#ff9999;
+    border-color:#a34b4b;
+}
+
+html[data-theme="dark"] .calendar td.marked{
+    background:#514523;
+    color:#fff0a8;
+}
+
+html[data-theme="dark"] .calendar td.marked:after{
+    border-color:#d5bb68;
+}
+
+html[data-theme="dark"] .calendar th:first-child,
+html[data-theme="dark"] .calendar td:first-child{
+    color:#ff9292;
+}
+
+html[data-theme="dark"] .calendar th:last-child,
+html[data-theme="dark"] .calendar td:last-child{
+    color:#9bbdff;
+}
+
+html[data-theme="dark"] .exam-section-title{
+    background:#293b53;
+    color:#e8f0ff;
+}
+
+html[data-theme="dark"] .exam-section-title small{
+    color:#b5c3d6;
+}
+
+html[data-theme="dark"] .mc-question{
+    border-color:var(--line);
+}
+
+html[data-theme="dark"] .option{
+    color:var(--ink);
+}
+
+html[data-theme="dark"] .option:hover{
+    background:#293b53;
+}
+
+html[data-theme="dark"] .option.correct{
+    background:#19452c;
+    color:#9af0b5;
+}
+
+html[data-theme="dark"] .option.wrong{
+    background:#51292c;
+    color:#ffaaaa;
+}
+
+html[data-theme="dark"] .result{
+    background:#1d3049;
+    border-color:#3d5d87;
+    color:var(--ink);
+}
+
+html[data-theme="dark"] .progress{
+    background:#34445b;
+}
+
+html[data-theme="dark"] .clock circle:first-of-type{
+    fill:#e9edf3;
+    stroke:#111827;
+}
+
+html[data-theme="dark"] .clock text{
+    fill:#111827 !important;
+}
+
+html[data-theme="dark"] .clock line{
+    stroke:#111827;
+}
+
+html[data-theme="dark"] .clock line:nth-last-of-type(2){
+    stroke:#bd4545;
+}
+
+html[data-theme="dark"] .clock circle:last-of-type{
+    fill:#111827;
+}
+
+html[data-theme="dark"] .feedback{
+    color:var(--ink);
+}
+
+html[data-theme="dark"] .developer{
+    color:#aab6c8;
+}
+
+html[data-theme="dark"] .subtitle{
+    color:var(--muted);
+}
+
+html[data-theme="dark"] .status{
+    color:var(--muted);
+}
+
+html[data-theme="dark"] .answer-input::placeholder{
+    color:#8998ad;
+}
+
+/* PRINT */
 @media print{
     html,body{
         min-width:0;
         overflow:visible;
         background:white;
+        zoom:1;
     }
 
     .app{
@@ -629,16 +835,22 @@ td.blank{
 }
 </style>
 </head>
+
 <body>
 <div class="app">
+
 <header class="topbar">
+
     <div class="developer">
         Developer:
-        <a href="https://www.facebook.com/marroows" target="_blank" rel="noopener noreferrer">マロル</a>
+        <a href="https://www.facebook.com/marroows"
+           target="_blank"
+           rel="noopener noreferrer">マロル</a>
     </div>
 
     <div class="difficulty-row">
         <label for="difficulty"><b>Difficulty</b></label>
+
         <select id="difficulty" class="difficulty-select">
             <option value="10800">Easy — 3 hours</option>
             <option value="9000" selected>Normal — 2 hours 30 minutes</option>
@@ -647,22 +859,58 @@ td.blank{
     </div>
 
     <div class="topline">
-        <div class="timer">⏱ <span id="timer">150:00</span></div>
+
+        <div class="timer">
+            ⏱ <span id="timer">150:00</span>
+        </div>
+
         <div class="actions">
-            <button id="startBtn" class="primary">Let's Start</button>
-            <button id="checkBtn" class="secondary" disabled>Submit All</button>
+
+            <button id="themeBtn" class="secondary" type="button">
+                🌙 Dark Mode
+            </button>
+
+            <button id="startBtn" class="primary">
+                Let's Start
+            </button>
+
+            <button id="checkBtn" class="secondary" disabled>
+                Submit All
+            </button>
+
         </div>
     </div>
 
     <div class="scoreboard">
-        <div class="stat"><span>Correct</span><strong id="correct">—</strong></div>
-        <div class="stat"><span>Wrong</span><strong id="wrong">—</strong></div>
-        <div class="stat"><span>Unanswered</span><strong id="unanswered">—</strong></div>
-        <div class="stat"><span>Score</span><strong id="score">—</strong></div>
+        <div class="stat">
+            <span>Correct</span>
+            <strong id="correct">—</strong>
+        </div>
+
+        <div class="stat">
+            <span>Wrong</span>
+            <strong id="wrong">—</strong>
+        </div>
+
+        <div class="stat">
+            <span>Unanswered</span>
+            <strong id="unanswered">—</strong>
+        </div>
+
+        <div class="stat">
+            <span>Score</span>
+            <strong id="score">—</strong>
+        </div>
     </div>
 
-    <div class="progress"><div id="progress"></div></div>
-    <div class="status" id="status">Choose a difficulty, then press Let's Start.</div>
+    <div class="progress">
+        <div id="progress"></div>
+    </div>
+
+    <div class="status" id="status">
+        Choose a difficulty, then press Let's Start.
+    </div>
+
 </header>
 
 <h1 class="main-title">
@@ -678,59 +926,83 @@ td.blank{
 <main id="test"></main>
 
 <section class="section">
+
     <h2>だい２ぶ Part 2 プレイスメントテスト</h2>
+
     <div class="section-desc">
         こたえの きごう（a・b・c・d）を えらんでください。<br>
         Choose the correct answer.
     </div>
+
     <div id="examQuestions"></div>
+
 </section>
 
 <div class="result" id="result">
+
     <h2 id="resultTitle">テストが おわりました！</h2>
+
     <p id="resultText"></p>
 
     <div class="result-grid">
+
         <div class="result-card">
             <strong id="resultKana">0</strong>
             <span>Kana correct</span>
         </div>
+
         <div class="result-card">
             <strong id="resultCalendar">0</strong>
             <span>Calendar correct</span>
         </div>
+
         <div class="result-card">
             <strong id="resultClock">0</strong>
             <span>Clock correct</span>
         </div>
+
     </div>
 
     <div class="result-details">
+
         <div class="result-detail">
             <strong id="resultMultiple">0</strong>
             <span>Multiple-choice correct</span>
         </div>
+
         <div class="result-detail">
             <strong id="resultMultipleTotal">0</strong>
             <span>Multiple-choice questions</span>
         </div>
+
         <div class="result-detail">
             <strong id="resultTextTotal">0</strong>
             <span>Written-answer questions</span>
         </div>
+
         <div class="result-detail">
             <strong id="resultPercentage">0%</strong>
             <span>Overall percentage</span>
         </div>
+
     </div>
 
     <p id="answerReview"></p>
+
 </div>
 
 <div class="bottom-actions">
-    <button id="checkBottom" class="primary" disabled>Submit All Answers</button>
-    <button id="resetBtn" class="secondary">Restart Entire Test</button>
+
+    <button id="checkBottom" class="primary" disabled>
+        Submit All Answers
+    </button>
+
+    <button id="resetBtn" class="secondary">
+        Restart Entire Test
+    </button>
+
 </div>
+
 </div>
 
 <script>
@@ -1158,6 +1430,49 @@ let ticker=null;
 
 const $=id=>document.getElementById(id);
 
+/* DARK / LIGHT MODE */
+
+function setTheme(theme){
+
+    document.documentElement.setAttribute("data-theme",theme);
+
+    const button=$("themeBtn");
+
+    if(button){
+        button.textContent=theme==="dark"
+            ?"☀️ Light Mode"
+            :"🌙 Dark Mode";
+    }
+
+    try{
+        localStorage.setItem("japaneseExamTheme",theme);
+    }catch(error){
+        console.warn("Theme preference could not be saved.");
+    }
+}
+
+function initializeTheme(){
+
+    let savedTheme="light";
+
+    try{
+        savedTheme=localStorage.getItem("japaneseExamTheme")||"light";
+    }catch(error){
+        savedTheme="light";
+    }
+
+    setTheme(savedTheme==="dark"?"dark":"light");
+}
+
+$("themeBtn").addEventListener("click",()=>{
+
+    const currentTheme=
+        document.documentElement.getAttribute("data-theme");
+
+    setTheme(currentTheme==="dark"?"light":"dark");
+
+});
+
 function normalize(value){
     return String(value)
         .normalize("NFC")
@@ -1222,7 +1537,9 @@ function isCorrectAnswer(input,answer){
 }
 
 function addTextQuestion(input,feedback,answer,category){
+
     const question={input,feedback,answer,category};
+
     textQuestions.push(question);
 
     input.disabled=true;
@@ -1232,6 +1549,7 @@ function addTextQuestion(input,feedback,answer,category){
 
         input.classList.remove("correct","wrong");
         feedback.textContent="";
+
         updateProgress();
     });
 
@@ -1239,29 +1557,35 @@ function addTextQuestion(input,feedback,answer,category){
 }
 
 function createInput(answer,category,className="answer"){
+
     const td=document.createElement("td");
     td.className="blank";
 
     const input=document.createElement("input");
+
     input.type="text";
     input.className=className;
     input.autocomplete="off";
     input.autocapitalize="off";
     input.spellcheck=false;
     input.maxLength=40;
+
     input.setAttribute("aria-label","Your answer");
 
     const feedback=document.createElement("small");
     feedback.className="feedback";
 
     td.append(input,feedback);
+
     addTextQuestion(input,feedback,answer,category);
 
     return td;
 }
 
 function buildKanaTest(root){
+
     kanaSections.forEach(section=>{
+
         const sectionEl=document.createElement("section");
         sectionEl.className="section";
 
@@ -1275,6 +1599,7 @@ function buildKanaTest(root){
         sectionEl.append(heading,desc);
 
         section.panels.forEach(panel=>{
+
             const box=document.createElement("div");
             box.className="panel";
 
@@ -1285,39 +1610,52 @@ function buildKanaTest(root){
             const tbody=document.createElement("tbody");
 
             panel.rows.forEach((row,rowIndex)=>{
+
                 const tr=document.createElement("tr");
 
                 const num=document.createElement("td");
                 num.className="num";
                 num.textContent=rowIndex+1;
+
                 tr.appendChild(num);
 
                 const spec=panel.blanks[rowIndex];
                 const blanks=Array.isArray(spec)?spec:[spec];
 
                 row.forEach((kana,kanaIndex)=>{
+
                     if(blanks.includes(kanaIndex)){
+
                         tr.appendChild(createInput(kana,"kana"));
+
                     }else{
+
                         const td=document.createElement("td");
                         td.textContent=kana;
                         tr.appendChild(td);
+
                     }
+
                 });
 
                 tbody.appendChild(tr);
+
             });
 
             table.appendChild(tbody);
+
             box.append(title,table);
             sectionEl.appendChild(box);
+
         });
 
         root.appendChild(sectionEl);
+
     });
 }
 
 function createReferencePanel(title,rows,category){
+
     const section=document.createElement("section");
     section.className="section";
 
@@ -1334,47 +1672,61 @@ function createReferencePanel(title,rows,category){
     const tbody=document.createElement("tbody");
 
     rows.forEach((row,index)=>{
+
         const tr=document.createElement("tr");
 
         const number=document.createElement("td");
         number.className="num";
         number.textContent=index+1;
+
         tr.appendChild(number);
 
         row.forEach(item=>{
+
             const td=document.createElement("td");
             td.textContent=item.label;
+
             tr.appendChild(td);
             tr.appendChild(createInput(item.answer,category));
+
         });
 
         tbody.appendChild(tr);
+
     });
 
     table.appendChild(tbody);
+
     section.append(heading,desc,table);
 
     return section;
 }
 
 function buildCalendarReference(root){
+
     const dateRows=[];
 
     for(let i=0;i<11;i++){
+
         const row=[];
 
         for(let group=0;group<3;group++){
+
             const day=i+group*11+1;
 
             if(day<=31){
+
                 row.push({
                     label:day+" にち",
                     answer:dateReadings[day]
                 });
+
             }
+
         }
 
         dateRows.push(row);
+
     }
 
     root.appendChild(
@@ -1401,8 +1753,10 @@ function buildCalendarReference(root){
 }
 
 function createCalendar(data){
+
     const firstDay=new Date(data.year,data.month-1,1).getDay();
     const totalDays=new Date(data.year,data.month,0).getDate();
+
     const cells=[];
 
     for(let i=0;i<firstDay;i++){
@@ -1410,6 +1764,7 @@ function createCalendar(data){
     }
 
     for(let day=1;day<=totalDays;day++){
+
         const marked=data.marks.includes(day);
 
         cells.push(`
@@ -1417,6 +1772,7 @@ function createCalendar(data){
                 ${day}
             </td>
         `);
+
     }
 
     while(cells.length%7!==0){
@@ -1435,35 +1791,51 @@ function createCalendar(data){
 
     return `
         <div class="calendar-container">
+
             <div class="month-title">
                 ${data.year}年 ${data.month}月
                 <span>${monthName} ${data.year}</span>
             </div>
+
             <table class="calendar">
+
                 <thead>
                     <tr>
-                        <th>日</th><th>月</th><th>火</th>
-                        <th>水</th><th>木</th><th>金</th><th>土</th>
+                        <th>日</th>
+                        <th>月</th>
+                        <th>火</th>
+                        <th>水</th>
+                        <th>木</th>
+                        <th>金</th>
+                        <th>土</th>
                     </tr>
                 </thead>
+
                 <tbody>${rows}</tbody>
+
             </table>
+
         </div>
     `;
 }
 
 function buildCalendarExercises(root){
+
     months.forEach((data,index)=>{
+
         const section=document.createElement("section");
         section.className="section";
 
         section.innerHTML=`
             <h2>テスト${index+6} — 何日 / 何曜日</h2>
+
             <div class="section-desc">
                 Look at the highlighted dates.
                 Write their date and weekday in hiragana.
             </div>
+
             ${createCalendar(data)}
+
             <div class="exercise-instruction">
                 色のついた日の「日にち」と「曜日」をひらがなで書きましょう。
                 <br>
@@ -1475,6 +1847,7 @@ function buildCalendarExercises(root){
         answers.className="date-answers";
 
         data.marks.forEach((day,i)=>{
+
             const date=new Date(data.year,data.month-1,day);
 
             const weekday=[
@@ -1521,12 +1894,23 @@ function buildCalendarExercises(root){
             );
 
             const dateWrap=document.createElement("div");
-            dateWrap.append(dateLabel,dateInput,dateFeedback);
 
-            dayBox.append(dayLabel,dayInput,dayFeedback);
+            dateWrap.append(
+                dateLabel,
+                dateInput,
+                dateFeedback
+            );
+
+            dayBox.append(
+                dayLabel,
+                dayInput,
+                dayFeedback
+            );
 
             row.append(label,dateWrap,dayBox);
+
             answers.appendChild(row);
+
         });
 
         section.appendChild(answers);
@@ -1536,26 +1920,33 @@ function buildCalendarExercises(root){
         page.textContent="— "+(index+6)+" —";
 
         section.appendChild(page);
+
         root.appendChild(section);
+
     });
 }
 
 function buildClockReference(root){
+
     const hourRows=[];
 
     for(let i=0;i<4;i++){
+
         const row=[];
 
         for(let group=0;group<3;group++){
+
             const hour=i+group*4+1;
 
             row.push({
                 label:hour+" じ",
                 answer:hourReadings[hour]
             });
+
         }
 
         hourRows.push(row);
+
     }
 
     root.appendChild(
@@ -1566,18 +1957,22 @@ function buildClockReference(root){
     const minuteRows=[];
 
     for(let i=0;i<4;i++){
+
         const row=[];
 
         for(let group=0;group<3;group++){
+
             const minute=minuteList[i+group*4];
 
             row.push({
                 label:minute+" ふん",
                 answer:minuteReadings[minute]
             });
+
         }
 
         minuteRows.push(row);
+
     }
 
     root.appendChild(
@@ -1586,11 +1981,14 @@ function buildClockReference(root){
 }
 
 function createClock(hour,minute){
+
     const cx=75,cy=75;
+
     let ticks="";
     let numbers="";
 
     for(let i=0;i<60;i++){
+
         const angle=(i*6-90)*Math.PI/180;
         const inner=i%5===0?60:65;
         const outer=70;
@@ -1605,9 +2003,11 @@ function createClock(hour,minute){
                 stroke-width="${i%5===0?1.8:.8}"
             />
         `;
+
     }
 
     for(let i=1;i<=12;i++){
+
         const angle=(i*30-90)*Math.PI/180;
         const radius=51;
 
@@ -1621,6 +2021,7 @@ function createClock(hour,minute){
                 fill="#111"
             >${i}</text>
         `;
+
     }
 
     const hourAngle=(
@@ -1638,22 +2039,29 @@ function createClock(hour,minute){
     return `
         <svg class="clock" viewBox="0 0 150 150"
              xmlns="http://www.w3.org/2000/svg">
+
             <circle cx="75" cy="75" r="70"
                 fill="white" stroke="#222" stroke-width="2.5"/>
+
             ${ticks}
             ${numbers}
+
             <line x1="75" y1="75" x2="${hx}" y2="${hy}"
                 stroke="#111" stroke-width="5.5"
                 stroke-linecap="round"/>
+
             <line x1="75" y1="75" x2="${mx}" y2="${my}"
                 stroke="#bd4545" stroke-width="2.7"
                 stroke-linecap="round"/>
+
             <circle cx="75" cy="75" r="3.5" fill="#111"/>
+
         </svg>
     `;
 }
 
 function getClockAnswer(hour,minute){
+
     let answer=hourReadings[hour];
 
     if(minute===0)return answer;
@@ -1666,7 +2074,9 @@ function getClockAnswer(hour,minute){
 }
 
 function buildClockExercises(root){
+
     clockSets.forEach((set,index)=>{
+
         const section=document.createElement("section");
         section.className="section";
 
@@ -1675,7 +2085,9 @@ function buildClockExercises(root){
 
         const desc=document.createElement("div");
         desc.className="section-desc";
-        desc.textContent="Look at each clock and write the Japanese time in hiragana.";
+
+        desc.textContent=
+            "Look at each clock and write the Japanese time in hiragana.";
 
         const grid=document.createElement("div");
         grid.className="clock-grid";
@@ -1684,6 +2096,7 @@ function buildClockExercises(root){
         answerList.className="clock-answer-list";
 
         set.forEach((time,i)=>{
+
             const item=document.createElement("div");
             item.className="clock-item";
             item.innerHTML=`(${i+1})`;
@@ -1719,6 +2132,7 @@ function buildClockExercises(root){
             wrapper.append(row,feedback);
 
             answerList.appendChild(wrapper);
+
         });
 
         section.append(heading,desc,grid,answerList);
@@ -1728,29 +2142,36 @@ function buildClockExercises(root){
         page.textContent="— "+(index+11)+" —";
 
         section.appendChild(page);
+
         root.appendChild(section);
+
     });
 }
 
 function buildMultipleChoiceExam(){
+
     const container=$("examQuestions");
+
     container.innerHTML="";
     mcQuestions=[];
 
     let globalNumber=0;
 
     multipleChoiceSections.forEach(section=>{
+
         const heading=document.createElement("div");
         heading.className="exam-section-title";
         heading.textContent=section.title;
 
         const subtitle=document.createElement("small");
         subtitle.textContent=section.subtitle;
+
         heading.appendChild(subtitle);
 
         container.appendChild(heading);
 
         section.questions.forEach(q=>{
+
             globalNumber++;
 
             const question=document.createElement("div");
@@ -1758,6 +2179,7 @@ function buildMultipleChoiceExam(){
 
             const questionText=document.createElement("div");
             questionText.className="mc-question-text";
+
             questionText.textContent=globalNumber+". "+q[0];
 
             question.appendChild(questionText);
@@ -1768,28 +2190,35 @@ function buildMultipleChoiceExam(){
             const radioInputs=[];
 
             q[1].forEach((choice,choiceIndex)=>{
+
                 const label=document.createElement("label");
                 label.className="option";
 
                 const radio=document.createElement("input");
+
                 radio.type="radio";
                 radio.name="mc_question_"+globalNumber;
                 radio.value=choiceIndex;
                 radio.disabled=true;
 
                 const span=document.createElement("span");
+
                 span.textContent=
                     String.fromCharCode(97+choiceIndex)+". "+choice;
 
                 label.append(radio,span);
+
                 options.appendChild(label);
+
                 radioInputs.push(radio);
+
             });
 
             question.appendChild(options);
 
             const feedback=document.createElement("div");
             feedback.className="mc-feedback";
+
             question.appendChild(feedback);
 
             container.appendChild(question);
@@ -1801,14 +2230,18 @@ function buildMultipleChoiceExam(){
                 radios:radioInputs,
                 feedback:feedback
             });
+
         });
+
     });
 }
 
 function buildTest(){
+
     const root=$("test");
 
     root.innerHTML="";
+
     textQuestions=[];
     mcQuestions=[];
 
@@ -1827,33 +2260,44 @@ function getTotalQuestions(){
 }
 
 function getAnsweredCount(){
+
     let answered=0;
 
     textQuestions.forEach(q=>{
+
         if(normalize(q.input.value)!=="")answered++;
+
     });
 
     mcQuestions.forEach(q=>{
+
         if(q.radios.some(r=>r.checked))answered++;
+
     });
 
     return answered;
 }
 
 function updateProgress(){
+
     const total=getTotalQuestions();
     const answered=getAnsweredCount();
+
     const percentage=total?answered/total*100:0;
 
     $("progress").style.width=percentage+"%";
 
     if(running){
+
         $("status").textContent=
             `Test in progress. Answered ${answered} of ${total} questions.`;
+
     }
+
 }
 
 function getResults(){
+
     const result={
         correct:0,
         wrong:0,
@@ -1868,86 +2312,126 @@ function getResults(){
     };
 
     textQuestions.forEach(q=>{
+
         const value=normalize(q.input.value);
 
         if(!value){
+
             result.empty++;
             return;
+
         }
 
         if(isCorrectAnswer(value,q.answer)){
+
             result.correct++;
 
             if(q.category==="kana")result.kana++;
             if(q.category==="calendar")result.calendar++;
             if(q.category==="clock")result.clock++;
+
         }else{
+
             result.wrong++;
+
         }
+
     });
 
     mcQuestions.forEach(q=>{
+
         const selected=q.radios.find(r=>r.checked);
 
         if(!selected){
+
             result.empty++;
             return;
+
         }
 
         if(Number(selected.value)===q.correct){
+
             result.correct++;
             result.multiple++;
+
         }else{
+
             result.wrong++;
+
         }
+
     });
 
     return result;
 }
 
 function gradeTextQuestions(){
+
     textQuestions.forEach(q=>{
+
         const value=normalize(q.input.value);
 
         q.input.classList.remove("correct","wrong");
         q.feedback.textContent="";
 
         if(!value){
+
             q.input.classList.add("wrong");
+
             q.feedback.textContent=
                 "No answer. Correct answer: "+q.answer;
+
             return;
+
         }
 
         if(isCorrectAnswer(value,q.answer)){
+
             q.input.classList.add("correct");
             q.feedback.textContent="✓ Correct";
+
         }else{
+
             q.input.classList.add("wrong");
+
             q.feedback.textContent=
                 "✕ Correct answer: "+q.answer;
+
         }
+
     });
+
 }
 
 function gradeMultipleChoice(){
+
     mcQuestions.forEach(q=>{
+
         const selected=q.radios.find(r=>r.checked);
+
         const options=q.element.querySelectorAll(".option");
 
         options.forEach((option,index)=>{
+
             option.classList.remove("correct","wrong");
 
             if(index===q.correct){
                 option.classList.add("correct");
             }
+
         });
 
         if(selected){
+
             if(Number(selected.value)===q.correct){
-                q.feedback.textContent="✓ Correct! +"+q.points+" point(s)";
+
+                q.feedback.textContent=
+                    "✓ Correct! +"+q.points+" point(s)";
+
                 q.feedback.style.color="green";
+
             }else{
+
                 selected.closest(".option").classList.add("wrong");
 
                 q.feedback.textContent=
@@ -1955,30 +2439,40 @@ function gradeMultipleChoice(){
                     String.fromCharCode(97+q.correct);
 
                 q.feedback.style.color="red";
+
             }
+
         }else{
+
             q.feedback.textContent=
                 "Not answered. Correct answer: "+
                 String.fromCharCode(97+q.correct);
 
             q.feedback.style.color="#b36b00";
+
         }
+
     });
+
 }
 
 function showTime(){
+
     const minutes=Math.floor(remaining/60);
     const seconds=remaining%60;
 
     $("timer").textContent=
         String(minutes).padStart(2,"0")+":"+
         String(seconds).padStart(2,"0");
+
 }
 
 function updateDifficulty(){
+
     if(running||finished)return;
 
     remaining=Number($("difficulty").value);
+
     showTime();
 
     const text=$("difficulty").options[
@@ -1987,12 +2481,15 @@ function updateDifficulty(){
 
     $("status").textContent=
         "Selected: "+text+". Press Let's Start.";
+
 }
 
 function start(){
+
     if(running||finished)return;
 
     remaining=Number($("difficulty").value);
+
     running=true;
 
     $("difficulty").disabled=true;
@@ -2018,18 +2515,27 @@ function start(){
     if(firstInput)firstInput.focus();
 
     ticker=setInterval(()=>{
+
         remaining--;
+
         showTime();
 
         if(remaining<=0){
+
             remaining=0;
+
             showTime();
+
             finish(true);
+
         }
+
     },1000);
+
 }
 
 function finish(timeout=false){
+
     if(finished||!running)return;
 
     running=false;
@@ -2097,9 +2603,11 @@ function finish(timeout=false){
         behavior:"smooth",
         block:"center"
     });
+
 }
 
 function reset(){
+
     clearInterval(ticker);
 
     running=false;
@@ -2125,12 +2633,14 @@ function reset(){
     $("progress").style.width="0%";
 
     buildTest();
+
     showTime();
 
     window.scrollTo({
         top:0,
         behavior:"smooth"
     });
+
 }
 
 $("startBtn").addEventListener("click",start);
@@ -2149,8 +2659,25 @@ $("difficulty").addEventListener(
     "change",updateDifficulty
 );
 
+/* INITIALIZE EXAM AND THEME */
+
+initializeTheme();
+
 buildTest();
+
 showTime();
+
+function fitExamToScreen() {
+    const baseWidth = 1224;
+    const screenWidth = document.documentElement.clientWidth;
+
+    const scale = Math.min(1, screenWidth / baseWidth);
+
+    document.documentElement.style.zoom = scale;
+}
+
+window.addEventListener("load", fitExamToScreen);
+window.addEventListener("resize", fitExamToScreen);
 </script>
 </body>
 </html>
