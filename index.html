@@ -3,599 +3,629 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Hiragana &amp; Katakana Practice Test</title>
+<title>日本語総合テスト</title>
 
 <style>
 :root {
-    --blue: #2b5cad;
-    --ink: #182235;
-    --muted: #667085;
-    --line: #d8deea;
-    --bg: #f3f5f9;
-    --good: #16803c;
-    --bad: #c62828;
+    --blue:#2b5cad;
+    --ink:#182235;
+    --muted:#667085;
+    --line:#d8deea;
+    --bg:#f3f5f9;
+    --good:#16803c;
+    --bad:#c62828;
+    --yellow:#fff5c8;
 }
 
-* {
-    box-sizing: border-box;
+*{box-sizing:border-box}
+
+body{
+    margin:0;
+    background:var(--bg);
+    color:var(--ink);
+    font-family:Meiryo,"Yu Gothic","Noto Sans JP",Arial,sans-serif;
 }
 
-body {
-    margin: 0;
-    background: var(--bg);
-    color: var(--ink);
-    font-family: Meiryo, "Yu Gothic", system-ui, sans-serif;
+.app{
+    width:min(900px,100%);
+    margin:auto;
+    padding:12px;
 }
 
-.app {
-    width: min(760px, 100%);
-    margin: 0 auto;
-    padding: 12px;
+.developer{
+    text-align:center;
+    padding:8px;
+    color:var(--muted);
+    font-size:13px;
+    font-weight:750;
 }
 
-/* Professional developer credit */
-.developer {
-    text-align: center;
-    margin: 5px 0 14px;
-    padding: 5px 0;
-    color: var(--muted);
-    font-size: 13px;
-    font-weight: 750;
-    letter-spacing: .4px;
-}
-
-.developer a {
-    display: inline-block;
-    margin-left: 4px;
-    font-size: 17px;
-    font-weight: 900;
-    letter-spacing: 1px;
-    text-decoration: none;
-
-    color: transparent;
-
-    background: linear-gradient(
-        110deg,
-        #707070 0%,
-        #a0a0a0 18%,
-        #d0d0d0 28%,
-        #ffffff 36%,
-        #f5f5f5 42%,
-        #b0b0b0 52%,
-        #777777 64%,
-        #a5a5a5 78%,
-        #eeeeee 90%,
-        #777777 100%
+.developer a{
+    display:inline-block;
+    margin-left:5px;
+    font-size:17px;
+    font-weight:900;
+    letter-spacing:1px;
+    text-decoration:none;
+    color:#888;
+    background:linear-gradient(
+        110deg,#777,#ddd,#fff,#888,#eee,#777
     );
-
-    background-size: 300% 100%;
-    background-position: 100% 0;
-
-    -webkit-background-clip: text;
-    background-clip: text;
-
-    animation: maroruShine 3s linear infinite;
-
-    filter:
-        drop-shadow(0 0 4px rgba(190, 190, 190, 0.45))
-        drop-shadow(0 0 9px rgba(255, 255, 255, 0.25));
-
-    transition: filter 0.2s ease;
+    background-size:300% 100%;
+    -webkit-background-clip:text;
+    background-clip:text;
+    animation:shine 3s linear infinite;
+    -webkit-text-fill-color:transparent;
 }
 
-.developer a:hover {
-    filter:
-        drop-shadow(0 0 6px rgba(220, 220, 220, 0.8))
-        drop-shadow(0 0 14px rgba(255, 255, 255, 0.6));
-}
-
-@keyframes maroruShine {
-    0% {
-        background-position: 100% 0;
-    }
-
-    100% {
-        background-position: -200% 0;
-    }
+@keyframes shine{
+    from{background-position:100% 0}
+    to{background-position:-200% 0}
 }
 
 .topbar {
-    position: sticky;
-    top: 0;
-    z-index: 5;
-    background: rgba(243,245,249,.97);
-    padding: 8px 0 12px;
-}
-
-.difficulty-row {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 10px;
-    margin-bottom: 10px;
-    padding: 10px 12px;
-    background: white;
-    border: 1px solid var(--line);
-    border-radius: 12px;
-}
-
-.difficulty-label {
-    color: var(--ink);
-    font-size: 13px;
-    font-weight: 750;
-}
-
-.difficulty-select {
-    min-width: 150px;
-    padding: 9px 12px;
-    border: 1px solid var(--line);
-    border-radius: 9px;
-    background: #f8faff;
-    color: var(--ink);
-    font-family: inherit;
-    font-size: 14px;
-    font-weight: 700;
-    cursor: pointer;
-}
-
-.difficulty-select:focus {
-    outline: 2px solid #2b5cad33;
-    border-color: var(--blue);
-}
-
-.difficulty-select:disabled {
-    opacity: .65;
-    cursor: not-allowed;
-}
-
-.topline {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 8px;
-    flex-wrap: wrap;
-}
-
-.timer {
-    font-weight: 800;
-    font-size: 20px;
-    background: var(--blue);
-    color: white;
-    padding: 11px 14px;
-    border-radius: 12px;
-    white-space: nowrap;
-    font-variant-numeric: tabular-nums;
-}
-
-.actions {
-    display: flex;
-    gap: 8px;
-    flex: 1;
-    justify-content: flex-end;
-}
-
-button {
-    border: 0;
-    border-radius: 10px;
-    padding: 12px 14px;
-    font-weight: 750;
-    font-size: 15px;
-    cursor: pointer;
-}
-
-button:disabled {
-    opacity: .45;
-    cursor: not-allowed;
-}
-
-.primary {
-    background: var(--blue);
-    color: white;
-}
-
-.secondary {
-    background: #e3e9f5;
-    color: #20365d;
-}
-
-h1 {
-    font-size: clamp(19px, 4.5vw, 25px);
-    line-height: 1.35;
-    background: var(--blue);
-    color: white;
-    border-radius: 12px;
-    padding: 16px;
-    margin: 8px 0 12px;
-}
-
-.sub {
-    color: var(--muted);
-    font-size: 14px;
-    margin-bottom: 12px;
-}
-
-.scoreboard {
-    display: grid;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap: 7px;
-    margin: 10px 0 14px;
-}
-
-.stat {
-    background: white;
-    border: 1px solid var(--line);
-    border-radius: 11px;
-    padding: 10px 8px;
-    text-align: center;
-}
-
-.stat span {
-    display: block;
-    color: var(--muted);
-    font-size: 12px;
-}
-
-.stat strong {
-    display: block;
-    font-size: 20px;
-    margin-top: 3px;
-}
-
-.section {
-    background: white;
-    border: 1px solid #e5e9f1;
-    border-radius: 14px;
-    padding: 12px;
-    margin: 12px 0;
-    box-shadow: 0 2px 8px #172b4d0a;
-}
-
-.section h2 {
-    font-size: 17px;
-    margin: 2px 0 5px;
-}
-
-.section p {
-    font-size: 13px;
-    color: var(--muted);
-    margin: 0 0 12px;
-}
-
-.grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 10px;
-}
-
-.panel {
-    border: 1px solid var(--line);
-    border-radius: 11px;
-    overflow: hidden;
-}
-
-.panel h3 {
-    font-size: 14px;
-    margin: 0;
-    padding: 9px 11px;
-    background: #f7f9fc;
-}
-
-table {
-    border-collapse: collapse;
+    position: static;
     width: 100%;
-    table-layout: fixed;
+    background: #ededed;
+    padding: 15px;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
 }
 
-td {
-    border: 1px solid var(--line);
-    height: 43px;
-    text-align: center;
-    padding: 2px;
-    font-size: clamp(14px, 3.5vw, 19px);
-    overflow: hidden;
+.difficulty-row,
+.stat{
+    background:white;
+    border:1px solid var(--line);
+    border-radius:11px;
 }
 
-td.num {
-    width: 34px;
-    background: #f8f9fc;
-    font-size: 12px;
-    color: var(--muted);
+.difficulty-row{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:10px;
+    padding:10px;
+    margin-bottom:10px;
 }
 
-td.blank {
-    background: #fff5c8;
-    padding: 2px;
+.difficulty-select{
+    padding:9px;
+    border:1px solid var(--line);
+    border-radius:8px;
+    background:#f8faff;
+    font-size:14px;
+    font-weight:700;
+    color:var(--ink);
 }
 
-.answer {
-    display: block;
-    width: 100%;
-    height: 36px;
-    border: 1px solid transparent;
-    border-radius: 6px;
-    background: transparent;
-    text-align: center;
-    font-size: clamp(16px, 4vw, 21px);
-    font-family: inherit;
-    color: var(--ink);
-    padding: 0;
-    outline: none;
+.topline{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:8px;
+    flex-wrap:wrap;
 }
 
-.answer:focus {
-    border-color: var(--blue);
-    background: white;
-    box-shadow: 0 0 0 2px #2b5cad22;
+.timer{
+    background:var(--blue);
+    color:white;
+    border-radius:10px;
+    padding:11px 15px;
+    font-size:20px;
+    font-weight:800;
+    font-variant-numeric:tabular-nums;
 }
 
-.answer.correct {
-    background: #e6f6eb;
-    border-color: #83c99a;
-    color: var(--good);
+.actions{
+    display:flex;
+    gap:8px;
 }
 
-.answer.wrong {
-    background: #ffebeb;
-    border-color: #e4a0a0;
-    color: var(--bad);
+button{
+    border:0;
+    border-radius:9px;
+    padding:12px 15px;
+    font-size:14px;
+    font-weight:750;
+    cursor:pointer;
 }
 
-.answer:disabled {
-    opacity: 1;
+button:disabled{
+    opacity:.45;
+    cursor:not-allowed;
 }
 
-.feedback {
-    font-size: 11px;
-    display: block;
-    min-height: 12px;
-    line-height: 1.1;
+.primary{background:var(--blue);color:white}
+.secondary{background:#e3e9f5;color:#20365d}
+
+.scoreboard{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:7px;
+    margin:12px 0;
 }
 
-.bottom-actions {
-    display: flex;
-    gap: 8px;
-    justify-content: center;
-    flex-wrap: wrap;
-    margin: 16px 0;
+.stat{
+    text-align:center;
+    padding:9px 4px;
 }
 
-.result {
-    display: none;
-    background: #eef4ff;
-    border: 1px solid #cbd9f6;
-    border-radius: 13px;
-    padding: 16px;
-    margin: 14px 0;
+.stat span{
+    display:block;
+    color:var(--muted);
+    font-size:11px;
 }
 
-.result.show {
-    display: block;
+.stat strong{
+    display:block;
+    font-size:19px;
+    margin-top:3px;
 }
 
-.result h2 {
-    margin: 0 0 6px;
+.progress{
+    height:7px;
+    background:#e1e6ef;
+    border-radius:20px;
+    overflow:hidden;
 }
 
-.progress {
-    height: 7px;
-    background: #e1e6ef;
-    border-radius: 99px;
-    overflow: hidden;
-    margin-top: 8px;
+.progress div{
+    height:100%;
+    width:0;
+    background:var(--blue);
+    transition:width .2s;
 }
 
-.progress > div {
-    height: 100%;
-    width: 0;
-    background: var(--blue);
-    transition: width .15s;
+.status{
+    font-size:12px;
+    color:var(--muted);
+    margin-top:7px;
 }
 
-.status {
-    font-size: 13px;
-    color: var(--muted);
-    margin-top: 6px;
+h1{
+    background:var(--blue);
+    color:white;
+    border-radius:12px;
+    padding:18px;
+    font-size:clamp(19px,4vw,26px);
+    line-height:1.5;
 }
 
-@media (min-width: 650px) {
-    .app {
-        padding: 16px;
-    }
-
-    .grid {
-        grid-template-columns: 1fr 1fr;
-    }
-
-    .section {
-        padding: 14px;
-    }
+.subtitle{
+    color:var(--muted);
+    font-size:13px;
+    line-height:1.7;
 }
 
-@media (max-width: 390px) {
-    .app {
-        padding: 8px;
-    }
+.section{
+    background:white;
+    border:1px solid #e5e9f1;
+    border-radius:13px;
+    padding:13px;
+    margin:15px 0;
+    box-shadow:0 2px 8px #172b4d0a;
+}
 
-    .timer {
-        padding: 10px;
-        font-size: 16px;
-    }
+.section h2{
+    font-size:18px;
+    margin:3px 0 7px;
+    color:var(--blue);
+}
 
-    .actions button {
-        padding: 11px 9px;
-        font-size: 13px;
-    }
+.section-desc{
+    color:var(--muted);
+    font-size:12px;
+    line-height:1.7;
+    margin-bottom:14px;
+}
 
-    .difficulty-row {
-        padding: 9px;
-    }
+.panel{
+    border:1px solid var(--line);
+    border-radius:10px;
+    overflow:hidden;
+    margin:12px 0;
+}
 
-    .difficulty-select {
-        min-width: 125px;
-        padding: 8px;
-        font-size: 13px;
-    }
+.panel h3{
+    background:#f1f4f9;
+    padding:10px;
+    font-size:14px;
+    margin:0;
+}
 
-    .scoreboard {
-        gap: 5px;
-    }
+table{
+    width:100%;
+    border-collapse:collapse;
+    table-layout:fixed;
+}
 
-    .stat {
-        padding: 8px 4px;
-    }
+td,th{
+    border:1px solid var(--line);
+    text-align:center;
+    padding:4px;
+    height:40px;
+    font-size:14px;
+}
 
-    .stat strong {
-        font-size: 18px;
-    }
+td.num{
+    width:34px;
+    background:#f8f9fc;
+    color:var(--muted);
+    font-size:11px;
+}
 
-    td {
-        height: 39px;
-    }
+td.blank{
+    background:var(--yellow);
+    padding:2px;
+}
 
-    .answer {
-        height: 32px;
-    }
+.answer{
+    display:block;
+    width:100%;
+    min-width:0;
+    height:34px;
+    padding:2px;
+    border:1px solid transparent;
+    border-radius:5px;
+    outline:none;
+    background:transparent;
+    text-align:center;
+    font-family:inherit;
+    font-size:clamp(14px,3.5vw,20px);
+    color:var(--ink);
+}
+
+.answer:focus{
+    border-color:var(--blue);
+    background:white;
+    box-shadow:0 0 0 2px #2b5cad22;
+}
+
+.answer.correct{
+    background:#e6f6eb;
+    border-color:#83c99a;
+    color:var(--good);
+}
+
+.answer.wrong{
+    background:#ffebeb;
+    border-color:#e4a0a0;
+    color:var(--bad);
+}
+
+.answer:disabled{
+    opacity:1;
+}
+
+.feedback{
+    display:block;
+    font-size:10px;
+    line-height:1.3;
+    min-height:12px;
+    overflow-wrap:anywhere;
+}
+
+.result{
+    display:none;
+    background:#eef4ff;
+    border:1px solid #cbd9f6;
+    border-radius:13px;
+    padding:16px;
+    margin:15px 0;
+}
+
+.result.show{display:block}
+
+.result h2{margin-top:0}
+
+.result-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:8px;
+    margin:12px 0;
+}
+
+.result-card{
+    text-align:center;
+    background:white;
+    border:1px solid var(--line);
+    border-radius:9px;
+    padding:10px 4px;
+}
+
+.result-card strong{
+    display:block;
+    font-size:20px;
+}
+
+.result-card span{
+    font-size:11px;
+    color:var(--muted);
+}
+
+.bottom-actions{
+    display:flex;
+    justify-content:center;
+    gap:8px;
+    flex-wrap:wrap;
+    margin:18px 0;
+}
+
+.reference{
+    font-size:12px;
+}
+
+.reference td{
+    height:36px;
+}
+
+.calendar-container{
+    width:380px;
+    max-width:100%;
+    margin:15px auto;
+}
+
+.month-title{
+    text-align:center;
+    font-weight:800;
+    margin-bottom:9px;
+    font-size:17px;
+}
+
+.month-title span{
+    color:var(--muted);
+    font-size:11px;
+    font-weight:normal;
+}
+
+.calendar th{
+    background:#f1f4f9;
+    height:35px;
+}
+
+.calendar td{
+    height:42px;
+    position:relative;
+}
+
+.calendar th:first-child,
+.calendar td:first-child{color:#bd4141}
+
+.calendar th:last-child,
+.calendar td:last-child{color:#526d91}
+
+.calendar td.marked{
+    background:#f5edcf;
+    font-weight:800;
+}
+
+.calendar td.marked:after{
+    content:"";
+    position:absolute;
+    width:25px;
+    height:25px;
+    border:1px solid #a99565;
+    border-radius:50%;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    pointer-events:none;
+}
+
+.exercise-instruction{
+    font-size:12px;
+    line-height:1.8;
+    margin:15px 0;
+}
+
+.date-answers{
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+}
+
+.date-row{
+    display:grid;
+    grid-template-columns:25px 1fr 1fr;
+    gap:8px;
+    align-items:center;
+    font-size:12px;
+}
+
+.answer-input{
+    width:100%;
+    min-width:0;
+    height:32px;
+    border:0;
+    border-bottom:1px solid #888;
+    border-radius:0;
+    outline:none;
+    background:transparent;
+    font-family:inherit;
+    font-size:14px;
+    text-align:center;
+}
+
+.answer-input:focus{
+    border-bottom:2px solid var(--blue);
+    background:#f5f8fc;
+}
+
+.answer-input.correct{
+    background:#e6f6eb;
+    color:var(--good);
+    border-bottom:2px solid var(--good);
+}
+
+.answer-input.wrong{
+    background:#ffebeb;
+    color:var(--bad);
+    border-bottom:2px solid var(--bad);
+}
+
+.answer-input:disabled{opacity:1}
+
+.clock-grid{
+    display:grid;
+    grid-template-columns:repeat(5,1fr);
+    gap:15px 8px;
+    margin:20px 0;
+}
+
+.clock-item{
+    text-align:center;
+    font-size:13px;
+}
+
+.clock{
+    display:block;
+    width:100%;
+    max-width:145px;
+    margin:6px auto;
+}
+
+.clock-answer-list{
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+}
+
+.clock-answer{
+    display:grid;
+    grid-template-columns:35px 1fr;
+    align-items:center;
+    gap:8px;
+    font-size:13px;
+}
+
+.page-number{
+    text-align:center;
+    color:#999;
+    font-size:11px;
+    margin-top:25px;
+}
+
+@media(max-width:600px){
+    .app{padding:8px}
+    .section{padding:9px}
+    .clock-grid{grid-template-columns:repeat(3,1fr);gap:12px 5px}
+    .clock-item{font-size:11px}
+    .date-row{grid-template-columns:22px 1fr}
+    .date-row .day-answer{grid-column:2}
+    .timer{font-size:17px;padding:10px}
+    .actions button{padding:10px;font-size:12px}
+    td{height:38px;padding:2px}
+    .answer{height:32px}
+    .scoreboard{gap:4px}
+    .stat strong{font-size:17px}
+}
+
+@media print{
+    body{background:white}
+    .app{width:100%;padding:0}
+    .topbar,.bottom-actions{display:none}
+    .section{box-shadow:none;break-inside:avoid}
 }
 </style>
 </head>
 
 <body>
-
 <div class="app">
 
 <header class="topbar">
 
     <div class="developer">
         Developer:
-        <a
-            href="https://www.facebook.com/marroows"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Visit マロル's Facebook profile"
-        >マロル</a>
+        <a href="https://www.facebook.com/marroows"
+           target="_blank"
+           rel="noopener noreferrer">マロル</a>
     </div>
 
     <div class="difficulty-row">
-
-        <label class="difficulty-label" for="difficulty">
-            Difficulty
-        </label>
-
-        <select id="difficulty" class="difficulty-select">
-            <option value="1800">Easy — 30 minutes</option>
-            <option value="1200" selected>Normal — 20 minutes</option>
-            <option value="600">Hard — 10 minutes</option>
-        </select>
-
-    </div>
+    <label for="difficulty"><b>Difficulty</b></label>
+    <select id="difficulty" class="difficulty-select">
+        <option value="10800">Easy — 3 hours</option>
+        <option value="9000" selected>Normal — 2 hours 30 minutes</option>
+        <option value="3600">Hard — 1 hour</option>
+    </select>
+</div>
 
     <div class="topline">
-
-        <div class="timer">
-            ⏱ <span id="timer">20:00</span>
-        </div>
-
+        <div class="timer">⏱ <span id="timer">2:30</span></div>
         <div class="actions">
-
-            <button id="startBtn" class="primary">
-                Let's Start
-            </button>
-
-            <button id="checkBtn" class="secondary" disabled>
-                Let's Check
-            </button>
-
+            <button id="startBtn" class="primary">Let's Start</button>
+            <button id="checkBtn" class="secondary" disabled>Let's Check</button>
         </div>
-
     </div>
 
     <div class="scoreboard">
-
-        <div class="stat">
-            <span>Correct</span>
-            <strong id="correct">—</strong>
-        </div>
-
-        <div class="stat">
-            <span>Wrong</span>
-            <strong id="wrong">—</strong>
-        </div>
-
-        <div class="stat">
-            <span>Unanswered</span>
-            <strong id="unanswered">—</strong>
-        </div>
-
-        <div class="stat">
-            <span>Score</span>
-            <strong id="score">—</strong>
-        </div>
-
+        <div class="stat"><span>Correct</span><strong id="correct">—</strong></div>
+        <div class="stat"><span>Wrong</span><strong id="wrong">—</strong></div>
+        <div class="stat"><span>Unanswered</span><strong id="unanswered">—</strong></div>
+        <div class="stat"><span>Score</span><strong id="score">—</strong></div>
     </div>
 
-    <div class="progress">
-        <div id="progress"></div>
-    </div>
-
+    <div class="progress"><div id="progress"></div></div>
     <div class="status" id="status">
-        Choose a difficulty, then press "Let's Start".
+        Choose a difficulty, then press Let's Start.
     </div>
 
 </header>
 
 <h1>
-    だい1ぶ れんしゅうもんだい<br>
-    Hiragana &amp; Katakana Practice Test
+    日本語総合テスト<br>
 </h1>
 
-<p class="sub">
-    Write the missing character in each yellow box.
-    You may enter kana or romaji.
-    For example, あ or a.
-    Your answers will be checked only after you click "Let's Check".
+<p class="subtitle">
+    時、分、曜日、日にち、ひらがな、カタカナをれんしゅうしましょう.<br>
+    Enter your answers in the yellow boxes. Romaji is allowed, but try using ひらがな. Results appear upon submission.
 </p>
 
 <main id="test"></main>
 
 <div class="result" id="result">
-
-    <h2 id="resultTitle">Test complete</h2>
-
+    <h2 id="resultTitle">テストが　おわりました！🙇</h2>
     <p id="resultText"></p>
 
-    <p id="answerReview"></p>
+    <div class="result-grid">
+        <div class="result-card">
+            <strong id="resultKana">0</strong>
+            <span>Kana correct</span>
+        </div>
+        <div class="result-card">
+            <strong id="resultCalendar">0</strong>
+            <span>Calendar correct</span>
+        </div>
+        <div class="result-card">
+            <strong id="resultClock">0</strong>
+            <span>Clock correct</span>
+        </div>
+    </div>
 
+    <p id="answerReview"></p>
 </div>
 
 <div class="bottom-actions">
-
     <button id="checkBottom" class="primary" disabled>
-        Let's Check Answers
+        Let's Check All Answers
     </button>
-
     <button id="resetBtn" class="secondary">
-        Restart Test
+        Restart Entire Test
     </button>
-
 </div>
 
 </div>
 
 <script>
+"use strict";
 
 const sections = [
-
 {
-    title: "れんしゅう1 — Basic rows",
-
-    desc: "Fill in the missing character in each kana row.",
-
-    panels: [
-
+    title:"れんしゅう テスト",
+    desc:"Fill in the missing character in each kana row.",
+    panels:[
     {
-        title: "ひらがな Hiragana",
-
-        rows: [
+        title:"ひらがな",
+        rows:[
             ["あ","い","う","え","お"],
             ["か","き","く","け","こ"],
             ["さ","し","す","せ","そ"],
@@ -612,14 +642,11 @@ const sections = [
             ["きゃ","きゅ","きょ"],
             ["ちゃ","ちゅ","ちょ"]
         ],
-
-        blanks: [4,3,2,2,4,2,4,2,2,1,1,4,2,2,1]
+        blanks:[4,3,2,2,4,2,4,2,2,1,1,4,2,2,1]
     },
-
     {
-        title: "カタカナ Katakana",
-
-        rows: [
+        title:"カタカナ",
+        rows:[
             ["ア","イ","ウ","エ","オ"],
             ["カ","キ","ク","ケ","コ"],
             ["サ","シ","ス","セ","ソ"],
@@ -636,24 +663,15 @@ const sections = [
             ["シャ","シュ","ショ"],
             ["ジャ","ジュ","ジョ"]
         ],
-
-        blanks: [2,3,4,4,4,1,3,1,1,1,4,1,1,2,1]
-    }
-
-    ]
+        blanks:[2,3,4,4,4,1,3,1,1,1,4,1,1,2,1]
+    }]
 },
-
 {
-    title: "れんしゅう2 — わ・だ・ようおん",
-
-    desc: "Practice the wa-row, voiced sounds, and contracted sounds.",
-
-    panels: [
-
+    title:"れんしゅう2 — わ・だ・ようおん",
+    panels:[
     {
-        title: "ひらがな Hiragana",
-
-        rows: [
+        title:"ひらがな",
+        rows:[
             ["あ","い","う","え","お"],
             ["か","き","く","け","こ"],
             ["さ","し","す","せ","そ"],
@@ -670,14 +688,11 @@ const sections = [
             ["にゃ","にゅ","にょ"],
             ["りゃ","りゅ","りょ"]
         ],
-
-        blanks: [2,2,1,4,2,1,3,1,2,2,1,3,1,2,1]
+        blanks:[2,2,1,4,2,1,3,1,2,2,1,3,1,2,1]
     },
-
     {
-        title: "カタカナ Katakana",
-
-        rows: [
+        title:"カタカナ",
+        rows:[
             ["ア","イ","ウ","エ","オ"],
             ["カ","キ","ク","ケ","コ"],
             ["サ","シ","ス","セ","ソ"],
@@ -694,24 +709,15 @@ const sections = [
             ["ヒャ","ヒュ","ヒョ"],
             ["ミャ","ミュ","ミョ"]
         ],
-
-        blanks: [1,3,3,4,2,2,1,1,2,3,3,1,2,2,1]
-    }
-
-    ]
+        blanks:[1,3,3,4,2,2,1,1,2,3,3,1,2,2,1]
+    }]
 },
-
 {
-    title: "れんしゅう3 — Challenge",
-
-    desc: "Two missing characters appear in each row. Fill both boxes.",
-
-    panels: [
-
+    title:"れんしゅう3 ",
+    panels:[
     {
-        title: "ひらがな Hiragana",
-
-        rows: [
+        title:"ひらがな",
+        rows:[
             ["あ","い","う","え","お"],
             ["か","き","く","け","こ"],
             ["さ","し","す","せ","そ"],
@@ -728,30 +734,15 @@ const sections = [
             ["きゃ","きゅ","きょ"],
             ["しゃ","しゅ","しょ"]
         ],
-
-        blanks: [
-            [2,3],
-            [2,4],
-            [3,4],
-            [2,3],
-            [3,4],
-            [2,4],
-            [3,4],
-            [1,2],
-            [2,4],
-            [1,4],
-            [2,3],
-            [1,3],
-            [2,4],
-            [1,2],
-            [0,2]
+        blanks:[
+            [2,3],[2,4],[3,4],[2,3],[3,4],
+            [2,4],[3,4],[1,2],[2,4],[1,4],
+            [2,3],[1,3],[2,4],[1,2],[0,2]
         ]
     },
-
     {
-        title: "カタカナ Katakana",
-
-        rows: [
+        title:"カタカナ",
+        rows:[
             ["ア","イ","ウ","エ","オ"],
             ["カ","キ","ク","ケ","コ"],
             ["サ","シ","ス","セ","ソ"],
@@ -768,576 +759,1108 @@ const sections = [
             ["キャ","キュ","キョ"],
             ["シャ","シュ","ショ"]
         ],
-
-        blanks: [
-            [1,2],
-            [2,4],
-            [1,3],
-            [2,4],
-            [1,2],
-            [1,3],
-            [1,3],
-            [1,2],
-            [1,3],
-            [1,4],
-            [1,3],
-            [2,3],
-            [1,3],
-            [0,2],
-            [1,2]
+        blanks:[
+            [1,2],[2,4],[1,3],[2,4],[1,2],
+            [1,3],[1,3],[1,2],[1,3],[1,4],
+            [1,3],[2,3],[1,3],[0,2],[1,2]
         ]
-    }
+    }]
+}];
 
-    ]
+const romajiMap = {
+"あ":"a","い":"i","う":"u","え":"e","お":"o",
+"か":"ka","き":"ki","く":"ku","け":"ke","こ":"ko",
+"さ":"sa","し":"shi","す":"su","せ":"se","そ":"so",
+"た":"ta","ち":"chi","つ":"tsu","て":"te","と":"to",
+"な":"na","に":"ni","ぬ":"nu","ね":"ne","の":"no",
+"は":"ha","ひ":"hi","ふ":"fu","へ":"he","ほ":"ho",
+"ま":"ma","み":"mi","む":"mu","め":"me","も":"mo",
+"や":"ya","ゆ":"yu","よ":"yo",
+"ら":"ra","り":"ri","る":"ru","れ":"re","ろ":"ro",
+"わ":"wa","を":"wo","ん":"n",
+"が":"ga","ぎ":"gi","ぐ":"gu","げ":"ge","ご":"go",
+"ざ":"za","じ":"ji","ず":"zu","ぜ":"ze","ぞ":"zo",
+"だ":"da","ぢ":"ji","づ":"zu","で":"de","ど":"do",
+"ば":"ba","び":"bi","ぶ":"bu","べ":"be","ぼ":"bo",
+"ぱ":"pa","ぴ":"pi","ぷ":"pu","ぺ":"pe","ぽ":"po",
+"きゃ":"kya","きゅ":"kyu","きょ":"kyo",
+"しゃ":"sha","しゅ":"shu","しょ":"sho",
+"ちゃ":"cha","ちゅ":"chu","ちょ":"cho",
+"じゃ":"ja","じゅ":"ju","じょ":"jo",
+"にゃ":"nya","にゅ":"nyu","にょ":"nyo",
+"りゃ":"rya","りゅ":"ryu","りょ":"ryo",
+"ひゃ":"hya","ひゅ":"hyu","ひょ":"hyo",
+"みゃ":"mya","みゅ":"myu","みょ":"myo"
+};
+
+const dateReadings = {
+1:"ついたち",2:"ふつか",3:"みっか",4:"よっか",
+5:"いつか",6:"むいか",7:"なのか",8:"ようか",
+9:"ここのか",10:"とおか",11:"じゅういちにち",
+12:"じゅうににち",13:"じゅうさんにち",
+14:"じゅうよっか",15:"じゅうごにち",
+16:"じゅうろくにち",17:"じゅうしちにち",
+18:"じゅうはちにち",19:"じゅうくにち",
+20:"はつか",21:"にじゅういちにち",
+22:"にじゅうににち",23:"にじゅうさんにち",
+24:"にじゅうよっか",25:"にじゅうごにち",
+26:"にじゅうろくにち",27:"にじゅうしちにち",
+28:"にじゅうはちにち",29:"にじゅうくにち",
+30:"さんじゅうにち",31:"さんじゅういちにち"
+};
+
+const weekdays = {
+"日":"にちようび",
+"月":"げつようび",
+"火":"かようび",
+"水":"すいようび",
+"木":"もくようび",
+"金":"きんようび",
+"土":"どようび"
+};
+
+const numberKana = {
+1:"いち",2:"に",3:"さん",4:"よ",5:"ご",
+6:"ろく",7:"しち",8:"はち",9:"く",
+10:"じゅう",11:"じゅういち",12:"じゅうに"
+};
+
+const minuteReadings = {
+0:"",
+5:"ごふん",
+10:"じゅっぷん",
+15:"じゅうごふん",
+20:"にじゅっぷん",
+25:"にじゅうごふん",
+30:"さんじゅっぷん",
+35:"さんじゅうごふん",
+40:"よんじゅっぷん",
+45:"よんじゅうごふん",
+50:"ごじゅっぷん",
+55:"ごじゅうごふん"
+};
+
+const minuteNumberReadings = {
+1:"いっぷん",
+2:"にふん",
+3:"さんぷん",
+4:"よんぷん",
+5:"ごふん",
+6:"ろっぷん",
+7:"ななふん",
+8:"はっぷん",
+9:"きゅうふん",
+10:"じゅっぷん",
+11:"じゅういっぷん",
+12:"じゅうにふん",
+13:"じゅうさんぷん",
+14:"じゅうよんぷん",
+15:"じゅうごふん",
+20:"にじゅっぷん",
+30:"さんじゅっぷん",
+40:"よんじゅっぷん",
+50:"ごじゅっぷん"
+};
+
+const hourReadings = {
+1:"いちじ",
+2:"にじ",
+3:"さんじ",
+4:"よじ",
+5:"ごじ",
+6:"ろくじ",
+7:"しちじ",
+8:"はちじ",
+9:"くじ",
+10:"じゅうじ",
+11:"じゅういちじ",
+12:"じゅうにじ"
+};
+
+function normalize(value){
+    return String(value)
+        .normalize("NFC")
+        .trim()
+        .toLowerCase()
+        .replace(/[\s　・。、,.!！?？\-ー]/g,"");
 }
 
-];
+function toHiragana(value){
+    return value.replace(/[\u30A1-\u30F6]/g,char=>
+        String.fromCharCode(char.charCodeAt(0)-0x60)
+    );
+}
+
+function romanizeKana(value){
+    const kana = toHiragana(value);
+    let output = "";
+    let i = 0;
+
+    while(i < kana.length){
+        const pair = kana.slice(i,i+2);
+
+        if(romajiMap[pair]){
+            output += romajiMap[pair];
+            i += 2;
+            continue;
+        }
+
+        const char = kana[i];
+
+        if(char === "っ"){
+            const nextPair = kana.slice(i+1,i+3);
+            const next = romajiMap[nextPair] || romajiMap[kana[i+1]] || "";
+            output += next.charAt(0);
+            i++;
+            continue;
+        }
+
+        if(romajiMap[char]){
+            output += romajiMap[char];
+        }else{
+            output += char;
+        }
+
+        i++;
+    }
+
+    return output;
+}
+
+function isCorrectAnswer(input,answer){
+    const entered = normalize(input);
+    if(!entered) return false;
+
+    const expected = normalize(answer);
+    const hiragana = normalize(toHiragana(answer));
+    const romaji = normalize(romanizeKana(answer));
+
+    return entered === expected ||
+           entered === hiragana ||
+           entered === romaji;
+}
 
 let questions = [];
 let running = false;
 let finished = false;
-let remaining = 20 * 60;
+let remaining = 9000;
 let ticker = null;
 
 const $ = id => document.getElementById(id);
 
-const difficultyDurations = {
-    easy: 30 * 60,
-    normal: 20 * 60,
-    hard: 10 * 60
-};
+function addQuestion(input,feedback,answer,category){
+    const question = {
+        input,
+        feedback,
+        answer,
+        category
+    };
 
-/* Romaji answers for Hiragana and Katakana */
-const romajiMap = {
+    questions.push(question);
 
-    "あ":"a","い":"i","う":"u","え":"e","お":"o",
+    input.disabled = true;
 
-    "か":"ka","き":"ki","く":"ku","け":"ke","こ":"ko",
+    input.addEventListener("input",()=>{
+        if(!running) return;
 
-    "さ":"sa","し":"shi","す":"su","せ":"se","そ":"so",
-
-    "た":"ta","ち":"chi","つ":"tsu","て":"te","と":"to",
-
-    "な":"na","に":"ni","ぬ":"nu","ね":"ne","の":"no",
-
-    "は":"ha","ひ":"hi","ふ":"fu","へ":"he","ほ":"ho",
-
-    "ま":"ma","み":"mi","む":"mu","め":"me","も":"mo",
-
-    "や":"ya","ゆ":"yu","よ":"yo",
-
-    "ら":"ra","り":"ri","る":"ru","れ":"re","ろ":"ro",
-
-    "わ":"wa","を":"wo","ん":"n",
-
-    "が":"ga","ぎ":"gi","ぐ":"gu","げ":"ge","ご":"go",
-
-    "ざ":"za","じ":"ji","ず":"zu","ぜ":"ze","ぞ":"zo",
-
-    "だ":"da","ぢ":"ji","づ":"zu","で":"de","ど":"do",
-
-    "ば":"ba","び":"bi","ぶ":"bu","べ":"be","ぼ":"bo",
-
-    "ぱ":"pa","ぴ":"pi","ぷ":"pu","ぺ":"pe","ぽ":"po",
-
-    "きゃ":"kya","きゅ":"kyu","きょ":"kyo",
-
-    "しゃ":"sha","しゅ":"shu","しょ":"sho",
-
-    "ちゃ":"cha","ちゅ":"chu","ちょ":"cho",
-
-    "じゃ":"ja","じゅ":"ju","じょ":"jo",
-
-    "にゃ":"nya","にゅ":"nyu","にょ":"nyo",
-
-    "りゃ":"rya","りゅ":"ryu","りょ":"ryo"
-
-};
-
-/* Convert Katakana to Hiragana for answer checking */
-function toHiragana(value) {
-
-    return value.replace(/[\u30A1-\u30F6]/g, char => {
-
-        return String.fromCharCode(char.charCodeAt(0) - 0x60);
-
+        input.classList.remove("correct","wrong");
+        feedback.textContent = "";
+        updateProgress();
     });
 
+    return question;
 }
 
-/* Accept kana OR romaji */
-function isCorrectAnswer(input, answer) {
+function createInput(answer,category,className="answer"){
+    const td = document.createElement("td");
+    td.className = "blank";
 
-    const entered = normalize(input);
+    const input = document.createElement("input");
+    input.type = "text";
+    input.className = className;
+    input.autocomplete = "off";
+    input.autocapitalize = "off";
+    input.spellcheck = false;
+    input.maxLength = 40;
 
-    const answerHiragana = normalize(toHiragana(answer));
+    input.setAttribute("aria-label","Your answer");
 
-    const answerRomaji = romajiMap[answerHiragana] || "";
+    const feedback = document.createElement("small");
+    feedback.className = "feedback";
 
-    return entered === answerHiragana ||
-           entered === normalize(answer) ||
-           entered === answerRomaji;
+    td.append(input,feedback);
 
+    addQuestion(input,feedback,answer,category);
+
+    return td;
 }
 
-function normalize(value) {
-    return value.normalize("NFC").trim().toLowerCase();
-}
+function buildKanaTest(root){
 
-/* Build the complete test */
-function buildTest() {
-
-    const root = $("test");
-
-    root.innerHTML = "";
-
-    questions = [];
-
-    sections.forEach((section, sectionIndex) => {
+    sections.forEach(section=>{
 
         const sectionEl = document.createElement("section");
-
         sectionEl.className = "section";
 
-        sectionEl.innerHTML = `
-            <h2>${section.title}</h2>
-            <p>${section.desc}</p>
-        `;
+        const heading = document.createElement("h2");
+        heading.textContent = section.title;
+
+        const desc = document.createElement("div");
+        desc.className = "section-desc";
+        desc.textContent = section.desc;
+
+        sectionEl.append(heading,desc);
 
         const grid = document.createElement("div");
 
-        grid.className = "grid";
-
-        section.panels.forEach(panel => {
+        section.panels.forEach(panel=>{
 
             const box = document.createElement("div");
-
             box.className = "panel";
 
-            const heading = document.createElement("h3");
-
-            heading.textContent = panel.title;
-
-            box.appendChild(heading);
+            const title = document.createElement("h3");
+            title.textContent = panel.title;
 
             const table = document.createElement("table");
-
             const tbody = document.createElement("tbody");
 
-            panel.rows.forEach((row, rowIndex) => {
+            panel.rows.forEach((row,rowIndex)=>{
 
                 const tr = document.createElement("tr");
 
                 const num = document.createElement("td");
-
                 num.className = "num";
-
-                num.textContent = rowIndex + 1;
-
+                num.textContent = rowIndex+1;
                 tr.appendChild(num);
 
-                const blankSpec = panel.blanks[rowIndex];
+                const spec = panel.blanks[rowIndex];
+                const blanks = Array.isArray(spec) ? spec : [spec];
 
-                const blanks = Array.isArray(blankSpec)
-                    ? blankSpec
-                    : [blankSpec];
+                row.forEach((kana,kanaIndex)=>{
 
-                row.forEach((kana, kanaIndex) => {
-
-                    const td = document.createElement("td");
-
-                    if (blanks.includes(kanaIndex)) {
-
-                        td.className = "blank";
-
-                        const input = document.createElement("input");
-
-                        input.className = "answer";
-
-                        input.type = "text";
-
-                        input.autocomplete = "off";
-
-                        input.autocapitalize = "off";
-
-                        input.spellcheck = false;
-
-                        input.disabled = true;
-
-                        input.maxLength = 5;
-
-                        input.setAttribute(
-                            "aria-label",
-                            `${panel.title}, row ${rowIndex + 1}`
-                        );
-
-                        const feedback = document.createElement("small");
-
-                        feedback.className = "feedback";
-
-                        const question = {
-                            input,
-                            feedback,
-                            answer: kana
-                        };
-
-                        questions.push(question);
-
-                        /*
-                        Do not reveal correct or wrong while typing.
-                        Only update the answered progress.
-                        */
-
-                        input.addEventListener("input", () => {
-
-                            if (running) {
-
-                                input.classList.remove(
-                                    "correct",
-                                    "wrong"
-                                );
-
-                                feedback.textContent = "";
-
-                                updateProgress();
-
-                            }
-
-                        });
-
-                        td.append(input, feedback);
-
-                    } else {
-
+                    if(blanks.includes(kanaIndex)){
+                        tr.appendChild(createInput(kana,"kana"));
+                    }else{
+                        const td = document.createElement("td");
                         td.textContent = kana;
-
+                        tr.appendChild(td);
                     }
-
-                    tr.appendChild(td);
 
                 });
 
                 tbody.appendChild(tr);
-
             });
 
             table.appendChild(tbody);
-
-            box.appendChild(table);
-
+            box.append(title,table);
             grid.appendChild(box);
-
         });
 
         sectionEl.appendChild(grid);
-
         root.appendChild(sectionEl);
-
     });
+}
+
+function createReferencePanel(title,rows,category){
+
+    const section = document.createElement("section");
+    section.className = "section";
+
+    const heading = document.createElement("h2");
+    heading.textContent = title;
+
+    const desc = document.createElement("div");
+    desc.className = "section-desc";
+    desc.textContent = "Write the correct Japanese reading in every yellow box.";
+
+    const table = document.createElement("table");
+    table.className = "reference";
+
+    const tbody = document.createElement("tbody");
+
+    rows.forEach((row,index)=>{
+
+        const tr = document.createElement("tr");
+
+        const number = document.createElement("td");
+        number.className = "num";
+        number.textContent = index+1;
+        tr.appendChild(number);
+
+        row.forEach(item=>{
+
+            const td = document.createElement("td");
+            td.textContent = item.label;
+            tr.appendChild(td);
+
+            tr.appendChild(
+                createInput(item.answer,category)
+            );
+        });
+
+        tbody.appendChild(tr);
+    });
+
+    table.appendChild(tbody);
+    section.append(heading,desc,table);
+
+    return section;
+}
+
+function buildCalendarReference(root){
+
+    const dateRows = [];
+
+    for(let i=0;i<11;i++){
+        const row = [];
+
+        for(let group=0;group<3;group++){
+            const day = i + group*11 + 1;
+
+            if(day <= 31){
+                row.push({
+                    label:day+" にち",
+                    answer:dateReadings[day]
+                });
+            }
+        }
+
+        dateRows.push(row);
+    }
+
+    root.appendChild(
+        createReferencePanel(
+            "テスト 4 — 何日",
+            dateRows,
+            "calendar"
+        )
+    );
+
+    const weekRows = [
+        [
+            {label:"日曜日",answer:"にちようび"},
+            {label:"火曜日",answer:"かようび"},
+            {label:"木曜日",answer:"もくようび"},
+            {label:"土曜日",answer:"どようび"}
+        ],
+        [
+            {label:"月曜日",answer:"げつようび"},
+            {label:"水曜日",answer:"すいようび"},
+            {label:"金曜日",answer:"きんようび"}
+        ]
+    ];
+
+    root.appendChild(
+        createReferencePanel(
+            "テスト 5 — 何曜日",
+            weekRows,
+            "calendar"
+        )
+    );
+}
+
+const months = [
+    {year:2026,month:9,marks:[1,4,8,14,19]},
+    {year:2026,month:11,marks:[2,6,10,17,20]},
+    {year:2027,month:1,marks:[5,9,14,24,29]}
+];
+
+function createCalendar(data){
+
+    const firstDay = new Date(
+        data.year,data.month-1,1
+    ).getDay();
+
+    const totalDays = new Date(
+        data.year,data.month,0
+    ).getDate();
+
+    const cells = [];
+
+    for(let i=0;i<firstDay;i++){
+        cells.push("<td></td>");
+    }
+
+    for(let day=1;day<=totalDays;day++){
+        const marked = data.marks.includes(day);
+
+        cells.push(`
+            <td class="${marked?"marked":""}">
+                ${day}
+            </td>
+        `);
+    }
+
+    while(cells.length%7!==0){
+        cells.push("<td></td>");
+    }
+
+    let rows = "";
+
+    for(let i=0;i<cells.length;i+=7){
+        rows += `<tr>${cells.slice(i,i+7).join("")}</tr>`;
+    }
+
+    const monthName = new Date(
+        data.year,data.month-1
+    ).toLocaleString("en",{month:"long"});
+
+    return `
+        <div class="calendar-container">
+            <div class="month-title">
+                ${data.year}年 ${data.month}月
+                <span>${monthName} ${data.year}</span>
+            </div>
+
+            <table class="calendar">
+                <thead>
+                    <tr>
+                        <th>日</th><th>月</th><th>火</th>
+                        <th>水</th><th>木</th><th>金</th><th>土</th>
+                    </tr>
+                </thead>
+                <tbody>${rows}</tbody>
+            </table>
+        </div>
+    `;
+}
+
+function buildCalendarExercises(root){
+
+    months.forEach((data,index)=>{
+
+        const section = document.createElement("section");
+        section.className = "section";
+
+        section.innerHTML = `
+            <h2>テスト${index+6} — 何日 / 何曜日</h2>
+
+            <div class="section-desc">
+                Look at the highlighted dates.
+                Write their date and weekday in hiragana.
+            </div>
+
+            ${createCalendar(data)}
+
+            <div class="exercise-instruction">
+                色のついた日の「日にち」と「曜日」をひらがなで書きましょう。
+                <br>
+                Write the date and weekday in hiragana for each highlighted day.
+            </div>
+        `;
+
+        const answers = document.createElement("div");
+        answers.className = "date-answers";
+
+        data.marks.forEach((day,i)=>{
+
+            const date = new Date(
+                data.year,data.month-1,day
+            );
+
+            const weekday = [
+                "日","月","火","水","木","金","土"
+            ][date.getDay()];
+
+            const row = document.createElement("div");
+            row.className = "date-row";
+
+            const label = document.createElement("span");
+            label.textContent = ["①","②","③","④","⑤"][i];
+
+            const dateLabel = document.createElement("label");
+            dateLabel.textContent = "日にち";
+
+            const dateInput = document.createElement("input");
+            dateInput.className = "answer-input";
+            dateInput.type = "text";
+            dateInput.autocomplete = "off";
+
+            const dateFeedback = document.createElement("small");
+            dateFeedback.className = "feedback";
+
+            addQuestion(
+                dateInput,
+                dateFeedback,
+                dateReadings[day],
+                "calendar"
+            );
+
+            const dayBox = document.createElement("div");
+            dayBox.className = "day-answer";
+
+            const dayLabel = document.createElement("label");
+            dayLabel.textContent = "曜日";
+
+            const dayInput = document.createElement("input");
+            dayInput.className = "answer-input";
+            dayInput.type = "text";
+            dayInput.autocomplete = "off";
+
+            const dayFeedback = document.createElement("small");
+            dayFeedback.className = "feedback";
+
+            addQuestion(
+                dayInput,
+                dayFeedback,
+                weekdays[weekday],
+                "calendar"
+            );
+
+            dateInput.disabled = true;
+            dayInput.disabled = true;
+
+            const dateWrap = document.createElement("div");
+            dateWrap.append(dateLabel,dateInput,dateFeedback);
+
+            dayBox.append(dayLabel,dayInput,dayFeedback);
+
+            row.append(label,dateWrap,dayBox);
+            answers.appendChild(row);
+        });
+
+        section.appendChild(answers);
+
+        const page = document.createElement("div");
+        page.className = "page-number";
+        page.textContent = "— "+(index+6)+" —";
+
+        section.appendChild(page);
+        root.appendChild(section);
+    });
+}
+
+function buildClockReference(root){
+
+    const hourRows = [];
+
+    for(let i=0;i<4;i++){
+        const row = [];
+
+        for(let group=0;group<3;group++){
+            const hour = i+group*4+1;
+
+            row.push({
+                label:hour+" じ",
+                answer:hourReadings[hour]
+            });
+        }
+
+        hourRows.push(row);
+    }
+
+    root.appendChild(
+        createReferencePanel(
+            "テスト 9 — 何時",
+            hourRows,
+            "clock"
+        )
+    );
+
+    const minuteList = [5,10,15,20,25,30,35,40,45,50,55,30];
+    const minuteRows = [];
+
+    for(let i=0;i<4;i++){
+        const row = [];
+
+        for(let group=0;group<3;group++){
+            const minute = minuteList[i+group*4];
+
+            row.push({
+                label:minute+" ふん",
+                answer:minuteReadings[minute]
+            });
+        }
+
+        minuteRows.push(row);
+    }
+
+    root.appendChild(
+        createReferencePanel(
+            "テスト 10 — 何分",
+            minuteRows,
+            "clock"
+        )
+    );
+}
+
+function createClock(hour,minute){
+
+    const cx=75,cy=75;
+
+    let ticks="";
+    let numbers="";
+
+    for(let i=0;i<60;i++){
+
+        const angle=(i*6-90)*Math.PI/180;
+
+        const inner=i%5===0?60:65;
+        const outer=70;
+
+        ticks+=`
+            <line
+                x1="${cx+inner*Math.cos(angle)}"
+                y1="${cy+inner*Math.sin(angle)}"
+                x2="${cx+outer*Math.cos(angle)}"
+                y2="${cy+outer*Math.sin(angle)}"
+                stroke="#222"
+                stroke-width="${i%5===0?1.8:.8}"
+            />
+        `;
+    }
+
+    for(let i=1;i<=12;i++){
+
+        const angle=(i*30-90)*Math.PI/180;
+        const radius=51;
+
+        numbers+=`
+            <text
+                x="${cx+radius*Math.cos(angle)}"
+                y="${cy+radius*Math.sin(angle)+4}"
+                font-size="11"
+                text-anchor="middle"
+                font-weight="bold"
+                fill="#111"
+            >${i}</text>
+        `;
+    }
+
+    const hourAngle=(
+        (hour%12)*30+minute*.5-90
+    )*Math.PI/180;
+
+    const hx=cx+32*Math.cos(hourAngle);
+    const hy=cy+32*Math.sin(hourAngle);
+
+    const minuteAngle=(minute*6-90)*Math.PI/180;
+
+    const mx=cx+49*Math.cos(minuteAngle);
+    const my=cy+49*Math.sin(minuteAngle);
+
+    return `
+        <svg class="clock" viewBox="0 0 150 150"
+             xmlns="http://www.w3.org/2000/svg">
+
+            <circle cx="75" cy="75" r="70"
+                fill="white" stroke="#222" stroke-width="2.5"/>
+
+            ${ticks}
+            ${numbers}
+
+            <line x1="75" y1="75" x2="${hx}" y2="${hy}"
+                stroke="#111" stroke-width="5.5"
+                stroke-linecap="round"/>
+
+            <line x1="75" y1="75" x2="${mx}" y2="${my}"
+                stroke="#bd4545" stroke-width="2.7"
+                stroke-linecap="round"/>
+
+            <circle cx="75" cy="75" r="3.5" fill="#111"/>
+        </svg>
+    `;
+}
+
+function getClockAnswer(hour,minute){
+
+    let answer=hourReadings[hour];
+
+    if(minute===0){
+        return answer;
+    }
+
+    const minuteKana=minuteNumberReadings[minute];
+
+    if(!minuteKana){
+        return answer;
+    }
+
+    return answer+minuteKana;
+}
+
+const clockSets=[
+    [
+        {h:3,m:20},
+        {h:4,m:15},
+        {h:9,m:40},
+        {h:6,m:5},
+        {h:11,m:35}
+    ],
+    [
+        {h:7,m:10},
+        {h:1,m:55},
+        {h:8,m:25},
+        {h:10,m:50},
+        {h:4,m:30}
+    ],
+    [
+        {h:9,m:15},
+        {h:2,m:45},
+        {h:12,m:20},
+        {h:7,m:40},
+        {h:3,m:5}
+    ]
+];
+
+function buildClockExercises(root){
+
+    clockSets.forEach((set,index)=>{
+
+        const section=document.createElement("section");
+        section.className="section";
+
+        const heading=document.createElement("h2");
+        heading.textContent="テスト"+(index+11)+"";
+
+        const desc=document.createElement("div");
+        desc.className="section-desc";
+        desc.textContent="Look at each clock and write the Japanese time in hiragana.";
+
+        const grid=document.createElement("div");
+        grid.className="clock-grid";
+
+        const answerList=document.createElement("div");
+        answerList.className="clock-answer-list";
+
+        set.forEach((time,i)=>{
+
+            const item=document.createElement("div");
+            item.className="clock-item";
+
+            item.innerHTML=`(${i+1})`;
+
+            item.insertAdjacentHTML(
+                "beforeend",
+                createClock(time.h,time.m)
+            );
+
+            grid.appendChild(item);
+
+            const row=document.createElement("div");
+            row.className="clock-answer";
+
+            const label=document.createElement("span");
+            label.textContent="("+ (i+1) +")";
+
+            const input=document.createElement("input");
+            input.className="answer-input";
+            input.type="text";
+            input.autocomplete="off";
+            input.placeholder="Type your answer here";
+
+            const feedback=document.createElement("small");
+            feedback.className="feedback";
+
+            addQuestion(
+                input,
+                feedback,
+                getClockAnswer(time.h,time.m),
+                "clock"
+            );
+
+            row.append(label,input);
+
+            const wrapper=document.createElement("div");
+            wrapper.append(row,feedback);
+
+            answerList.appendChild(wrapper);
+        });
+
+        section.append(heading,desc,grid,answerList);
+
+        const page=document.createElement("div");
+        page.className="page-number";
+        page.textContent="— "+(index+11)+" —";
+
+        section.appendChild(page);
+        root.appendChild(section);
+    });
+}
+
+function buildTest(){
+
+    const root=$("test");
+
+    root.innerHTML="";
+    questions=[];
+
+    buildKanaTest(root);
+    buildCalendarReference(root);
+    buildCalendarExercises(root);
+    buildClockReference(root);
+    buildClockExercises(root);
 
     updateProgress();
-
 }
 
-/* Count answers */
-function counts() {
+function updateProgress(){
 
-    let correct = 0;
-
-    let wrong = 0;
-
-    let empty = 0;
-
-    questions.forEach(question => {
-
-        const value = normalize(question.input.value);
-
-        if (!value) {
-
-            empty++;
-
-        } else if (
-            isCorrectAnswer(value, question.answer)
-        ) {
-
-            correct++;
-
-        } else {
-
-            wrong++;
-
-        }
-
-    });
-
-    return {
-        correct,
-        wrong,
-        empty,
-        total: questions.length
-    };
-
-}
-
-/* Show only progress before checking */
-function updateProgress() {
-
-    const answered = questions.filter(question =>
-        normalize(question.input.value) !== ""
+    const answered=questions.filter(q=>
+        normalize(q.input.value)!==""
     ).length;
 
-    $("progress").style.width =
-        `${answered / questions.length * 100}%`;
+    const percentage=questions.length
+        ? answered/questions.length*100
+        : 0;
 
+    $("progress").style.width=percentage+"%";
+
+    if(running){
+        $("status").textContent=
+            `Test in progress. Answered ${answered} of ${questions.length} questions.`;
+    }
 }
 
-/* Reveal grading after Let's Check */
-function gradeTest() {
+function counts(){
 
-    questions.forEach(question => {
+    const result={
+        correct:0,
+        wrong:0,
+        empty:0,
+        total:questions.length,
+        kana:0,
+        calendar:0,
+        clock:0
+    };
 
-        const value = normalize(question.input.value);
+    questions.forEach(q=>{
 
-        question.input.classList.remove(
-            "correct",
-            "wrong"
-        );
+        const value=normalize(q.input.value);
 
-        question.feedback.textContent = "";
-
-        if (!value) {
-
-            question.input.classList.add("wrong");
-
-            question.feedback.textContent =
-                `Answer: ${romajiMap[toHiragana(question.answer)] || question.answer}`;
-
+        if(!value){
+            result.empty++;
             return;
-
         }
 
-        if (isCorrectAnswer(value, question.answer)) {
+        if(isCorrectAnswer(value,q.answer)){
+            result.correct++;
 
-            question.input.classList.add("correct");
+            if(q.category==="kana") result.kana++;
+            if(q.category==="calendar") result.calendar++;
+            if(q.category==="clock") result.clock++;
 
-            question.feedback.textContent = "✓ Correct";
-
-        } else {
-
-            question.input.classList.add("wrong");
-
-            question.feedback.textContent =
-                `✕ Answer: ${romajiMap[toHiragana(question.answer)] || question.answer}`;
-
+        }else{
+            result.wrong++;
         }
-
     });
 
+    return result;
 }
 
-/* Update timer display */
-function showTime() {
+function gradeTest(){
 
-    const minutes = Math.floor(remaining / 60);
+    questions.forEach(q=>{
 
-    const seconds = remaining % 60;
+        const value=normalize(q.input.value);
 
-    $("timer").textContent =
-        `${String(minutes).padStart(2, "0")}:${String(seconds).padStart(2, "0")}`;
+        q.input.classList.remove("correct","wrong");
+        q.feedback.textContent="";
 
+        if(!value){
+
+            q.input.classList.add("wrong");
+
+            q.feedback.textContent=
+                "No answer. Correct answer: "+q.answer;
+
+            return;
+        }
+
+        if(isCorrectAnswer(value,q.answer)){
+
+            q.input.classList.add("correct");
+            q.feedback.textContent="✓ Correct";
+
+        }else{
+
+            q.input.classList.add("wrong");
+
+            q.feedback.textContent=
+                "✕ Correct answer: "+q.answer;
+        }
+    });
 }
 
-/* Change the selected difficulty before the test starts */
-function updateDifficulty() {
+function showTime(){
 
-    if (running || finished) return;
+    const minutes=Math.floor(remaining/60);
+    const seconds=remaining%60;
 
-    const selectedDifficulty = $("difficulty").value;
+    $("timer").textContent=
+        String(minutes).padStart(2,"0")+":"+
+        String(seconds).padStart(2,"0");
+}
 
-    remaining = Number(selectedDifficulty);
+function updateDifficulty(){
+
+    if(running||finished) return;
+
+    remaining=Number($("difficulty").value);
 
     showTime();
 
-    const selectedText =
-        $("difficulty").options[$("difficulty").selectedIndex].text;
+    const text=$("difficulty").options[
+        $("difficulty").selectedIndex
+    ].text;
 
-    $("status").textContent =
-        `Selected: ${selectedText}. Press "Let's Start" to begin.`;
-
+    $("status").textContent=
+        "Selected: "+text+". Press Let's Start.";
 }
 
-/* Start test */
-function start() {
+function start(){
 
-    if (running || finished) return;
+    if(running||finished) return;
 
-    remaining = Number($("difficulty").value);
+    remaining=Number($("difficulty").value);
 
-    running = true;
+    running=true;
 
-    $("difficulty").disabled = true;
+    $("difficulty").disabled=true;
+    $("startBtn").disabled=true;
+    $("checkBtn").disabled=false;
+    $("checkBottom").disabled=false;
 
-    questions.forEach(question => {
-
-        question.input.disabled = false;
-
+    questions.forEach(q=>{
+        q.input.disabled=false;
     });
 
-    $("startBtn").disabled = true;
-
-    $("checkBtn").disabled = false;
-
-    $("checkBottom").disabled = false;
-
-    $("status").textContent =
-        "Test in progress. Your results are hidden until submission.";
+    $("status").textContent=
+        "Test in progress. All answers are being recorded.";
 
     showTime();
 
     questions[0]?.input.focus();
 
-    ticker = setInterval(() => {
+    ticker=setInterval(()=>{
 
         remaining--;
 
         showTime();
 
-        if (remaining <= 0) {
-
-            remaining = 0;
-
+        if(remaining<=0){
+            remaining=0;
             showTime();
-
             finish(true);
-
         }
 
-    }, 1000);
-
+    },1000);
 }
 
-/* Submit and reveal score */
-function finish(timeout = false) {
+function finish(timeout=false){
 
-    if (finished) return;
+    if(finished||!running) return;
 
-    running = false;
-
-    finished = true;
+    running=false;
+    finished=true;
 
     clearInterval(ticker);
 
     gradeTest();
 
-    questions.forEach(question => {
-
-        question.input.disabled = true;
-
+    questions.forEach(q=>{
+        q.input.disabled=true;
     });
 
-    const result = counts();
+    const result=counts();
 
-    $("correct").textContent =
-        `${result.correct}/${result.total}`;
+    const percentage=Math.round(
+        result.correct/result.total*100
+    );
 
-    $("wrong").textContent =
-        result.wrong;
+    $("correct").textContent=
+        result.correct+"/"+result.total;
 
-    $("unanswered").textContent =
-        result.empty;
+    $("wrong").textContent=result.wrong;
+    $("unanswered").textContent=result.empty;
+    $("score").textContent=percentage+"%";
 
-    $("score").textContent =
-        `${Math.round(result.correct / result.total * 100)}%`;
+    $("startBtn").disabled=true;
+    $("checkBtn").disabled=true;
+    $("checkBottom").disabled=true;
+    $("difficulty").disabled=true;
 
-    $("startBtn").disabled = true;
+    $("status").textContent=timeout
+        ?"Time is up. All tests have been submitted."
+        :"All tests successfully submitted.";
 
-    $("checkBtn").disabled = true;
+    $("resultTitle").textContent=timeout
+        ?"Time is up!"
+        :"テストが　おわりました！🙇";
 
-    $("checkBottom").disabled = true;
+    $("resultText").textContent=
+        `Your final score is ${result.correct} out of ${result.total} (${percentage}%). `+
+        `Wrong: ${result.wrong}. Unanswered: ${result.empty}.`;
 
-    $("difficulty").disabled = true;
+    $("resultKana").textContent=result.kana;
+    $("resultCalendar").textContent=result.calendar;
+    $("resultClock").textContent=result.clock;
 
-    $("status").textContent = timeout
-        ? "Time is up. Test submitted."
-        : "Test submitted.";
-
-    $("resultTitle").textContent = timeout
-        ? "Time is up!"
-        : "Test complete!";
-
-    $("resultText").textContent =
-        `Final score: ${result.correct}/${result.total} ` +
-        `(${Math.round(result.correct / result.total * 100)}%). ` +
-        `Wrong: ${result.wrong}. ` +
-        `Unanswered: ${result.empty}.`;
-
-    $("answerReview").textContent =
-        "Green answers are correct. Red answers are incorrect. The correct answer is shown under each incorrect answer.";
-
+    $("answerReview").textContent=
+        "Developed by マロル strictly for practice and skill-testing. Not for sale — built solely to push your limits"
     $("result").classList.add("show");
 
     $("result").scrollIntoView({
-        behavior: "smooth",
-        block: "center"
+        behavior:"smooth",
+        block:"center"
     });
-
 }
 
-/* Restart the test */
-function reset() {
+function reset(){
 
     clearInterval(ticker);
 
-    running = false;
+    running=false;
+    finished=false;
 
-    finished = false;
-
-    remaining = Number($("difficulty").value);
+    remaining=Number($("difficulty").value);
 
     $("result").classList.remove("show");
 
-    $("startBtn").disabled = false;
+    $("startBtn").disabled=false;
+    $("checkBtn").disabled=true;
+    $("checkBottom").disabled=true;
+    $("difficulty").disabled=false;
 
-    $("checkBtn").disabled = true;
+    $("correct").textContent="—";
+    $("wrong").textContent="—";
+    $("unanswered").textContent="—";
+    $("score").textContent="—";
 
-    $("checkBottom").disabled = true;
+    $("status").textContent=
+        "Choose a difficulty, then press Let's Start.";
 
-    $("difficulty").disabled = false;
-
-    $("correct").textContent = "—";
-
-    $("wrong").textContent = "—";
-
-    $("unanswered").textContent = "—";
-
-    $("score").textContent = "—";
-
-    $("status").textContent =
-        "Choose a difficulty, then press 'Let's Start'.";
-
-    showTime();
+    $("progress").style.width="0%";
 
     buildTest();
+    showTime();
 
+    window.scrollTo({
+        top:0,
+        behavior:"smooth"
+    });
 }
 
-/* Button events */
-$("startBtn").addEventListener("click", start);
+$("startBtn").addEventListener("click",start);
 
-$("checkBtn").addEventListener("click", () => finish(false));
+$("checkBtn").addEventListener("click",()=>{
+    finish(false);
+});
 
-$("checkBottom").addEventListener("click", () => finish(false));
+$("checkBottom").addEventListener("click",()=>{
+    finish(false);
+});
 
-$("resetBtn").addEventListener("click", reset);
+$("resetBtn").addEventListener("click",reset);
 
-$("difficulty").addEventListener("change", updateDifficulty);
+$("difficulty").addEventListener(
+    "change",
+    updateDifficulty
+);
 
-/* Initialize */
 buildTest();
-
 showTime();
 
 </script>
-
 </body>
 </html>
