@@ -36,6 +36,8 @@ body {
     background: var(--bg);
     color: var(--ink);
     font-family: Meiryo, "Yu Gothic", "Noto Sans JP", Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.65;
 }
 
 .app {
@@ -49,14 +51,14 @@ body {
     text-align:center;
     padding:8px;
     color:var(--muted);
-    font-size:13px;
+    font-size:15px;
     font-weight:750;
 }
 
 .developer a{
     display:inline-block;
     margin-left:5px;
-    font-size:17px;
+    font-size:19px;
     font-weight:900;
     letter-spacing:1px;
     text-decoration:none;
@@ -76,7 +78,7 @@ body {
 .topbar{
     width:100%;
     background:#ededed;
-    padding:15px;
+    padding:18px;
     box-shadow:0 3px 8px #0002;
 }
 
@@ -91,16 +93,17 @@ body {
     align-items:center;
     justify-content:space-between;
     gap:10px;
-    padding:10px;
-    margin-bottom:10px;
+    padding:13px;
+    margin-bottom:12px;
+    font-size:17px;
 }
 
 .difficulty-select{
-    padding:9px;
+    padding:11px 13px;
     border:1px solid var(--line);
     border-radius:8px;
     background:#f8faff;
-    font-size:14px;
+    font-size:16px;
     font-weight:700;
     color:var(--ink);
 }
@@ -117,8 +120,8 @@ body {
     background:var(--blue);
     color:white;
     border-radius:10px;
-    padding:11px 15px;
-    font-size:20px;
+    padding:13px 18px;
+    font-size:24px;
     font-weight:800;
     font-variant-numeric:tabular-nums;
 }
@@ -132,8 +135,8 @@ body {
 button{
     border:0;
     border-radius:9px;
-    padding:12px 15px;
-    font-size:14px;
+    padding:13px 17px;
+    font-size:16px;
     font-weight:750;
     cursor:pointer;
 }
@@ -156,29 +159,29 @@ button:disabled{
 .scoreboard{
     display:grid;
     grid-template-columns:repeat(4,1fr);
-    gap:7px;
-    margin:12px 0;
+    gap:9px;
+    margin:14px 0;
 }
 
 .stat{
     text-align:center;
-    padding:9px 4px;
+    padding:12px 5px;
 }
 
 .stat span{
     display:block;
     color:var(--muted);
-    font-size:11px;
+    font-size:14px;
 }
 
 .stat strong{
     display:block;
-    font-size:19px;
-    margin-top:3px;
+    font-size:23px;
+    margin-top:4px;
 }
 
 .progress{
-    height:7px;
+    height:9px;
     background:#e1e6ef;
     border-radius:20px;
     overflow:hidden;
@@ -192,59 +195,60 @@ button:disabled{
 }
 
 .status{
-    font-size:12px;
+    font-size:14px;
     color:var(--muted);
-    margin-top:7px;
+    margin-top:9px;
 }
 
 h1.main-title{
     background:var(--blue);
     color:white;
     border-radius:12px;
-    padding:18px;
-    font-size:26px;
+    padding:21px;
+    font-size:34px;
     line-height:1.5;
 }
 
 .subtitle{
     color:var(--muted);
-    font-size:13px;
-    line-height:1.7;
+    font-size:24px;
+    line-height:1.9;
 }
 
 .section{
     background:white;
     border:1px solid #e5e9f1;
     border-radius:13px;
-    padding:13px;
-    margin:15px 0;
+    padding:18px;
+    margin:17px 0;
     box-shadow:0 2px 8px #172b4d0a;
 }
 
 .section h2{
-    font-size:18px;
-    margin:3px 0 7px;
+    font-size:23px;
+    margin:5px 0 10px;
     color:var(--blue);
+    line-height:1.5;
 }
 
 .section-desc{
     color:var(--muted);
-    font-size:12px;
-    line-height:1.7;
-    margin-bottom:14px;
+    font-size:15px;
+    line-height:1.9;
+    margin-bottom:16px;
 }
 
 .panel{
     border:1px solid var(--line);
     border-radius:10px;
     overflow:hidden;
-    margin:12px 0;
+    margin:15px 0;
 }
 
 .panel h3{
     background:#f1f4f9;
-    padding:10px;
-    font-size:14px;
+    padding:13px;
+    font-size:18px;
     margin:0;
 }
 
@@ -257,36 +261,38 @@ table{
 td,th{
     border:1px solid var(--line);
     text-align:center;
-    padding:4px;
-    height:40px;
-    font-size:14px;
+    padding:6px;
+    height:47px;
+    font-size:17px;
+    line-height:1.5;
 }
 
 td.num{
-    width:34px;
+    width:40px;
     background:#f8f9fc;
     color:var(--muted);
-    font-size:11px;
+    font-size:14px;
 }
 
 td.blank{
     background:var(--yellow);
-    padding:2px;
+    padding:3px;
 }
 
 .answer{
     display:block;
     width:100%;
     min-width:0;
-    height:34px;
-    padding:2px;
+    height:42px;
+    padding:3px;
     border:1px solid transparent;
     border-radius:5px;
     outline:none;
     background:transparent;
     text-align:center;
     font-family:inherit;
-    font-size:20px;
+    font-size:25px;
+    font-weight:600;
     color:var(--ink);
 }
 
@@ -314,46 +320,50 @@ td.blank{
 
 .feedback{
     display:block;
-    font-size:10px;
-    line-height:1.4;
-    min-height:12px;
+    font-size:13px;
+    line-height:1.5;
+    min-height:16px;
     overflow-wrap:anywhere;
+    font-weight:600;
 }
 
 .reference{
-    font-size:12px;
+    font-size:15px;
 }
 
 .reference td{
-    height:36px;
+    height:43px;
 }
 
 .calendar-container{
-    width:380px;
-    margin:15px auto;
+    width:420px;
+    max-width:100%;
+    margin:18px auto;
 }
 
 .month-title{
     text-align:center;
     font-weight:800;
-    margin-bottom:9px;
-    font-size:17px;
+    margin-bottom:11px;
+    font-size:21px;
 }
 
 .month-title span{
     color:var(--muted);
-    font-size:11px;
+    font-size:14px;
     font-weight:normal;
 }
 
 .calendar th{
     background:#f1f4f9;
-    height:35px;
+    height:43px;
+    font-size:17px;
 }
 
 .calendar td{
-    height:42px;
+    height:49px;
     position:relative;
+    font-size:18px;
 }
 
 .calendar th:first-child,.calendar td:first-child{
@@ -372,8 +382,8 @@ td.blank{
 .calendar td.marked:after{
     content:"";
     position:absolute;
-    width:25px;
-    height:25px;
+    width:29px;
+    height:29px;
     border:1px solid #a99565;
     border-radius:50%;
     top:50%;
@@ -383,126 +393,136 @@ td.blank{
 }
 
 .exercise-instruction{
-    font-size:12px;
-    line-height:1.8;
-    margin:15px 0;
+    font-size:16px;
+    line-height:1.9;
+    margin:17px 0;
 }
 
 .date-answers{
     display:flex;
     flex-direction:column;
-    gap:12px;
+    gap:15px;
 }
 
 .date-row{
     display:grid;
-    grid-template-columns:25px 1fr 1fr;
-    gap:8px;
+    grid-template-columns:35px 1fr 1fr;
+    gap:12px;
     align-items:center;
-    font-size:12px;
+    font-size:16px;
+}
+
+.date-row label{
+    display:block;
+    font-weight:700;
+    margin-bottom:4px;
 }
 
 .answer-input{
     width:100%;
     min-width:0;
-    height:32px;
+    height:42px;
     border:0;
-    border-bottom:1px solid #888;
+    border-bottom:2px solid #888;
     border-radius:0;
     outline:none;
     background:transparent;
     font-family:inherit;
-    font-size:14px;
+    font-size:19px;
+    font-weight:600;
     text-align:center;
 }
 
 .answer-input:focus{
-    border-bottom:2px solid var(--blue);
+    border-bottom:3px solid var(--blue);
     background:#f5f8fc;
 }
 
 .clock-grid{
     display:grid;
     grid-template-columns:repeat(5,1fr);
-    gap:15px 8px;
-    margin:20px 0;
+    gap:18px 10px;
+    margin:23px 0;
 }
 
 .clock-item{
     text-align:center;
-    font-size:13px;
+    font-size:17px;
+    font-weight:700;
 }
 
 .clock{
     display:block;
     width:100%;
-    max-width:145px;
-    margin:6px auto;
+    max-width:165px;
+    margin:8px auto;
 }
 
 .clock-answer-list{
     display:flex;
     flex-direction:column;
-    gap:12px;
+    gap:15px;
 }
 
 .clock-answer{
     display:grid;
-    grid-template-columns:35px 1fr;
+    grid-template-columns:45px 1fr;
     align-items:center;
-    gap:8px;
-    font-size:13px;
+    gap:10px;
+    font-size:17px;
 }
 
 .page-number{
     text-align:center;
     color:#999;
-    font-size:11px;
-    margin-top:25px;
+    font-size:14px;
+    margin-top:27px;
 }
 
 .exam-section-title{
     background:#e5edf6;
     border-left:5px solid var(--blue);
-    padding:10px;
-    margin-top:25px;
+    padding:13px;
+    margin-top:27px;
     font-weight:bold;
-    font-size:15px;
+    font-size:19px;
+    line-height:1.6;
 }
 
 .exam-section-title small{
     display:block;
     font-weight:normal;
-    margin-top:4px;
+    margin-top:5px;
     color:#555;
+    font-size:15px;
 }
 
 .mc-question{
-    padding:13px 8px;
+    padding:17px 10px;
     border-bottom:1px solid #ddd;
 }
 
 .mc-question-text{
-    font-weight:600;
-    margin-bottom:8px;
-    line-height:1.7;
-    font-size:14px;
+    font-weight:650;
+    margin-bottom:10px;
+    line-height:1.8;
+    font-size:18px;
 }
 
 .options{
     display:grid;
     grid-template-columns:1fr 1fr;
-    gap:6px;
+    gap:8px;
 }
 
 .option{
     display:flex;
     align-items:flex-start;
-    padding:8px;
-    border-radius:5px;
+    padding:11px;
+    border-radius:6px;
     cursor:pointer;
-    font-size:14px;
-    line-height:1.6;
+    font-size:17px;
+    line-height:1.7;
 }
 
 .option:hover{
@@ -510,7 +530,9 @@ td.blank{
 }
 
 .option input{
-    margin:3px 8px 0 0;
+    width:18px;
+    height:18px;
+    margin:5px 10px 0 0;
     accent-color:var(--blue);
     flex-shrink:0;
 }
@@ -524,9 +546,9 @@ td.blank{
 }
 
 .mc-feedback{
-    font-size:12px;
+    font-size:15px;
     font-weight:bold;
-    margin-top:7px;
+    margin-top:9px;
 }
 
 .mc-question input:disabled{
@@ -538,8 +560,8 @@ td.blank{
     background:#eef4ff;
     border:1px solid #cbd9f6;
     border-radius:13px;
-    padding:16px;
-    margin:15px 0;
+    padding:20px;
+    margin:17px 0;
 }
 
 .result.show{
@@ -548,13 +570,19 @@ td.blank{
 
 .result h2{
     margin-top:0;
+    font-size:25px;
+}
+
+.result p{
+    font-size:16px;
+    line-height:1.8;
 }
 
 .result-grid{
     display:grid;
     grid-template-columns:repeat(3,1fr);
-    gap:8px;
-    margin:12px 0;
+    gap:10px;
+    margin:14px 0;
 }
 
 .result-card{
@@ -562,54 +590,50 @@ td.blank{
     background:white;
     border:1px solid var(--line);
     border-radius:9px;
-    padding:10px 4px;
+    padding:14px 5px;
 }
 
 .result-card strong{
     display:block;
-    font-size:20px;
+    font-size:25px;
 }
 
 .result-card span{
-    font-size:11px;
+    font-size:14px;
     color:var(--muted);
 }
 
 .result-details{
     display:grid;
     grid-template-columns:1fr 1fr;
-    gap:8px;
-    margin-top:12px;
+    gap:10px;
+    margin-top:14px;
 }
 
 .result-detail{
     background:white;
-    padding:12px;
+    padding:14px;
     border:1px solid var(--line);
     border-radius:8px;
 }
 
 .result-detail strong{
     display:block;
-    font-size:18px;
+    font-size:22px;
 }
 
 .result-detail span{
-    font-size:11px;
+    font-size:14px;
     color:var(--muted);
 }
 
 .bottom-actions{
     display:flex;
     justify-content:center;
-    gap:8px;
+    gap:10px;
     flex-wrap:wrap;
-    margin:18px 0;
+    margin:20px 0;
 }
-
-/* =================================
-   DARK / LIGHT MODE
-================================= */
 
 html[data-theme="dark"]{
     color-scheme:dark;
@@ -809,7 +833,33 @@ html[data-theme="dark"] .answer-input::placeholder{
     color:#8998ad;
 }
 
-/* PRINT */
+html[data-theme="dark"] .section-desc,
+html[data-theme="dark"] .exercise-instruction,
+html[data-theme="dark"] .mc-question-text,
+html[data-theme="dark"] .date-row,
+html[data-theme="dark"] .clock-answer,
+html[data-theme="dark"] .clock-item,
+html[data-theme="dark"] .month-title{
+    color:var(--ink);
+}
+
+html[data-theme="dark"] .option{
+    background:transparent;
+}
+
+html[data-theme="dark"] .result-card span,
+html[data-theme="dark"] .result-detail span{
+    color:var(--muted);
+}
+
+html[data-theme="dark"] .answer-input{
+    border-bottom-color:#8292a8;
+}
+
+html[data-theme="dark"] .answer-input:focus{
+    background:#29384c;
+}
+
 @media print{
     html,body{
         min-width:0;
@@ -2658,8 +2708,6 @@ $("resetBtn").addEventListener("click",reset);
 $("difficulty").addEventListener(
     "change",updateDifficulty
 );
-
-/* INITIALIZE EXAM AND THEME */
 
 initializeTheme();
 
